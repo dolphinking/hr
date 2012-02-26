@@ -7,3 +7,7 @@ tmp/**/*
 # Can ignore the test-result directories.
 test-result/
 
+# Can ignore the dependencies modules directories.
+modules/
+
+
