@@ -59,8 +59,5 @@ public class BasicTest extends UnitTest {
 		assertNotNull(employee);
 		assertEquals("suraj", employee.userName);
 	}
-	
-	
-	
 
 }
