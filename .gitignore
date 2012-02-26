@@ -5,5 +5,5 @@
 tmp/**/*
 
 # Can ignore the test-result directories.
-test-result/**/*
+test-result/
 
