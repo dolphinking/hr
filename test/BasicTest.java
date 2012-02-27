@@ -37,7 +37,6 @@ public class BasicTest extends UnitTest {
 		assertEquals("Admin", role.name);
 	}
 	
-	
 	/*
 	* Test for creating and retrieving Employee from the database.
 	*/
@@ -49,6 +48,9 @@ public class BasicTest extends UnitTest {
 		// Create the role table at first.
 		Role role = new Role("Admin").save();
 		
+		// Create the expertise table at first.
+		Expertise expertise = new Expertise("IT","Information Technology",).save();
+		
 		// Created new instance of employee to save the sample data.
 		new Employee("Suraj Tamang", "suraj", "suraj123", "surajyonzon@gmail.com", "9849038521", department, role).save();
 		
@@ -59,5 +61,7 @@ public class BasicTest extends UnitTest {
 		assertNotNull(employee);
 		assertEquals("suraj", employee.userName);
 	}
+	
+	
 
 }

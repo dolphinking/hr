@@ -16,6 +16,9 @@ public class Expertise extends Model {
     @Required
     @MaxSize(10000)
     public String description;
+
+	@ManyToMany(mappedBy="followedExpertise") 
+	public Set<Employee> followsByEmployees = new HashSet<Employee>();
 	
 	public Expertise(String name, String description) {
 		this.name = name;
