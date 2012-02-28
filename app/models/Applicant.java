@@ -46,7 +46,6 @@ public class Applicant extends Model {
 	public Applicant(String firstName, String middleName, String lastName, String userName,
 	String password, String email, String phone, Float yearsOfExperience, String address,
 	Blob cv, Blob coverLetter) {
-		
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -59,8 +58,5 @@ public class Applicant extends Model {
 		this.cv = cv;
 		this.coverLetter = coverLetter;
 	}
-	
-	
-	
 }
 
