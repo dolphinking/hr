@@ -1,10 +1,10 @@
 package models;
 
+import java.util.*;
+import javax.persistence.*;
+ 
 import play.db.jpa.*;
 import play.data.validation.*;
-
-import javax.persistence.*;
-import java.util.*;
 
 @Entity
 public class Expertise extends Model {
@@ -12,17 +12,20 @@ public class Expertise extends Model {
 	@Required
 	public String name;
 	
-	@Lob
-    @Required
-    @MaxSize(10000)
-    public String description;
-
-	@ManyToMany(mappedBy="followedExpertise") 
-	public Set<Employee> followsByEmployees = new HashSet<Employee>();
+	@ManyToMany(mappedBy="expertise")
+	public List<Employee> employee;
 	
-	public Expertise(String name, String description) {
+	public Expertise(String name) {
 		this.name = name;
-		this.description = description;
+		this.employee = new ArrayList<Employee>();
 	}
+	
+	public static Expertise findOrCreateByName(String name) {
+        Expertise exp = Expertise.find("byName", name).first();
+        if(exp == null) {
+            exp = new Expertise(name);
+        }
+        return exp;
+    }
 }
 
