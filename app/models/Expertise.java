@@ -13,11 +13,11 @@ public class Expertise extends Model {
 	public String name;
 	
 	@ManyToMany(mappedBy="expertise")
-	public List<Employee> employee;
+	public List<Applicant> applicant;
 	
 	public Expertise(String name) {
 		this.name = name;
-		this.employee = new ArrayList<Employee>();
+		this.applicant = new ArrayList<Applicant>();
 	}
 	
 	public static Expertise findOrCreateByName(String name) {
@@ -28,4 +28,3 @@ public class Expertise extends Model {
         return exp;
     }
 }
-

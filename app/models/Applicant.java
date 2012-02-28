@@ -1,10 +1,10 @@
 package models;
 
+import java.util.*;
+import javax.persistence.*;
+
 import play.db.jpa.*;
 import play.data.validation.*;
-
-import javax.persistence.*;
-import java.util.*;
 
 @Entity
 public class Applicant extends Model {
@@ -30,7 +30,13 @@ public class Applicant extends Model {
 	public String phone;
 	
 	@Required
-	public Float yearsOfExperience;
+	public String qualification;
+	
+	@ManyToMany
+	public List<Expertise> expertise;
+	
+	@Required
+	public Double yearsOfExperience;
 	
 	@Required
 	@Lob
@@ -44,8 +50,8 @@ public class Applicant extends Model {
 	public Blob coverLetter;
 	
 	public Applicant(String firstName, String middleName, String lastName, String userName,
-	String password, String email, String phone, Float yearsOfExperience, String address,
-	Blob cv, Blob coverLetter) {
+	String password, String email, String phone, String qualification, 
+	Double yearsOfExperience, String address) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -53,10 +59,21 @@ public class Applicant extends Model {
 		this.password = password;
 		this.email = email;
 		this.phone = phone;
+		this.qualification = qualification;
+		this.expertise = new ArrayList<Expertise>();
 		this.yearsOfExperience = yearsOfExperience;
-		this.address = this.address;
-		this.cv = cv;
-		this.coverLetter = coverLetter;
+		this.address = address;
 	}
+	
+	public Applicant expertiseWith(String name) {
+        expertise.add(Expertise.findOrCreateByName(name));
+        return this;
+    }
+    
+    public static List<Applicant> findExpertiseWith(String exp) {
+		return Applicant.find(
+		"select distinct p from Applicant p join p.expertise as t where t.name = ?",
+		exp).fetch();
+   }
 }
 
