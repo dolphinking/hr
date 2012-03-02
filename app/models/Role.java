@@ -15,7 +15,4 @@ public class Role extends Model {
 	public Role(String name){
 		this.name = name;
 	}
-	
-	
 }
-
