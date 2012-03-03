@@ -14,7 +14,5 @@ public class Department extends Model {
 	
 	public Department(String name) {
 		this.name = name;
-	}
-	
+	}	
 }
-

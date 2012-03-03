@@ -76,4 +76,3 @@ public class Applicant extends Model {
 		exp).fetch();
    }
 }
-

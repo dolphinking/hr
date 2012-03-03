@@ -10,6 +10,7 @@ public class BasicTest extends UnitTest {
 	*/
 	@Test
 	public void createAndRetrieveEmployee() {
+		
 		// Create the department table at first.
 		Department department = new Department("Accounts").save();
 		
@@ -33,12 +34,19 @@ public class BasicTest extends UnitTest {
 	*/
 	@Test
 	public void createAndRetrieveJob() {
+		
 		// Create the job category table at first.
 		JobCategory category = new JobCategory("Sales and Marketing").save();
 		
+		// Created the instance of Employee and searched for first data.
+		Employee employee = Employee.find("byUserName", "suraj").first();
+		
+		//Check employee
+		assertNotNull(employee);
+				
 		// Create the job table at first.
 		new Job("Sales Girl", "Sexy", "Female", "Bachelors", 1.5, 1000.00,
-		"Nothing", category).save();
+		"Nothing", category, employee).save();
 				
 		// Created the instance of Employee and searched for first data.
 		Job job = Job.find("byDescription", "Sexy").first();

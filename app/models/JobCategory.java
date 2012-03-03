@@ -15,6 +15,4 @@ public class JobCategory extends Model {
 	public JobCategory(String name) {
 		this.name = name;
 	}
-	
 }
-

@@ -44,4 +44,3 @@ public class Employee extends Model {
 		this.role = role;
 	}
 }
-

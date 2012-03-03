@@ -38,8 +38,13 @@ public class Job extends Model {
 	@Required
 	public JobCategory category;
 	
-	public Job(String title, String description, String gender, String qualification, 
-	Double experience, Double salary, String benefits, JobCategory category) {
+	@ManyToOne
+	@Required
+	public Employee employee;
+	
+	public Job(String title, String description, String gender, 
+	String qualification, Double experience, Double salary, 
+	String benefits, JobCategory category, Employee employee) {
 		this.title = title;
 		this.description = description;
 		this.gender = gender;
@@ -48,7 +53,6 @@ public class Job extends Model {
 		this.salary = salary;
 		this.benefits = benefits;
 		this.category = category;
+		this.employee = employee;
 	}
-	
 }
-
