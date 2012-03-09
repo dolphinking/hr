@@ -18,8 +18,6 @@ public class Job extends Model {
 	public String description;
 	
 	@Required
-    @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "ENUM('Male', 'Female')")
     public String gender;
 	
 	@Required
