@@ -13,7 +13,6 @@ public class Job extends Model {
 	public String title;
 		
 	@Required
-	@Lob
 	@MaxSize(10000)
 	public String description;
 	
