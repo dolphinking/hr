@@ -1,20 +1,24 @@
 #{extends 'main.html' /}
 #{set title:'Login' /}
 
-#{form @Login.login(), id: 'login-form'}
-	<p><h1>Login</h1></p>
-	<p>
-		<label for="username">Username *</label>
-		<input type="text" class="input-large" name="username" /><br />
-		<span class="error"></span>
-	</p>
-	<p>
-		<label for="password">Password *</label>
-		<input type="password" class="input-large" name="password" /><br/>
-	</p>
-	<p>
-		<label for="submit"></label>
+#{form @Login.login(), class: 'form-stacked', id: 'login-form'}
+	<fieldset>
+		<legend>Login</legend>
+		<div class="clearfix">
+			<div class="input">
+				<label for="username">Username</label>
+				<input class="span5" id="username" type="text" name="username"/>
+				<span class="help-inline"></span>
+			</div>
+		</div>
+		<div class="clearfix">
+			<div class="input">
+				<label for="password">Password</label>
+				<input class="span5" id="password" type="password" name="password"/>
+				<span class="help-inline"></span>
+			</div>
+		</div>
 		<button type="submit" class="btn primary">Sign in</button>
-		<a href="#forgetpassword" class="link">lost password?</a>		
-	</p>
+		<a href="#forgetpassword" class="link">lost password?</a>
+	</fieldset>
 #{/form}
