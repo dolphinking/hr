@@ -7,10 +7,16 @@ import java.util.*;
 
 import models.*;
 
-public class Departments extends Controller {
+public class Login extends Controller {
 	
 	public static void index() {
-		
+		render();
 	}
+	
+	public static void login() {
+		render();
+	}
+	
+    
 }
 
