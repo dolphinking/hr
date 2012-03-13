@@ -32,15 +32,15 @@ public class Applicant extends Model {
 	@Required
 	public String qualification;
 	
-	@ManyToMany
-	public List<Expertise> expertise;
+	@Required
+	public String expertise;
 	
 	@Required
 	public Double yearsOfExperience;
 	
 	@Required
 	@Lob
-	@MaxSize(10000)
+	@MaxSize(5000)
 	public String address;
 	
 	@Required
@@ -49,9 +49,13 @@ public class Applicant extends Model {
 	@Required
 	public Blob coverLetter;
 	
+	@ManyToOne
+	@Required
+	public Job job;
+	
 	public Applicant(String firstName, String middleName, String lastName, String userName,
-	String password, String email, String phone, String qualification, 
-	Double yearsOfExperience, String address) {
+	String password, String email, String phone, String qualification, String expertise,
+	Double yearsOfExperience, String address, Job job) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -60,19 +64,9 @@ public class Applicant extends Model {
 		this.email = email;
 		this.phone = phone;
 		this.qualification = qualification;
-		this.expertise = new ArrayList<Expertise>();
+		this.expertise = expertise;
 		this.yearsOfExperience = yearsOfExperience;
 		this.address = address;
+		this.job = job;
 	}
-	
-	public Applicant expertiseWith(String name) {
-        expertise.add(Expertise.findOrCreateByName(name));
-        return this;
-    }
-    
-    public static List<Applicant> findExpertiseWith(String exp) {
-		return Applicant.find(
-		"select distinct p from Applicant p join p.expertise as t where t.name = ?",
-		exp).fetch();
-   }
 }

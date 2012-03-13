@@ -3,8 +3,12 @@
 # ~~~~
 
 # Home page
-GET     /                                       Login.index
-POST	/login									Login.login
+GET		/										Application.index
+GET		/jobShow/{id}							Application.jobShow
+
+# Login Page
+GET     /login                                  Login.index
+POST	/check									Login.login
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

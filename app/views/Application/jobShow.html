@@ -1,0 +1,11 @@
+#{extends 'main.html' /}
+#{set title: 'Human Equation UAE'/}
+<h1>Job List</h1>
+<p>
+	#{ifnot jobs}
+		No Job inside this category
+	#{/ifnot}
+</p>
+<div>
+	${jobs}
+</div>

@@ -7,10 +7,11 @@ public class BasicTest extends UnitTest {
 		
 	/*
 	*
-	* Test for creating and retrieving Job and Category from the database.
+	* Test for creating and retrieving Job, Employee and Applicant from the database.
 	*/
 	@Test
-	public void createAndRetrieveJob() {
+	public void createAndRetrieveEmployeeAndJob() {
+		
 		// Create the department table at first.
 		Department department = new Department("Accounts").save();
 		
@@ -31,45 +32,24 @@ public class BasicTest extends UnitTest {
 		JobCategory category = new JobCategory("Sales and Marketing").save();
 				
 		// Create the job table at first.
-		Job job = new Job("Sales Girl", "Sexy", "Female", "Bachelors", 1.5, 1000.00,
-		"Nothing", category, employee).save();
+		Job job = new Job("Sales Girl", "Beautiful", "Female", "Bachelors", 1.5, 1000.00,
+		"Nothing", new Date(), new Date(), category, employee).save();
 				
 		// Created the instance of Employee and searched for first data.
-		Job newJob = Job.find("byDescription", "Sexy").first();
+		Job newJob = Job.find("byDescription", "Beautiful").first();
 		
 		//Test
 		assertNotNull(job);
-		assertEquals("Sexy", newJob.description);
-	}
-	
-	/*
-	* Test for creating and retrieving Applicant from the database.
-	*/
-	@Test
-	public void createAndRetrieveApplicant() {
-				
-		// Create the expertise table at first.
-		Expertise expertise = new Expertise("IT").save();
-		Expertise expertise2 = new Expertise("HR").save();
+		assertEquals("Beautiful", newJob.description);
 		
-		// Created new instance of applicant to save the sample data.
-		Applicant applicant = new Applicant("Suraj", "", "Tamang", "username",
-			"password", "email@mail.com", "9849038521", "Bachelors", 
-			2.4, "Kathmandu").save();
-        
-        // Tag it now
-        applicant.expertiseWith("IT").expertiseWith("HR").save();
-		
-		// Check
-        assertEquals(1, Applicant.findExpertiseWith("IT").size());
-        assertEquals(1, Applicant.findExpertiseWith("HR").size());
-		
-		// Created the instance of Employee and searched for first data.
-		Applicant app = Applicant.find("byUserName", "username").first();
+		// Create an instance of Applicant
+		Applicant applicant = new Applicant("Ram", "Kumar", "Lama", "ram", "ram12345","ram@gmail.com", "9849038521", "Bachelors", "Java, PHP, C++", 2.5, "Kathmandu", job).save();
+		      				
+		// Created an instance of Applicant and searched for first data.
+		Applicant newApplicant = Applicant.find("byUsername", "ram").first();
 		
 		//Test
-		assertNotNull(app);
-		assertEquals("username", app.userName);
+		assertNotNull(newApplicant);
+		assertEquals("ram", newApplicant.userName);
 	}
-	
 }
