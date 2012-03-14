@@ -23,7 +23,7 @@ public class Job extends Model {
 	public String qualification;
 	
 	@Required
-	public Double experience;
+	public String experience;
 	
 	@Required
 	public Double salary;
@@ -46,7 +46,7 @@ public class Job extends Model {
 	public Employee employee;
 	
 	public Job(String title, String description, String gender, String qualification, 
-	Double experience, Double salary, String benefits, Date postedDate, Date expiredDate,
+	String experience, Double salary, String benefits, Date postedDate, Date expiredDate,
 	JobCategory category, Employee employee) {
 		this.title = title;
 		this.description = description;

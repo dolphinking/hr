@@ -1,9 +1,9 @@
 #{extends 'main.html' /}
-#{set title:'Login' /}
+#{set title:'Employee Login' /}
 
-#{form @Login.login(), class: 'form-stacked', id: 'login-form'}
+#{form @EmployeeController.login(), class: 'form-stacked', id: 'login-form'}
 	<fieldset>
-		<legend>Login</legend>
+		<legend>Employee Login</legend>
 		<div class="clearfix">
 			<div class="input">
 				<label for="username">Username</label>

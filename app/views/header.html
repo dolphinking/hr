@@ -1,13 +1,18 @@
 <div class="topbar">
 	<div class="fill">
 		<div class="container">
-			#{a @Application.index(), class: 'brand'}Human Equation UAE#{/a}
+			#{a @ApplicationController.index(), class: 'brand'}Human Equation UAE#{/a}
 			<ul class="nav">
-				<li>#{a @Application.index()}Home#{/a}</li>
-				<li>#{a @Login.index()}Sign In#{/a}</li>
-				<li><a href="#">SignUp</a></li>
-				<li><a href="#contact">Contact</a></li>
+				<li>#{a @ApplicationController.index()}Home#{/a}</li>
+				<li>#{a @ApplicantController.login()}Job Seeker Login#{/a}</li>
+				<li>#{a @ApplicantController.signup()}Job Seeker SignUp#{/a}</li>
+				<li>#{a @EmployeeController.index()}Employee Login#{/a}</li>
 			</ul>
+			#{if session.user}
+			<p class="pull-right">Logged in as <a href="#">${session.employee}</a>||
+					#{a @EmployeeController.logout()}Sign out#{/a}
+				</p>				
+			#{/if}
 		</div>
 	</div>
 </div>

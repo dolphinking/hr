@@ -1,0 +1,25 @@
+#{extends 'main.html' /}
+#{set title: 'Human Equation UAE'/}
+
+<h1>Job Description - ${job.title}</h1>
+<p>
+	#{ifnot job}
+		No Job inside this category
+	#{/ifnot}
+</p>
+<div>
+	<ul>
+		<li>Title: ${job.title}</li>
+		<li>Description: ${job.description}</li>
+		<li>Gender: ${job.gender}</li>
+		<li>Qualification: ${job.qualification}</li>
+		<li>Experience: ${job.experience}</li>
+		<li>Salary: ${job.salary.formatCurrency('AED').raw()}</li>
+		<li>Benefits: ${job.benefits}</li>
+		<li>Posted Date: ${job.postedDate.since()}</li>
+		<li>Expired Date: ${job.expiredDate}</li>				
+	</ul>
+</div>
+<div>
+	#{a @ApplicationController.index()}Apply Now#{/a}
+</div>

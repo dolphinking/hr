@@ -7,5 +7,9 @@
 	#{/ifnot}
 </p>
 <div>
-	${jobs}
+	<ul>
+		#{list items:jobs, as: 'job'}
+			<li>#{a @ApplicationController.jobDescription(job.id)}${job.title}#{/a}</li>
+		#{/list}
+	</ul>
 </div>

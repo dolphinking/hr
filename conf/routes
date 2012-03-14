@@ -3,13 +3,18 @@
 # ~~~~
 
 # Home page
-GET		/										Application.index
-GET		/jobShow/{id}							Application.jobShow
+GET		/										ApplicationController.index
+GET		/jobShow/{id}							ApplicationController.jobShow
+GET		/jobDescription/{id}					ApplicationController.jobDescription
 
-# Login Page
-GET     /login                                  Login.index
-POST	/check									Login.login
+#Employeee Page
+GET		/employee_login							EmployeeController.index
 
+#Applicant Page
+GET		/applicant_signup						ApplicantController.signup
+GET		/applicant_login						ApplicantController.login
+POST	/applicant_save							ApplicantController.save
+	
 # Ignore favicon requests
 GET     /favicon.ico                            404
 

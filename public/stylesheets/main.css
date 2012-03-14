@@ -35,7 +35,7 @@ body { padding-top: 40px; }
 .content .span10 { min-height: 500px; }
 .content .span4 { min-height: 500px; }
 
-/* Styles for form */
+/* Styles for Login form */
 #login-form {
 	margin-top: 140px;
 	padding-top: 20px;
@@ -45,6 +45,17 @@ body { padding-top: 40px; }
 }
 
 #login-form .link { padding-left: 100px; }
+
+/* Styles for Applicant signUp Form */
+#signup-form {
+	margin-top: 10px;
+	padding-top: 20px;
+	margin-left: 250px;
+	border: 1px solid #eee;
+	border-radius: 10px;
+}
+
+#signup-form .link { padding-left: 100px; }
 
 /* End of Form CSS */
 

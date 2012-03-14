@@ -7,7 +7,7 @@ import java.util.*;
 
 import models.*;
 
-public class Application extends Controller {
+public class ApplicationController extends Controller {
 
 	public static void index() {
 		List<JobCategory> jobCategories = JobCategory.findAll();
@@ -18,6 +18,9 @@ public class Application extends Controller {
 		List<Job> jobs = Job.find("select j from Job j join j.category as c where c.id = ?", id).fetch();
 		render(jobs);
 	}
-    
+	
+	public static void jobDescription(Long id) {
+		Job job = Job.findById(id);
+		render(job);
+	}   
 }
-

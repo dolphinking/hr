@@ -32,8 +32,7 @@ public class BasicTest extends UnitTest {
 		JobCategory category = new JobCategory("Sales and Marketing").save();
 				
 		// Create the job table at first.
-		Job job = new Job("Sales Girl", "Beautiful", "Female", "Bachelors", 1.5, 1000.00,
-		"Nothing", new Date(), new Date(), category, employee).save();
+		Job job = new Job("Sales Girl", "Beautiful", "Female", "Bachelors", "1.5+ Above", 1000.00, "Nothing", new Date(), new Date(), category, employee).save();
 				
 		// Created the instance of Employee and searched for first data.
 		Job newJob = Job.find("byDescription", "Beautiful").first();
