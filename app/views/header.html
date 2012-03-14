@@ -8,8 +8,8 @@
 				<li>#{a @ApplicantController.signup()}Job Seeker SignUp#{/a}</li>
 				<li>#{a @EmployeeController.index()}Employee Login#{/a}</li>
 			</ul>
-			#{if session.user}
-			<p class="pull-right">Logged in as <a href="#">${session.employee}</a>||
+			#{if session.userEmployee}
+			<p class="pull-right"><a href="#">${session.userEmployee}</a>||
 					#{a @EmployeeController.logout()}Sign out#{/a}
 				</p>				
 			#{/if}

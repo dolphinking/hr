@@ -10,13 +10,16 @@ import models.*;
 public class EmployeeController extends Controller {
 	
 	public static void index() {
+		if(session.get("userEmployee") != null) {
+			ApplicationController.index();
+		}
 		render();
 	}
 	
 	public static void login(String username, String password) {
 		Employee employee = Employee.find("byUsernameAndPassword", username, password).first();
 		if(employee != null) {
-			session.put("user", employee.username);
+			session.put("userEmployee", employee.username);
             flash.success("Welcome, " + employee.fullName);
             ApplicationController.index();         
         }

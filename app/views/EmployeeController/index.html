@@ -21,4 +21,11 @@
 		<button type="submit" class="btn primary">Sign in</button>
 		<a href="#forgetpassword" class="link">lost password?</a>
 	</fieldset>
+	<span>
+		<font color="red">
+			#{if flash.error}
+				${error ?: flash.error}
+			#{/if}
+		</font>
+	</span>
 #{/form}
