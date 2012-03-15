@@ -1,0 +1,31 @@
+#{extends 'main.html' /}
+#{set title:'Employee Login' /}
+
+#{form @EmployeeController.checkEmployee(), class: 'form-stacked', id: 'login-form'}
+	<fieldset>
+		<legend>Employee Login</legend>
+		<div class="clearfix">
+			<div class="input">
+				<label for="username">Username</label>
+				<input class="span5" id="username" type="text" name="username"/>
+				<span class="help-inline"></span>
+			</div>
+		</div>
+		<div class="clearfix">
+			<div class="input">
+				<label for="password">Password</label>
+				<input class="span5" id="password" type="password" name="password"/>
+				<span class="help-inline"></span>
+			</div>
+		</div>
+		<button type="submit" class="btn primary">Sign in</button>
+		<a href="#forgetpassword" class="link">lost password?</a>
+	</fieldset>
+	<span>
+		<font color="red">
+			#{if flash.error}
+				${error ?: flash.error}
+			#{/if}
+		</font>
+	</span>
+#{/form}

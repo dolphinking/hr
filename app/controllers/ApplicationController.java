@@ -22,5 +22,5 @@ public class ApplicationController extends Controller {
 	public static void jobDescription(Long id) {
 		Job job = Job.findById(id);
 		render(job);
-	}   
+	}
 }

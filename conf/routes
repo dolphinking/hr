@@ -8,7 +8,8 @@ GET		/jobShow/{id}							ApplicationController.jobShow
 GET		/jobDescription/{id}					ApplicationController.jobDescription
 
 #Employeee Page
-GET		/employee_login							EmployeeController.index
+GET		/employee_login							EmployeeController.login
+GET		/employee_home							EmployeeController.index
 
 #Applicant Page
 GET		/applicant_signup						ApplicantController.signup
