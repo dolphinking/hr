@@ -7,7 +7,7 @@
 	</div>
 	<div class="row">
 		<div class="span10">
-				#{form @ApplicantController.login(), class: 'form-stacked', enctype: 'multipart/form-data', id: 'signup-form'}
+				#{form @ApplicantController.login(), class: 'form-stacked'}
 					<fieldset>
 						<legend>Post New Job</legend>
 						<div class="clearfix">
@@ -38,8 +38,8 @@
 						<div class="clearfix">
 							<div class="input">
 								<label for="gender">Gender *</label>
-								<input class="span5" id="gender" type="radio" name="gender"/>
-								<input class="span5" id="gender" type="radio" name="gender"/>
+								<input class="span1" id="gender" type="radio" name="gender" value="female"/>Female
+								<input class="span1" id="gender" type="radio" name="gender" value="male"/>Male
 								<span class="help-inline"></span>
 							</div>
 						</div>	

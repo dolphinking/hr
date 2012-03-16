@@ -49,7 +49,6 @@ public class EmployeeController extends Controller {
 	// @username is the username variable to capture the value of username
 	// @password is the password variable to capture the value of password
 	public static void checkEmployee(String username, String password) {
-		checkSession();
 		Employee employee = Employee.find("byUsernameAndPassword", username, password).first();
 		if(employee != null) {
 			session.put("userEmployee", employee.username);
