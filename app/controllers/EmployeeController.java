@@ -64,7 +64,7 @@ public class EmployeeController extends Controller {
 	// Logout Action Page....
 	public static void logout() {
 		session.clear();
-		index();
+		login();
 	}
 	
 	// List of jobs will be listed here....
@@ -87,12 +87,6 @@ public class EmployeeController extends Controller {
 	
 	// Settings of currrently logged in user....
 	public static void settings() {
-		checkSession();
-		render();
-	}
-	
-	// List Job Action Page...
-	public static void listJobs() {
 		checkSession();
 		render();
 	}

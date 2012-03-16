@@ -14,7 +14,6 @@ GET		/post_job								EmployeeController.postJob
 GET		/cv_pool								EmployeeController.cvPool
 GET		/employee_profile						EmployeeController.profile
 GET		/employee_settings						EmployeeController.settings
-GET		/list_jobs								EmployeeController.listJobs
 GET		/new_job								EmployeeController.newJob
 
 # Applicant Page
