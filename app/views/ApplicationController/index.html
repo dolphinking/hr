@@ -1,24 +1,32 @@
 #{extends 'main.html' /}
 #{set title: 'Human Equation UAE'/}
 
-<h1>Latest Job Openings</h1>
-<div>
-	<h2>Job Categories</h2>
-	<ul>
-		#{list items:jobCategories, as: 'jobCategory'}
-			<li>
-				#{a @ApplicationController.jobShow(jobCategory.id)}${jobCategory.name}#{/a}
-			</li>
-		#{/list}
-	</ul>
+<div class="content">
+	<div class="page-header">
+		<h2>Latest Job Openings</h2>
+	</div>
+	<div class="row">
+		<div class="span10">
+			<div>
+				<h2>Job Categories</h2>
+				<ul>
+					#{list items:jobCategories, as: 'jobCategory'}
+						<li>
+							#{a @ApplicationController.jobShow(jobCategory.id)}${jobCategory.name}#{/a}
+						</li>
+					#{/list}
+				</ul>
+			</div>
+
+			#{ifnot jobCategories}
+				<p>
+					No Jobs
+				</p>
+			#{/ifnot}
+			
+		</div>
+	</div>
 </div>
-
-#{ifnot jobCategories}
-	<p>
-		No Jobs
-	</p>
-#{/ifnot}
-
 #{script src: 'jquery.tablesorter.min.js'/}
 <script>
 	$(function() {

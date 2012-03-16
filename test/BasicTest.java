@@ -26,7 +26,7 @@ public class BasicTest extends UnitTest {
 		
 		//Test
 		assertNotNull(emp);
-		assertEquals("suraj", employee.userName);
+		assertEquals("suraj", employee.username);
 		
 		// Create the job category table at first.
 		JobCategory category = new JobCategory("Sales and Marketing").save();

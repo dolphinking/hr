@@ -35,7 +35,7 @@ public class Job extends Model {
 	public Date postedDate;
 	
 	@Required
-	public Date expiredDate;
+	public Date expiryDate;
 	
 	@ManyToOne
 	@Required
@@ -46,7 +46,7 @@ public class Job extends Model {
 	public Employee employee;
 	
 	public Job(String title, String description, String gender, String qualification, 
-	String experience, Double salary, String benefits, Date postedDate, Date expiredDate,
+	String experience, Double salary, String benefits, Date postedDate, Date expiryDate,
 	JobCategory category, Employee employee) {
 		this.title = title;
 		this.description = description;
@@ -56,7 +56,7 @@ public class Job extends Model {
 		this.salary = salary;
 		this.benefits = benefits;
 		this.postedDate = postedDate;
-		this.expiredDate = expiredDate;
+		this.expiryDate = expiryDate;
 		this.category = category;
 		this.employee = employee;
 	}

@@ -14,8 +14,12 @@
 				#{a @EmployeeController.index(), class: 'brand'}Human Equation UAE#{/a}			
 				<ul class="nav">
 					<li>#{a @EmployeeController.index()}Home#{/a}</li>
+					<li>#{a @EmployeeController.postJob()}Post Jobs#{/a}</li>
+					<li>#{a @EmployeeController.cvPool()}CV Pool#{/a}</li>
+					<li>#{a @EmployeeController.settings()}Settings#{/a}</li>
 				</ul>
-				<p class="pull-right"><a href="#">${session.userEmployee}</a>||
+				<p class="pull-right">
+					#{a @EmployeeController.profile()}${session.userEmployee}#{/a}||
 					#{a @EmployeeController.logout()}Sign out#{/a}
 				</p>
 			#{/if}

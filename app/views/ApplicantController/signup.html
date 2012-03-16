@@ -1,100 +1,106 @@
 #{extends 'main.html' /}
 #{set title:'New Applicant SignUp' /}
 
-#{form @ApplicantController.login(), class: 'form-stacked', enctype: 'multipart/form-data', id: 'signup-form'}
-	<fieldset>
-		<legend>New Applicant</legend>
-		<div class="clearfix">
-			<div class="input">
-				<label for="firstname">First Name *</label>
-				<input class="span5" id="firstName" type="text" name="firstName"/>
-				<span class="help-inline"></span>
-			</div>
+<div class="content">
+	<div class="row">
+		<div class="span10">
+			#{form @ApplicantController.login(), class: 'form-stacked', enctype: 'multipart/form-data', id: 'signup-form'}
+				<fieldset>
+					<legend>New Applicant</legend>
+					<div class="clearfix">
+						<div class="input">
+							<label for="firstname">First Name *</label>
+							<input class="span5" id="firstName" type="text" name="firstName"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="middleName">Middle Name</label>
+							<input class="span5" id="middleName" type="text" name="middleName"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="lastName">Last Name *</label>
+							<input class="span5" id="lastName" type="text" name="lastName"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>	
+					<div class="clearfix">
+						<div class="input">
+							<label for="username">Username</label>
+							<input class="span5" id="username" type="text" name="username"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="password">Password</label>
+							<input class="span5" id="password" type="password" name="password"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="email">Email *</label>
+							<input class="span5" id="email" type="text" name="email"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="phone">Phone *</label>
+							<input class="span5" id="phone" type="text" name="phone"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="qualification">Qualification *</label>
+							<input class="span5" id="qualification" type="text" name="qualification"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="expertise">Expertise *</label>
+							<input class="span5" id="expertise" type="text" name="expertise"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="yearsOfExperience">Years of Experience *</label>
+							<input class="span5" id="yrsOfExp" type="text" name="yearsOfExperience"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="address">Address *</label>
+							<textarea class="span5" id="address" name="address"></textarea>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="coverLetter">Cover Letter *</label>
+							<input class="span5" id="coverLetter" type="file" name="coverLetter"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label for="cv">CV *</label>
+							<input class="span5" id="cv" type="file" name="cv"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					<button type="submit" class="btn primary">Sign Up</button>
+				</fieldset>
+			#{/form}
 		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="middleName">Middle Name</label>
-				<input class="span5" id="middleName" type="text" name="middleName"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="lastName">Last Name *</label>
-				<input class="span5" id="lastName" type="text" name="lastName"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>	
-		<div class="clearfix">
-			<div class="input">
-				<label for="username">Username</label>
-				<input class="span5" id="username" type="text" name="username"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="password">Password</label>
-				<input class="span5" id="password" type="password" name="password"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="email">Email *</label>
-				<input class="span5" id="email" type="text" name="email"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="phone">Phone *</label>
-				<input class="span5" id="phone" type="text" name="phone"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="qualification">Qualification *</label>
-				<input class="span5" id="qualification" type="text" name="qualification"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="expertise">Expertise *</label>
-				<input class="span5" id="expertise" type="text" name="expertise"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="yearsOfExperience">Years of Experience *</label>
-				<input class="span5" id="yrsOfExp" type="text" name="yearsOfExperience"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="address">Address *</label>
-				<textarea class="span5" id="address" name="address"></textarea>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="coverLetter">Cover Letter *</label>
-				<input class="span5" id="coverLetter" type="file" name="coverLetter"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<div class="clearfix">
-			<div class="input">
-				<label for="cv">CV *</label>
-				<input class="span5" id="cv" type="file" name="cv"/>
-				<span class="help-inline"></span>
-			</div>
-		</div>
-		<button type="submit" class="btn primary">Sign Up</button>
-	</fieldset>
-#{/form}
+	</div>
+</div>
