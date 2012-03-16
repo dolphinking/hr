@@ -7,7 +7,7 @@ GET		/										ApplicationController.index
 GET		/jobShow/{id}							ApplicationController.jobShow
 GET		/jobDescription/{id}					ApplicationController.jobDescription
 
-#Employeee Page
+# Employeee Page
 GET		/employee_login							EmployeeController.login
 GET		/employee_home							EmployeeController.index
 GET		/post_job								EmployeeController.postJob
@@ -17,10 +17,20 @@ GET		/employee_settings						EmployeeController.settings
 GET		/list_jobs								EmployeeController.listJobs
 GET		/new_job								EmployeeController.newJob
 
-#Applicant Page
+# Applicant Page
 GET		/applicant_signup						ApplicantController.signup
 GET		/applicant_login						ApplicantController.login
 POST	/applicant_save							ApplicantController.save
+
+# JobCategory Page
+GET		/job_categories							JobCategoryController.index
+POST	/add_job_category						JobCategoryController.addJobCategory
+DELETE	/delete_job_category					JobCategoryController.removeJobCategory
+
+# Department Page
+GET		/departments							DepartmentController.index
+POST	/add_department							DepartmentController.addDepartment
+DELETE	/delete_department						DepartmentController.removeDepartment						
 	
 # Ignore favicon requests
 GET     /favicon.ico                            404

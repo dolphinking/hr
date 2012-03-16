@@ -3,16 +3,24 @@
 
 <div class="content">
 	<div class="page-header">
-		<h5>
-			#{a @EmployeeController.listJobs()}List Jobs#{/a} || 
-			#{a @EmployeeController.newJob()}New Job#{/a}
-		</h5>
+		#{include 'jobs_menu.html'/}
 	</div>
 	<div class="row">
 		<div class="span10">
 				#{form @ApplicantController.login(), class: 'form-stacked', enctype: 'multipart/form-data', id: 'signup-form'}
 					<fieldset>
 						<legend>Post New Job</legend>
+						<div class="clearfix">
+							<div class="input">
+								<label for="jobCategory">Job Category *</label>
+								<select id="job-category" name="jobCategory">
+									<option value="IT">Telecom/Hardware/Software</option>
+									<option value="HR">Human Resources</option>
+									<option value="MRT">Sales and Marketing</option>
+								</select>
+								<span class="help-inline"></span>
+							</div>
+						</div>
 						<div class="clearfix">
 							<div class="input">
 								<label for="title">Title *</label>
@@ -37,7 +45,7 @@
 						</div>	
 						<div class="clearfix">
 							<div class="input">
-								<label for="qualification">Qualification</label>
+								<label for="qualification">Qualification *</label>
 								<input class="span5" id="qualification" type="text" name="qualification"/>
 								<span class="help-inline"></span>
 							</div>
@@ -51,7 +59,7 @@
 						</div>
 						<div class="clearfix">
 							<div class="input">
-								<label for="salary">Salary *</label>
+								<label for="salary">Salary </label>
 								<input class="span5" id="salary" type="text" name="salary"/>
 								<span class="help-inline"></span>
 							</div>

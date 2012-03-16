@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+#{set title:'Job Category' /}
+
+<div class="content">
+    <div class="page-header">
+		#{include 'settings_menu.html'/}
+    </div>
+	<h2>Job Category</h2>
+	#{ifnot jobCategories}
+		No Job Categories Found...
+	#{/ifnot}
+	#{else}
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Control</th>
+			</tr>
+		</thead>
+		<tbody>
+		#{list items:jobCategories, as: 'category'}
+			<tr>
+				<td>${category.id}</td>
+				<td>${category.name}</td>
+				<td>
+					#{a @JobCategoryController.removeJobCategory(category.id)}
+						Remove
+					#{/a}
+				</td>
+			</tr>
+		#{/list}
+	</table>
+	#{/else}
+    <div class="row">
+      <div class="span10">
+		#{form @JobCategoryController.addJobCategory(), class: 'form-stacked'}
+		<fieldset>
+			<div class="clearfix">
+				<div class="input">
+					<label for="jobCategory">Job Category *</label>
+					<input class="span5" id="jobCategory" type="text" name="jobCategory"/>
+					<span class="help-inline">
+						<font color="red">
+							#{if flash.error}
+								${error ?: flash.error}
+							#{/if}
+						</font>
+					</span>
+				</div>
+			</div>
+			<button type="submit" class="btn primary">Add Job Category</button>
+		</fieldset>
+		#{/form}
+      </div>
+    </div>
+  </div>

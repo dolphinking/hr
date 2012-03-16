@@ -3,10 +3,7 @@
 
 <div class="content">
 	<div class="page-header">
-		<h5>
-			#{a @EmployeeController.listJobs()}List Jobs#{/a} || 
-			#{a @EmployeeController.newJob()}New Job#{/a}
-		</h5>
+		#{include 'jobs_menu.html'/}
 	</div>
 	<div class="row">
 		<div class="span10">

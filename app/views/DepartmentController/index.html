@@ -1,0 +1,57 @@
+#{extends 'main.html' /}
+#{set title:'Department Management' /}
+
+<div class="content">
+	<div class="page-header">
+		#{include 'settings_menu.html'/}
+	</div>
+	<h2>Department</h2>
+	#{ifnot departments}
+		No Departments Found...
+	#{/ifnot}
+	#{else}
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Control</th>
+			</tr>
+		</thead>
+		<tbody>
+		#{list items:departments, as: 'department'}
+			<tr>
+				<td>${department.id}</td>
+				<td>${department.name}</td>
+				<td>
+					#{a @DepartmentController.removeDepartment(department.id)}
+						Remove
+					#{/a}
+				</td>
+			</tr>
+		#{/list}
+	</table>
+	#{/else}
+	<div class="row">
+		<div class="span10">
+			#{form @DepartmentController.addDepartment(), class: 'form-stacked'}
+			<fieldset>
+				<div class="clearfix">
+					<div class="input">
+						<label for="department">Department *</label>
+						<input class="span5" id="department" type="text" name="department"/>
+						<span class="help-inline">
+							<font color="red">
+								#{if flash.error}
+									${error ?: flash.error}
+								#{/if}
+							</font>
+						</span>
+					</div>
+				</div>
+				<button type="submit" class="btn primary">Add Department</button>
+			</fieldset>
+			#{/form}
+		</div>
+	</div>
+</div>
