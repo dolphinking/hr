@@ -24,7 +24,7 @@
 				<td>${department.id}</td>
 				<td>${department.name}</td>
 				<td>
-					#{a @DepartmentController.removeDepartment(department.id)}
+					#{a @removeDepartment(department.id)}
 						Remove
 					#{/a}
 				</td>
@@ -34,12 +34,13 @@
 	#{/else}
 	<div class="row">
 		<div class="span10">
-			#{form @DepartmentController.addDepartment(), class: 'form-stacked'}
+			#{form @addDepartment(), class: 'form-stacked'}
 			<fieldset>
+				#{field 'department.name'}
 				<div class="clearfix">
 					<div class="input">
 						<label for="department">Department *</label>
-						<input class="span5" id="department" type="text" name="department"/>
+						<input class="span5" id="department" type="text" name="${field.name}"/>
 						<span class="help-inline">
 							<font color="red">
 								#{if flash.error}
@@ -49,6 +50,7 @@
 						</span>
 					</div>
 				</div>
+				#{/field}
 				<button type="submit" class="btn primary">Add Department</button>
 			</fieldset>
 			#{/form}

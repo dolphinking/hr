@@ -20,12 +20,12 @@ public class DepartmentController extends Controller {
 		render(departments);
 	}
 	
-	public static void addDepartment(String department) {
-		validation.required(department);
+	public static void addDepartment(@Valid Department department) {
+		validation.required(department.name);
 		if(validation.hasErrors()) {
 	        flash.error("Please enter the valid department...");
         } else {
-			new Department(department).save();
+			department.create();
 		}
 		index();
 	}

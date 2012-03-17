@@ -24,11 +24,13 @@ public class JobController extends Controller {
 	// New Job Action Page....
 	public static void newJob() {
 		List<JobCategory> jobCategories = JobCategory.findAll();
-		render(jobCategories);
+		Employee employee = EmployeeController.connected();
+		render(jobCategories, employee);
 	}
 	
 	public static void postNewJob(@Valid Job job) {
 		// Lots of other validations are need here
+		validation.required(job.category);
 		validation.required(job.title);
 		validation.required(job.description);
 		validation.required(job.gender);
@@ -38,18 +40,21 @@ public class JobController extends Controller {
 		validation.required(job.benefits);
 		validation.required(job.postedDate);
 		validation.required(job.expiryDate);
+		validation.required(job.employee);
 		
 		if(validation.hasErrors()) {
-			render("@newJob", job);
+			flash.error("Somethings is wrong...while submitting jobs");
+			newJob();
+		} else {
+			job.create();
+			postJob();
 		}
-		job.create();
-		postJob();
 	}
 	
 	public static void removeJob(Long id) {
-		// Job job = Job.findById(id);
-		// 		job.delete();
-		// 		postJob();
+		Job job = Job.findById(id);
+		job.delete();
+		postJob();
 	}
     
 }

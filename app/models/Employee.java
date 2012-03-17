@@ -49,7 +49,7 @@ public class Employee extends Model {
 		this.role = role;
 	}
 	
-	public String toString()  {
-        return "Employee(" + username + ")";
-    }
+	public String toString() {
+		return username;
+	}
 }

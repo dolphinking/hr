@@ -23,11 +23,7 @@
 			<tr>
 				<td>${category.id}</td>
 				<td>${category.name}</td>
-				<td>
-					#{a @removeJobCategory(category.id)}
-						Remove
-					#{/a}
-				</td>
+				<td>#{a @removeJobCategory(category.id)}Remove#{/a}</td>
 			</tr>
 		#{/list}
 	</table>
@@ -36,13 +32,17 @@
       <div class="span10">
 		#{form @addJobCategory(), class: 'form-stacked'}
 		<fieldset>
-			#{field 'jobCategory.name'}
+			#{field 'category.name'}
 			<div class="clearfix">
 				<div class="input">
 					<label for="jobCategory">Job Category *</label>
-					<input class="span5" id="jobCategory" type="text" name="${field.name}" value="${jobCategory?.name}"/>
+					<input class="span5" id="jobCategory" type="text" name="${field.name}"/>
 					<span class="help-inline">
-						<font color="red">${field.error}</font>
+						<font color="red">
+							#{if flash.error}
+								${error ?: flash.error}
+							#{/if}
+						</font>
 					</span>
 				</div>
 			</div>

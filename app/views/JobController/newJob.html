@@ -14,107 +14,119 @@
 	</div>
 	<div class="row">
 		<div class="span10">
-				#{form @postNewJob(), class: 'form-stacked'}
-					<fieldset>
-						<legend>Post New Job</legend>
-						#{field 'job.category.id'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="jobCategory">Job Category *</label>
-								#{select 'job.categry.id', value:jobCategories?.id}
-									#{list items:jobCategories, as: 'jobCategory'}
-								    #{option jobCategory.id}${jobCategory.name}#{/option}
-									#{/list}
-								#{/select}
-								<span class="help-inline"></span>
-							</div>
+			#{form @postNewJob(), class: 'form-stacked'}
+				<fieldset>
+					<legend>Post New Job</legend>
+					<span class="help-inline">
+						<font color="red">
+							#{if flash.error}
+								${error ?: flash.error}
+							#{/if}
+						</font>
+					</span>
+					#{field 'job.category.id'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="jobCategory">Job Category *</label>
+							<select name="${field.name}">
+								#{list items:jobCategories, as: 'jobCategory'}
+									<option value="${jobCategory.id}">
+										${jobCategory.name}
+									</option>
+								#{/list}
+							</select>
+							<span class="help-inline"></span>
 						</div>
-						#{/field}
-						#{field 'job.title'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="title">Title *</label>
-								<input class="span5" id="title" type="text" name="${field.title}" value="${job?.title}"/>
-								<span class="help-inline">${field.error}</span>
-							</div>
+					</div>
+					#{/field}
+					#{field 'job.title'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="title">Title *</label>
+							<input class="span5" id="title" type="text" name="${field.name}"/>
+							<span class="help-inline"></span>
 						</div>
-						#{/field}
-						#{field 'job.description'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="description">Description</label>
-								<textarea class="span5" id="description" name="${field.description}">${job?.description}</textarea>
-								<span class="help-inline">${field.error}</span>
-							</div>
+					</div>
+					#{/field}
+					#{field 'job.description'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="description">Description</label>
+							<textarea class="span5" id="description" name="${field.name}"></textarea>
+							<span class="help-inline"></span>
 						</div>
-						#{/field}
-						#{field 'job.gender'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="gender">Gender *</label>
-								<input class="span1" id="gender" type="radio" name="${field.gender}" value="${job?.gender}" checked="true"/>Female
-								<input class="span1" id="gender" type="radio" name="${field.gender}" value="${job?.gender}"/>Male
-								<span class="help-inline">${field.error}</span>
-							</div>
-						</div>	
-						#{/field}
-						#{field 'job.qualification'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="qualification">Qualification *</label>
-								<input class="span5" id="qualification" type="text" name="${field.qualification}" value="${job?.qualification}"/>
-								<span class="help-inline">${field.error}</span>
-							</div>
+					</div>
+					#{/field}
+					#{field 'job.gender'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="gender">Gender *</label>
+							<input class="span1" id="gender" type="radio" name="${field.name}" value="Female"/>Female
+							<input class="span1" id="gender" type="radio" name="${field.name}" value="Male"/>Male
+							<span class="help-inline"></span>
 						</div>
-						#{/field}
-						#{field 'job.experience'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="experience">Experiences *</label>
-								<input class="span5" id="experience" type="text" name="${field.experience}" value="${job?.experience}"/>
-								<span class="help-inline">${field.error}</span>
-							</div>
+					</div>
+					#{/field}
+					#{field 'job.qualification'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="qualification">Qualification *</label>
+							<input class="span5" id="qualification" type="text" name="${field.name}"/>
+							<span class="help-inline"></span>
 						</div>
-						#{/field}
-						#{field 'job.experience'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="salary">Salary </label>
-								<input class="span5" id="salary" type="text" name="${field.salary}" value="${job?.salary}"/>
-								<span class="help-inline">${field.error}</span>
-							</div>
+					</div>
+					#{/field}
+					#{field 'job.experience'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="experience">Experiences *</label>
+							<input class="span5" id="experience" type="text" name="${field.name}"/>
+							<span class="help-inline"></span>
 						</div>
-						#{/field}
-						#{field 'job.benefits'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="benefits">Benefits</label>
-								<input class="span5" id="benefits" type="text" name="${field.benefits}" value="${job?.benefits}"/>
-								<span class="help-inline">${field.error}</span>
-							</div>
+					</div>
+					#{/field}
+					#{field 'job.salary'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="salary">Salary </label>
+							<input class="span5" id="salary" type="text" name="${field.name}"/>
+							<span class="help-inline"></span>
 						</div>
-						#{/field}
-						#{field 'job.postedDate'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="postedDate">Posted Date *</label>
-								<input class="span5" id="postedDate" type="text" name="${field.postedDate}" value="${job?.postedDate}"/>
-								<span class="help-inline">${field.error}</span>
-							</div>
+					</div>
+					#{/field}
+					#{field 'job.benefits'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="benefits">Benefits</label>
+							<input class="span5" id="benefits" type="text" name="${field.name}"/>
+							<span class="help-inline"></span>
 						</div>
-						#{/field}
-						#{field 'job.expiryDate'}
-						<div class="clearfix">
-							<div class="input">
-								<label for="expiryDate">Expiry Date *</label>
-								<input class="span5" id="expiryDate" type="text" name="${field.expiryDate}" value="${job?.expiryDate}"/>
-								<span class="help-inline">${field.error}</span>
-							</div>
+					</div>
+					#{/field}
+					#{field 'job.postedDate'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="postedDate">Posted Date *</label>
+							<input class="span5" id="postedDate" type="text" name="${field.name}"/>
+							<span class="help-inline"></span>
 						</div>
-						#{/field}
-						<button type="submit" class="btn primary">Post New Job</button>
-					</fieldset>
-				#{/form}
+					</div>
+					#{/field}
+					#{field 'job.expiryDate'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="expiryDate">Expiry Date *</label>
+							<input class="span5" id="expiryDate" type="text" name="${field.name}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					#{field 'job.employee.id'}
+					<input type="hidden" name="${field.name}" value="${employee.id}">
+					#{/field}
+					<button type="submit" class="btn primary">Post New Job</button>
+				</fieldset>
+			#{/form}
 		</div>
 	</div>
 </div>
