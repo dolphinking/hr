@@ -16,6 +16,11 @@
 		#{stylesheet src: "bootstrap.min.css" /}
 		#{stylesheet src: "main.css" /}
         #{get 'moreStyles' /}
+
+		<!-- Placed at the end of the document so the pages load faster -->
+		#{script src: "jquery-1.7.1.min.js" /}
+		#{script src: "bootstrap-alerts.js" /}
+        #{get 'moreScripts' /}
     </head>
     <body>
 		#{include 'header.html'/}
@@ -23,10 +28,5 @@
 			#{doLayout /}
 			#{include 'footer.html'/}
 		</div>
-		
-		<!-- Placed at the end of the document so the pages load faster -->
-		#{script src: "jquery-1.7.1.min.js" /}
-		#{script src: "bootstrap-alerts.js" /}
-        #{get 'moreScripts' /}
     </body>
 </html>

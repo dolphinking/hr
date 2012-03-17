@@ -1,0 +1,127 @@
+#{extends 'main.html' /}
+#{set title:'Post New Job' /}
+
+#{set 'moreScripts'}
+    <script src="@{'/public/javascripts/jquery-ui-1.7.2.custom.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+#{/set}
+#{set 'moreStyles'}
+    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/ui-lightness/jquery-ui-1.7.2.custom.css'}" />
+#{/set}
+
+<div class="content">
+	<div class="page-header">
+		#{include 'jobs_menu.html'/}
+	</div>
+	<div class="row">
+		<div class="span10">
+				#{form @postNewJob(), class: 'form-stacked'}
+					<fieldset>
+						<legend>Post New Job</legend>
+						#{field 'job.category.id'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="jobCategory">Job Category *</label>
+								#{select 'job.categry.id', value:jobCategories?.id}
+									#{list items:jobCategories, as: 'jobCategory'}
+								    #{option jobCategory.id}${jobCategory.name}#{/option}
+									#{/list}
+								#{/select}
+								<span class="help-inline"></span>
+							</div>
+						</div>
+						#{/field}
+						#{field 'job.title'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="title">Title *</label>
+								<input class="span5" id="title" type="text" name="${field.title}" value="${job?.title}"/>
+								<span class="help-inline">${field.error}</span>
+							</div>
+						</div>
+						#{/field}
+						#{field 'job.description'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="description">Description</label>
+								<textarea class="span5" id="description" name="${field.description}">${job?.description}</textarea>
+								<span class="help-inline">${field.error}</span>
+							</div>
+						</div>
+						#{/field}
+						#{field 'job.gender'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="gender">Gender *</label>
+								<input class="span1" id="gender" type="radio" name="${field.gender}" value="${job?.gender}" checked="true"/>Female
+								<input class="span1" id="gender" type="radio" name="${field.gender}" value="${job?.gender}"/>Male
+								<span class="help-inline">${field.error}</span>
+							</div>
+						</div>	
+						#{/field}
+						#{field 'job.qualification'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="qualification">Qualification *</label>
+								<input class="span5" id="qualification" type="text" name="${field.qualification}" value="${job?.qualification}"/>
+								<span class="help-inline">${field.error}</span>
+							</div>
+						</div>
+						#{/field}
+						#{field 'job.experience'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="experience">Experiences *</label>
+								<input class="span5" id="experience" type="text" name="${field.experience}" value="${job?.experience}"/>
+								<span class="help-inline">${field.error}</span>
+							</div>
+						</div>
+						#{/field}
+						#{field 'job.experience'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="salary">Salary </label>
+								<input class="span5" id="salary" type="text" name="${field.salary}" value="${job?.salary}"/>
+								<span class="help-inline">${field.error}</span>
+							</div>
+						</div>
+						#{/field}
+						#{field 'job.benefits'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="benefits">Benefits</label>
+								<input class="span5" id="benefits" type="text" name="${field.benefits}" value="${job?.benefits}"/>
+								<span class="help-inline">${field.error}</span>
+							</div>
+						</div>
+						#{/field}
+						#{field 'job.postedDate'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="postedDate">Posted Date *</label>
+								<input class="span5" id="postedDate" type="text" name="${field.postedDate}" value="${job?.postedDate}"/>
+								<span class="help-inline">${field.error}</span>
+							</div>
+						</div>
+						#{/field}
+						#{field 'job.expiryDate'}
+						<div class="clearfix">
+							<div class="input">
+								<label for="expiryDate">Expiry Date *</label>
+								<input class="span5" id="expiryDate" type="text" name="${field.expiryDate}" value="${job?.expiryDate}"/>
+								<span class="help-inline">${field.error}</span>
+							</div>
+						</div>
+						#{/field}
+						<button type="submit" class="btn primary">Post New Job</button>
+					</fieldset>
+				#{/form}
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" charset="${_response_encoding}">
+    $(function() {
+		$("#postedDate").datepicker({dateFormat: 'yy-mm-dd'});
+		$("#expiryDate").datepicker({dateFormat: 'yy-mm-dd'});
+	});
+</script>

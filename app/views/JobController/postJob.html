@@ -1,0 +1,50 @@
+#{extends 'main.html' /}
+#{set title:'Post Job' /}
+
+<div class="content">
+	<div class="page-header">
+		#{include 'jobs_menu.html'/}
+	</div>
+	<div class="row">
+		<div class="span10">
+			#{ifnot jobs}
+				<h2>No Jobs....</h2>
+			#{/ifnot}
+			#{else}
+			<h2>List of Jobs</h2>
+			<table>
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Category</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Gender</th>
+						<th>Qualification</th>
+						<th>Experiences</th>
+						<th>Salary</th>
+						<th>Benefits</th>
+						<th>Controls</th>
+					</tr>
+				</thead>
+				#{list items:jobs, as: 'job'}
+				<tbody>
+					<tr>
+						<td>${job.id}</td>
+						<td>${job.category}</td>
+						<td>${job.title}</td>
+						<td>${job.description}</td>
+						<td>${job.gender}</td>
+						<td>${job.qualification}</td>
+						<td>${job.experience}</td>
+						<td>${job.salary}</td>
+						<td>${job.benefits}</td>
+						<td>Update||#{a @removeJob(job.id)}Remove#{/a}</td>
+					</tr>
+				</tbody>
+				#{/list}
+			</table>
+			#{/else}
+		</div>
+	</div>
+</div>

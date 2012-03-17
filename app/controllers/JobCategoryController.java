@@ -20,13 +20,12 @@ public class JobCategoryController extends Controller {
 		render(jobCategories);
 	}
 	
-	public static void addJobCategory(String jobCategory) {
-		validation.required(jobCategory);
+	public static void addJobCategory(@Valid JobCategory jobCategory) {
+		validation.required(jobCategory.name);
 		if(validation.hasErrors()) {
-	        flash.error("Please enter the valid Job Category...");
-        } else {
-			new JobCategory(jobCategory).save();
+			render("@index", jobCategory);
 		}
+		job.create();
 		index();
 	}
 	

@@ -10,16 +10,20 @@ GET		/jobDescription/{id}					ApplicationController.jobDescription
 # Employeee Page
 GET		/employee_login							EmployeeController.login
 GET		/employee_home							EmployeeController.index
-GET		/post_job								EmployeeController.postJob
 GET		/cv_pool								EmployeeController.cvPool
 GET		/employee_profile						EmployeeController.profile
 GET		/employee_settings						EmployeeController.settings
-GET		/new_job								EmployeeController.newJob
 
 # Applicant Page
 GET		/applicant_signup						ApplicantController.signup
 GET		/applicant_login						ApplicantController.login
 POST	/applicant_save							ApplicantController.save
+
+# Job Page
+GET		/post_job								JobController.postJob
+GET		/new_job								JobController.newJob
+POST	/save_job								JobController.postNewJob
+DELETE	/delete_job								JobController.removeJob
 
 # JobCategory Page
 GET		/job_categories							JobCategoryController.index

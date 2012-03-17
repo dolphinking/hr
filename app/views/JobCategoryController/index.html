@@ -24,7 +24,7 @@
 				<td>${category.id}</td>
 				<td>${category.name}</td>
 				<td>
-					#{a @JobCategoryController.removeJobCategory(category.id)}
+					#{a @removeJobCategory(category.id)}
 						Remove
 					#{/a}
 				</td>
@@ -34,21 +34,19 @@
 	#{/else}
     <div class="row">
       <div class="span10">
-		#{form @JobCategoryController.addJobCategory(), class: 'form-stacked'}
+		#{form @addJobCategory(), class: 'form-stacked'}
 		<fieldset>
+			#{field 'jobCategory.name'}
 			<div class="clearfix">
 				<div class="input">
 					<label for="jobCategory">Job Category *</label>
-					<input class="span5" id="jobCategory" type="text" name="jobCategory"/>
+					<input class="span5" id="jobCategory" type="text" name="${field.name}" value="${jobCategory?.name}"/>
 					<span class="help-inline">
-						<font color="red">
-							#{if flash.error}
-								${error ?: flash.error}
-							#{/if}
-						</font>
+						<font color="red">${field.error}</font>
 					</span>
 				</div>
 			</div>
+			#{/field}
 			<button type="submit" class="btn primary">Add Job Category</button>
 		</fieldset>
 		#{/form}

@@ -2,6 +2,7 @@ package controllers;
 
 import play.*;
 import play.mvc.*;
+import play.data.validation.*;
 
 import java.util.*;
 
@@ -67,12 +68,6 @@ public class EmployeeController extends Controller {
 		login();
 	}
 	
-	// List of jobs will be listed here....
-	public static void postJob() {
-		checkSession();
-		render();
-	}
-	
 	// List of CV store in this POOL....
 	public static void cvPool() {
 		checkSession();
@@ -87,12 +82,6 @@ public class EmployeeController extends Controller {
 	
 	// Settings of currrently logged in user....
 	public static void settings() {
-		checkSession();
-		render();
-	}
-	
-	// New Job Action Page....
-	public static void newJob() {
 		checkSession();
 		render();
 	}

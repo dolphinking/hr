@@ -32,9 +32,11 @@ public class Job extends Model {
 	public String benefits;
 	
 	@Required
+	@Temporal(TemporalType.DATE)
 	public Date postedDate;
 	
 	@Required
+	@Temporal(TemporalType.DATE)
 	public Date expiryDate;
 	
 	@ManyToOne
@@ -60,4 +62,8 @@ public class Job extends Model {
 		this.category = category;
 		this.employee = employee;
 	}
+	
+	// public String toString() {
+	//         return "Job(" + title + "," + description + "," + gender + "," + qualification + "," + experience + "," + salary + "," + benefits + "," + postedDate + "," + expiryDate + "," + category + "," + employee + ")";
+	//     }
 }
