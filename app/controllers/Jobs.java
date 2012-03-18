@@ -8,11 +8,11 @@ import java.util.*;
 
 import models.*;
 
-public class JobController extends Controller {
+public class Jobs extends Controller {
 	
 	@Before
     static void checkEmployee() {
-		EmployeeController.checkSession();
+		Employees.checkSession();
     }
 	
 	// List of jobs will be listed here....
@@ -24,7 +24,7 @@ public class JobController extends Controller {
 	// New Job Action Page....
 	public static void newJob() {
 		List<JobCategory> jobCategories = JobCategory.findAll();
-		Employee employee = EmployeeController.connected();
+		Employee employee = Employees.connected();
 		render(jobCategories, employee);
 	}
 	

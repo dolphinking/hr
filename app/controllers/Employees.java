@@ -8,7 +8,7 @@ import java.util.*;
 
 import models.*;
 
-public class EmployeeController extends Controller {
+public class Employees extends Controller {
 	
 	@Before
     static void addEmployee() {

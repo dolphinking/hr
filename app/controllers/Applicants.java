@@ -7,7 +7,7 @@ import java.util.*;
 
 import models.*;
 
-public class ApplicantController extends Controller {
+public class Applicants extends Controller {
 
 	public static void signup() {
 		render();

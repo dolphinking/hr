@@ -12,7 +12,7 @@
 				<ul>
 					#{list items:jobCategories, as: 'jobCategory'}
 						<li>
-							#{a @ApplicationController.jobShow(jobCategory.id)}${jobCategory.name}#{/a}
+							#{a @jobShow(jobCategory.id)}${jobCategory.name}#{/a}
 						</li>
 					#{/list}
 				</ul>

@@ -8,11 +8,11 @@ import java.util.*;
 
 import models.*;
 
-public class DepartmentController extends Controller {
+public class Departments extends Controller {
 	
 	@Before
     static void checkEmployee() {
-       EmployeeController.checkSession();
+       Employees.checkSession();
     }
 	
 	public static void index() {

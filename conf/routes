@@ -3,37 +3,37 @@
 # ~~~~
 
 # Home page
-GET		/										ApplicationController.index
-GET		/jobShow/{id}							ApplicationController.jobShow
-GET		/jobDescription/{id}					ApplicationController.jobDescription
+GET		/										Application.index
+GET		/jobShow/{id}							Application.jobShow
+GET		/jobDescription/{id}					Application.jobDescription
 
 # Employeee Page
-GET		/employee_login							EmployeeController.login
-GET		/employee_home							EmployeeController.index
-GET		/cv_pool								EmployeeController.cvPool
-GET		/employee_profile						EmployeeController.profile
-GET		/employee_settings						EmployeeController.settings
+GET		/employees/employee_login				Employees.login
+GET		/employees/employee_home				Employees.index
+GET		/employees/cv_pool						Employees.cvPool
+GET		/employees/employee_profile				Employees.profile
+GET		/employees/employee_settings			Employees.settings
 
 # Applicant Page
-GET		/applicant_signup						ApplicantController.signup
-GET		/applicant_login						ApplicantController.login
-POST	/applicant_save							ApplicantController.save
+GET		/applicants/applicant_signup			Applicants.signup
+GET		/applicants/applicant_login				Applicants.login
+POST	/applicants/applicant_save				Applicants.save
 
 # Job Page
-GET		/post_job								JobController.postJob
-GET		/new_job								JobController.newJob
-POST	/save_job								JobController.postNewJob
-DELETE	/delete_job								JobController.removeJob
+GET		/jobs/post_job							Jobs.postJob
+GET		/jobs/new_job							Jobs.newJob
+POST	/jobs/save_job							Jobs.postNewJob
+DELETE	/jobs/delete_job						Jobs.removeJob
 
 # JobCategory Page
-GET		/job_categories							JobCategoryController.index
-POST	/add_job_category						JobCategoryController.addJobCategory
-DELETE	/delete_job_category					JobCategoryController.removeJobCategory
+GET		/employees/job_categories				JobCategories.index
+POST	/employees/add_job_category				JobCategories.addJobCategory
+DELETE	/employees/delete_job_category			JobCategories.removeJobCategory
 
 # Department Page
-GET		/departments							DepartmentController.index
-POST	/add_department							DepartmentController.addDepartment
-DELETE	/delete_department						DepartmentController.removeDepartment						
+GET		/employees/departments					Departments.index
+POST	/employees/add_department				Departments.addDepartment
+DELETE	/employees/delete_department			Departments.removeDepartment						
 	
 # Ignore favicon requests
 GET     /favicon.ico                            404

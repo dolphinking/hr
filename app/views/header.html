@@ -2,25 +2,25 @@
 	<div class="fill">
 		<div class="container">
 			#{if !session.userEmployee}
-			#{a @ApplicationController.index(), class: 'brand'}Human Equation UAE#{/a}			
+			#{a @Application.index(), class: 'brand'}Human Equation UAE#{/a}			
 			<ul class="nav">
-				<li>#{a @ApplicationController.index()}Home#{/a}</li>
-				<li>#{a @ApplicantController.login()}Job Seeker Login#{/a}</li>
-				<li>#{a @ApplicantController.signup()}Job Seeker SignUp#{/a}</li>			
-				<li>#{a @EmployeeController.login()}Employee Login#{/a}</li>
+				<li>#{a @Application.index()}Home#{/a}</li>
+				<li>#{a @Applicants.login()}Job Seeker Login#{/a}</li>
+				<li>#{a @Applicants.signup()}Job Seeker SignUp#{/a}</li>			
+				<li>#{a @Employees.login()}Employee Login#{/a}</li>
 			</ul>
 			#{/if}
 			#{if session.userEmployee}
-				#{a @EmployeeController.index(), class: 'brand'}Human Equation UAE#{/a}			
+				#{a @Employees.index(), class: 'brand'}Human Equation UAE#{/a}			
 				<ul class="nav">
-					<li>#{a @EmployeeController.index()}Home#{/a}</li>
-					<li>#{a @JobController.postJob()}Post Jobs#{/a}</li>
-					<li>#{a @EmployeeController.cvPool()}CV Pool#{/a}</li>
-					<li>#{a @EmployeeController.settings()}Settings#{/a}</li>
+					<li>#{a @Employees.index()}Home#{/a}</li>
+					<li>#{a @Jobs.postJob()}Post Jobs#{/a}</li>
+					<li>#{a @Employees.cvPool()}CV Pool#{/a}</li>
+					<li>#{a @Employees.settings()}Settings#{/a}</li>
 				</ul>
 				<p class="pull-right">
-					#{a @EmployeeController.profile()}${session.userEmployee}#{/a}||
-					#{a @EmployeeController.logout()}Sign out#{/a}
+					#{a @Employees.profile()}${session.userEmployee}#{/a}||
+					#{a @Employees.logout()}Sign out#{/a}
 				</p>
 			#{/if}
 		</div>
