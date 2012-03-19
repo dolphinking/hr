@@ -16,7 +16,7 @@
 			<div>
 				<ul>
 					#{list items:jobs, as: 'job'}
-						<li>#{a @ApplicationController.jobDescription(job.id)}${job.title}#{/a}</li>
+						<li>#{a @jobDescription(job.id)}${job?.title}#{/a}</li>
 					#{/list}
 				</ul>
 			</div>

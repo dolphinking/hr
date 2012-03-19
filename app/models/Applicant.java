@@ -18,7 +18,8 @@ public class Applicant extends Model {
 	public String lastName;
 	
 	@Required
-	public String userName;
+	@Column(unique=true)
+	public String username;
 	
 	@Required
 	public String password;
@@ -53,13 +54,13 @@ public class Applicant extends Model {
 	@Required
 	public Job job;
 	
-	public Applicant(String firstName, String middleName, String lastName, String userName,
+	public Applicant(String firstName, String middleName, String lastName, String username,
 	String password, String email, String phone, String qualification, String expertise,
 	Double yearsOfExperience, String address, Job job) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
-		this.userName = userName;
+		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.phone = phone;

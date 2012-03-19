@@ -52,7 +52,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="description">Description</label>
-							<textarea class="span5" id="description" name="${field.name}"></textarea>
+							<textarea class="xxlarge" id="textarea2" name="${field.name}" rows="3"></textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -130,6 +130,12 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
+//<![CDATA[
+	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+//]]>
+</script>
 
 <script type="text/javascript" charset="${_response_encoding}">
     $(function() {

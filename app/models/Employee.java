@@ -17,6 +17,7 @@ public class Employee extends Model {
     @MaxSize(15)
     @MinSize(4)
     @Match(value="^\\w*$", message="Not a valid username")
+	@Column(unique=true)
 	public String username;
 	
 	@Required

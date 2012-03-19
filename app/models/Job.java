@@ -11,9 +11,10 @@ public class Job extends Model {
 	
 	@Required
 	public String title;
-		
+	
 	@Required
-	@MaxSize(10000)
+	@MaxSize(100000)
+	@Lob
 	public String description;
 	
 	@Required
@@ -26,9 +27,8 @@ public class Job extends Model {
 	public String experience;
 	
 	@Required
-	public Double salary;
+	public String salary;
 	
-	@MaxSize(1000)
 	public String benefits;
 	
 	@Required
@@ -39,16 +39,16 @@ public class Job extends Model {
 	@Temporal(TemporalType.DATE)
 	public Date expiryDate;
 	
-	@ManyToOne
 	@Required
+	@ManyToOne
 	public JobCategory category;
 	
-	@ManyToOne
 	@Required
+	@ManyToOne
 	public Employee employee;
 	
 	public Job(String title, String description, String gender, String qualification, 
-	String experience, Double salary, String benefits, Date postedDate, Date expiryDate,
+	String experience, String salary, String benefits, Date postedDate, Date expiryDate,
 	JobCategory category, Employee employee) {
 		this.title = title;
 		this.description = description;

@@ -1,16 +1,7 @@
 <div class="topbar">
 	<div class="fill">
 		<div class="container">
-			#{if !session.userEmployee}
-			#{a @Application.index(), class: 'brand'}Human Equation UAE#{/a}			
-			<ul class="nav">
-				<li>#{a @Application.index()}Home#{/a}</li>
-				<li>#{a @Applicants.login()}Job Seeker Login#{/a}</li>
-				<li>#{a @Applicants.signup()}Job Seeker SignUp#{/a}</li>			
-				<li>#{a @Employees.login()}Employee Login#{/a}</li>
-			</ul>
-			#{/if}
-			#{if session.userEmployee}
+			#{if session?.userEmployee}
 				#{a @Employees.index(), class: 'brand'}Human Equation UAE#{/a}			
 				<ul class="nav">
 					<li>#{a @Employees.index()}Home#{/a}</li>
@@ -19,10 +10,19 @@
 					<li>#{a @Employees.settings()}Settings#{/a}</li>
 				</ul>
 				<p class="pull-right">
-					#{a @Employees.profile()}${session.userEmployee}#{/a}||
+					#{a @Employees.profile()}${session?.userEmployee}#{/a}||
 					#{a @Employees.logout()}Sign out#{/a}
 				</p>
 			#{/if}
+			#{else}
+			#{a @Application.index(), class: 'brand'}Human Equation UAE#{/a}			
+			<ul class="nav">
+				<li>#{a @Application.index()}Home#{/a}</li>
+				<li>#{a @Applicants.login()}Job Seeker Login#{/a}</li>
+				<li>#{a @Applicants.signup()}Job Seeker SignUp#{/a}</li>			
+				<li>#{a @Employees.login()}Employee Login#{/a}</li>
+			</ul>
+			#{/else}
 		</div>
 	</div>
 </div>

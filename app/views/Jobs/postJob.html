@@ -28,13 +28,13 @@
 				#{list items:jobs, as: 'job'}
 				<tbody>
 					<tr>
-						<td>${job.category}</td>
-						<td>${job.title}</td>
-						<td>${job.qualification}</td>
-						<td>${job.experience}</td>
-						<td>${job.employee}</td>
-						<td>${job.postedDate}</td>
-						<td>${job.expiryDate}</td>
+						<td>${job?.category}</td>
+						<td>${job?.title}</td>
+						<td>${job?.qualification}</td>
+						<td>${job?.experience}</td>
+						<td>${job?.employee}</td>
+						<td>${job?.postedDate}</td>
+						<td>${job?.expiryDate}</td>
 						<td>Update||#{a @removeJob(job.id)}Remove#{/a}</td>
 					</tr>
 				</tbody>
