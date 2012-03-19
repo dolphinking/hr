@@ -10,23 +10,38 @@
 			#{ifnot job}
 				No Job inside this category
 			#{/ifnot}
-			<h2>Job Description - ${job?.title}</h2>
 			<div>
-				<ul>
-					<li>Title: ${job?.title}</li>
-					<li>Description: ${job?.description.raw()}</li>
-					<li>Gender: ${job?.gender}</li>
-					<li>Qualification: ${job?.qualification}</li>
-					<li>Experience: ${job?.experience}</li>
-					<li>Salary: ${job?.salary}</li>
-					<li>Benefits: ${job?.benefits}</li>
-					<li>Posted Date: ${job?.postedDate}</li>
-					<li>Expired Date: ${job?.expiryDate}</li>				
-				</ul>
+					<h2>${job?.title}</h2>
+					<h4>Description:</h4>
+					${job?.description.raw()}
+					<br/>
 			</div>
-			<div>
-				#{a @index()}Apply Now#{/a}
+			<div style="float:right;">
+				#{a @index()}
+					<button type="button" class="btn large primary">
+						Apply Now
+					</button>
+				#{/a}
 			</div>
+		</div>
+		<div class="span4">
+			<h4>Other Details</h4>
+			<h5>Qualification:</h5>
+			${job?.qualification}
+			<h5>Experience:</h5>
+			${job?.experience}
+			<h5>Gender:</h5>
+			${job?.gender}
+			<h5>Salary Package:</h5> 
+			${job?.salary} AED
+			#{if job?.benefits}
+			<h5>Other Benefits:</h5>
+			${job?.benefits}
+			#{/if}
+			<h5>Posted Date:</h5>
+			${job?.postedDate}
+			<h5>Expired Date:</h5>
+			${job?.expiryDate}
 		</div>
 	</div>
 </div>

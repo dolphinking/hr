@@ -37,7 +37,6 @@ public class Jobs extends Controller {
 		validation.required(job.qualification);
 		validation.required(job.experience);
 		validation.required(job.salary);
-		validation.required(job.benefits);
 		validation.required(job.postedDate);
 		validation.required(job.expiryDate);
 		validation.required(job.employee);
