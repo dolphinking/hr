@@ -28,7 +28,8 @@ public class Employees extends Controller {
         } 
         return null;
     }
-
+	
+	// Checks Session...
     static void checkSession() {
         if(connected() == null) {
             flash.error("Please log in first");
@@ -98,11 +99,84 @@ public class Employees extends Controller {
 	
 	// List all the employees
 	public static void listEmployees() {
-		List<Employee> employees = Employee.findAll();
+		checkSession();
+		List<Employee> employees = Employee.find("select e from Employee e where e.id!=?", connected().id).fetch();
 		render(employees);
 	}
 	
-	// Change the Password View
+	// Action View for new Employee...
+	public static void newEmployee() {
+		checkSession();
+		List<Department> departments = Department.findAll();
+		List<Role> roles = Role.findAll();
+		render(departments, roles);
+	}
+	
+	// Save the new Employee...
+	public static void saveEmployee(@Valid Employee employee, String verifyPassword) {
+		checkSession();
+		// Lots of other validations are need here
+		validation.required(employee.fullName);
+		validation.required(employee.username);
+		validation.required(employee.password);
+		validation.required(employee.email);
+		validation.required(employee.phone);
+		validation.required(employee.department);
+		validation.required(employee.role);
+		validation.equals(verifyPassword, employee.password).message("Your password doesn't match");
+		
+		if(validation.hasErrors()) {
+			flash.error("Somethings is wrong...while adding new employee");
+			newEmployee();
+		} else {
+			employee.create();
+			listEmployees();
+		}
+	}
+	
+	// Remove the Employee...
+	public static void removeEmployee(Long id) {
+		checkSession();
+		Employee employee = Employee.findById(id);
+		employee.delete();
+		listEmployees();
+	}
+	
+	// Edit the other Employee except the logged in user...
+	public static void editEmployee(Long id) {
+		checkSession();
+		Employee employee = Employee.findById(id);
+		List<Department> departments = Department.findAll();
+		List<Role> roles = Role.findAll();
+		render(employee, departments, roles);
+	}
+	
+	// Update the contents of other employees
+	public static void updateEmployee(Long id, @Valid Employee employee) {
+		checkSession();
+		validation.required(employee.fullName);
+		validation.required(employee.phone);
+		validation.required(employee.email);
+		validation.required(employee.department);
+		validation.required(employee.role);
+		
+		Employee updatedEmployee = Employee.findById(id);
+		updatedEmployee.fullName = employee.fullName;
+		updatedEmployee.email = employee.email;
+		updatedEmployee.phone = employee.phone;
+		updatedEmployee.department = employee.department;
+		updatedEmployee.role = employee.role;
+		
+		if(validation.hasErrors()) {
+			flash.error("Somethings is wrong...while adding new employee");
+			editEmployee(updatedEmployee.id);
+        } else {
+			updatedEmployee.validateAndSave();
+			listEmployees();
+		}
+	}
+	
+	// Change the Password View...
 	public static void changePassword() {
 		checkSession();
 		Employee employee = connected();

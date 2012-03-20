@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Settings' /}
+#{set title:'Employees' /}
 
 <div class="content">
 	<div class="page-header">
@@ -11,7 +11,11 @@
 				<h2>No Employees....</h2>
 			#{/ifnot}
 			#{else}
-			<h2>List of Employees</h2>
+			<p>
+				#{a @newEmployee()}
+					<button type="button" class="btn">Add Employee</button>
+				#{/a}
+			</p>
 			<table class="zebra-striped">
 				<thead>
 					<tr>
@@ -33,7 +37,10 @@
 						<td>${employee?.phone}</td>
 						<td>${employee?.department.name}</td>
 						<td>${employee?.role.name}</td>
-						<td>Show || Update || Remove</td>
+						<td>
+							#{a @editEmployee(employee?.id)}Update#{/a} ||
+							#{a @removeEmployee(employee?.id)}Remove#{/a}
+						</td>
 					</tr>
 				</tbody>
 				#{/list}

@@ -1,0 +1,106 @@
+#{extends 'main.html' /}
+#{set title:'Edit Employee' + employee?.fullName /}
+
+<div class="content">
+	<div class="page-header">
+		#{include 'settings_menu.html'/}
+	</div>
+	<div class="row">
+		<div class="span14">
+			#{form @updateEmployee(employee?.id), class: 'form-stacked'}
+				<fieldset>
+					<legend>Edit Employee</legend>
+					<span class="help-inline">
+						<font color="red">
+							#{if flash.error}
+								${error ?: flash.error}
+							#{/if}
+						</font>
+					</span>
+					#{field 'employee.fullName'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="fullName">Full Name *</label>
+							<input class="span5" id="title" type="text" name="${field.name}" value="${employee?.fullName}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					#{field 'employee.username'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="username">Username</label>
+							<input class="span5" id="username" type="text" name="${field.name}" value="${employee?.username}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					<div class="clearfix">
+						<div class="input">
+							<label for="verifyPassword">Password *</label>
+							<input class="span5" id="verifyPassword" type="password" name="verifyPassword" value="${employee?.password}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{field 'employee.password'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="password">Re-enter Password *</label>
+							<input class="span5" id="password" type="password" name="${field.name}" value="${employee?.password}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					#{field 'employee.email'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="email">Email *</label>
+							<input class="span5" id="email" type="text" name="${field.name}" value="${employee?.email}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					#{field 'employee.phone'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="phone">Phone *</label>
+							<input class="span5" id="phone" type="text" name="${field.name}" value="${employee?.phone}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					#{field 'employee.department.id'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="department">Department *</label>
+							#{select 'employee.department.id', value:employee?.department.id}
+								#{list items:departments, as: 'department'}
+									#{option department.id}${department.name}#{/option}
+								#{/list}
+							#{/select}
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					#{field 'employee.role.id'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="role">Role *</label>
+							#{select 'employee.role.id', value:employee?.role.id}
+								#{list items:roles, as: 'role'}
+									#{option role.id}${role.name}#{/option}
+								#{/list}
+							#{/select}
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					<button type="submit" class="btn primary">Update</button>
+					#{a @listEmployees()}
+						<button type="button" class="btn">Cancel</button>
+					#{/a}
+				</fieldset>
+			#{/form}
+		</div>
+	</div>
+</div>

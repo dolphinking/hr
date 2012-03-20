@@ -12,10 +12,15 @@ GET		/employees/employee_login				Employees.login
 GET		/employees/employee_home				Employees.index
 GET		/employees/cv_pool						Employees.cvPool
 GET		/employees/list_employees				Employees.listEmployees
+GET		/employees/add_employee					Employees.newEmployee
 GET		/employees/employee_settings			Employees.settings
 GET		/employees/change_password				Employees.changePassword
+GET		/employees/edit_employee/{id}			Employees.editEmployee
+POST	/employees/save_employee				Employees.saveEmployee
 PUT		/employees/update_password				Employees.alterPassword
-PUT		/employees/update_employee/{id}			Employees.updateUser
+PUT		/employees/update_current_user/{id}		Employees.updateUser
+PUT		/employees/update_employee/{id}			Employees.updateEmployee
+DELETE	/employees/delete_employee/{id}			Employees.removeEmployee
 
 
 # Applicant Page

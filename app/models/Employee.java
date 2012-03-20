@@ -26,6 +26,7 @@ public class Employee extends Model {
 	public String password;
 	
 	@Required
+	@Column(unique=true)
 	public String email;
 	
 	@Required

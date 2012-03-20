@@ -83,7 +83,5 @@ public class Jobs extends Controller {
 		Job job = Job.findById(id);
 		job.delete();
 		postJob();
-	}
-    
+	}   
 }
-
