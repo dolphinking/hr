@@ -17,7 +17,7 @@ public class Jobs extends Controller {
 	
 	// List of jobs will be listed here....
 	public static void postJob() {
-		List<Job> jobs = Job.findAll();
+		List<Job> jobs = Job.find("order by postedDate desc").fetch();
 		render(jobs);
 	}
 	
@@ -49,6 +49,34 @@ public class Jobs extends Controller {
 			postJob();
 		}
 	}
+	
+	public static void showJob(Long id) {
+		Job job = Job.findById(id);
+		render(job);
+	}
+	
+	public static void editJob(Long id) {
+		List<JobCategory> jobCategories = JobCategory.findAll();
+		Employee employee = Employees.connected();
+		Job job = Job.findById(id);
+		render(jobCategories, employee, job);
+	}
+	
+	public static void updateJob(Long id, @Valid Job job) {
+		Job updatablejob = Job.findById(id);
+		updatablejob.category = job.category;
+		updatablejob.title = job.title;
+		updatablejob.description = job.description;
+		updatablejob.gender = job.gender;
+		updatablejob.qualification = job.qualification;
+		updatablejob.experience = job.experience;
+		updatablejob.salary = job.salary;
+		updatablejob.postedDate = job.postedDate;
+		updatablejob.expiryDate = job.expiryDate;
+		updatablejob.employee = job.employee;
+		updatablejob.validateAndSave();
+		postJob();
+	}	
 	
 	public static void removeJob(Long id) {
 		Job job = Job.findById(id);

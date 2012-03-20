@@ -1,11 +1,11 @@
 #{extends 'main.html' /}
-#{set title:'Post New Job' /}
+#{set title:'Edit Job ' + job?.title /}
 
 #{set 'moreScripts'}
-    <script src="@{'/public/javascripts/jquery-ui-1.7.2.custom.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
+<script src="@{'/public/javascripts/jquery-ui-1.7.2.custom.min.js'}" type="text/javascript" charset="${_response_encoding}"></script>
 #{/set}
 #{set 'moreStyles'}
-    <link rel="stylesheet" type="text/css" media="screen" href="@{'/public/ui-lightness/jquery-ui-1.7.2.custom.css'}" />
+<link rel="stylesheet" type="text/css" media="screen" href="@{'/public/ui-lightness/jquery-ui-1.7.2.custom.css'}" />
 #{/set}
 
 <div class="content">
@@ -14,9 +14,9 @@
 	</div>
 	<div class="row">
 		<div class="span14">
-			#{form @postNewJob(), class: 'form-stacked'}
+			#{form @updateJob(job?.id), class: 'form-stacked'}
 				<fieldset>
-					<legend>Post New Job</legend>
+					<legend>Edit ${job?.title}</legend>
 					<span class="help-inline">
 						<font color="red">
 							#{if flash.error}
@@ -28,7 +28,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="jobCategory">Job Category *</label>
-							#{select 'job.category.id'}
+							#{select 'job.category.id', value:job?.category.id}
 								#{list items:jobCategories, as: 'jobCategory'}
 								#{option jobCategory.id}${jobCategory.name}#{/option}
 								#{/list}
@@ -41,7 +41,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="title">Title *</label>
-							<input class="span5" id="title" type="text" name="${field.name}"/>
+							<input class="span5" id="title" type="text" name="${field.name}" value="${job?.title}"/>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -50,7 +50,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="description">Description</label>
-							<textarea class="xxlarge" id="textarea2" name="${field.name}" rows="3"></textarea>
+							<textarea class="xxlarge" id="textarea2" name="${field.name}" rows="3">${job?.description}</textarea>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -59,8 +59,14 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="gender">Gender *</label>
+							#{if job?.gender == 'Female'}
 							<input class="span1" id="gender" type="radio" name="${field.name}" value="Female" checked="true"/>Female
 							<input class="span1" id="gender" type="radio" name="${field.name}" value="Male"/>Male
+							#{/if}
+							#{if job?.gender == 'Male'}
+							<input class="span1" id="gender" type="radio" name="${field.name}" value="Female" />Female
+							<input class="span1" id="gender" type="radio" name="${field.name}" value="Male" checked="true"/>Male
+							#{/if}
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -69,7 +75,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="qualification">Qualification *</label>
-							<input class="span5" id="qualification" type="text" name="${field.name}"/>
+							<input class="span5" id="qualification" type="text" name="${field.name}" value="${job?.qualification}"/>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -78,7 +84,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="experience">Experiences *</label>
-							<input class="span5" id="experience" type="text" name="${field.name}"/>
+							<input class="span5" id="experience" type="text" name="${field.name}" value="${job?.experience}"/>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -87,7 +93,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="salary">Salary Package *</label>
-							<input class="span5" id="salary" type="text" name="${field.name}"/>
+							<input class="span5" id="salary" type="text" name="${field.name}" value="${job?.salary}"/>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -96,7 +102,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="benefits">Other Benefits</label>
-							<input class="span5" id="benefits" type="text" name="${field.name}"/>
+							<input class="span5" id="benefits" type="text" name="${field.name}" value="${job?.benefits}"/>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -105,7 +111,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="postedDate">Posted Date *</label>
-							<input class="span5" id="postedDate" type="text" name="${field.name}"/>
+							<input class="span5" id="postedDate" type="text" name="${field.name}" value="${job?.postedDate}"/>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -114,7 +120,7 @@
 					<div class="clearfix">
 						<div class="input">
 							<label for="expiryDate">Expiry Date *</label>
-							<input class="span5" id="expiryDate" type="text" name="${field.name}"/>
+							<input class="span5" id="expiryDate" type="text" name="${field.name}" value="${job?.expiryDate}"/>
 							<span class="help-inline"></span>
 						</div>
 					</div>
@@ -122,7 +128,10 @@
 					#{field 'job.employee.id'}
 					<input type="hidden" name="${field.name}" value="${employee.id}">
 					#{/field}
-					<button type="submit" class="btn primary">Post New Job</button>
+					<button type="submit" class="btn primary">Update Job</button>
+					#{a @postJob()}
+						<button type="button" class="btn">Back</button>
+					#{/a}
 				</fieldset>
 			#{/form}
 		</div>

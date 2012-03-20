@@ -3,11 +3,10 @@
 
 <div class="content">
 	<div class="page-header">
-		<h2>Latest Job Openings</h2>
+		<h2>${jobCategory.name}</h2>
 	</div>
 	<div class="row">
 		<div class="span10">
-			<h2>Job List</h2>
 			<p>
 				#{ifnot jobs}
 					No Job inside this category
@@ -16,7 +15,7 @@
 			<div>
 				<ul>
 					#{list items:jobs, as: 'job'}
-						<li>#{a @jobDescription(job.id)}${job?.title}#{/a}</li>
+						<li><h4>#{a @jobDescription(job.id)}${job?.title}#{/a}</h4></li>
 					#{/list}
 				</ul>
 			</div>

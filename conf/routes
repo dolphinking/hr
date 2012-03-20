@@ -22,8 +22,11 @@ POST	/applicants/applicant_save				Applicants.save
 # Job Page
 GET		/jobs/post_job							Jobs.postJob
 GET		/jobs/new_job							Jobs.newJob
+GET		/jobs/show_job/{id}						Jobs.showJob
+GET		/jobs/editJob/{id}						Jobs.editJob
 POST	/jobs/save_job							Jobs.postNewJob
 DELETE	/jobs/delete_job						Jobs.removeJob
+
 
 # JobCategory Page
 GET		/employees/job_categories				JobCategories.index

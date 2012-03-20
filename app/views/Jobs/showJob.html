@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title: 'Human Equation UAE'/}
+#{set title: job?.title/}
 
 <div class="content">
 	<div class="page-header">
@@ -17,9 +17,9 @@
 				<br/>
 			</div>
 			<div style="float:right;">
-				#{a @index()}
-					<button type="button" class="btn large primary">
-						Apply Now
+				#{a @postJob()}
+					<button type="button" class="btn info">
+						Back
 					</button>
 				#{/a}
 			</div>

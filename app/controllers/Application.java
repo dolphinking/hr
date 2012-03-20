@@ -16,7 +16,8 @@ public class Application extends Controller {
 
 	public static void jobShow(Long id) {
 		List<Job> jobs = Job.find("select j from Job j join j.category as c where c.id = ?", id).fetch();
-		render(jobs);
+		JobCategory jobCategory = JobCategory.findById(id);
+		render(jobs, jobCategory);
 	}
 	
 	public static void jobDescription(Long id) {

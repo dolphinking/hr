@@ -1,27 +1,25 @@
 #{extends 'main.html' /}
-#{set title:'Post Job' /}
+#{set title:'Jobs' /}
 
 <div class="content">
 	<div class="page-header">
 		#{include 'jobs_menu.html'/}
 	</div>
 	<div class="row">
-		<div class="span10">
+		<div class="span14">
 			#{ifnot jobs}
 				<h2>No Jobs....</h2>
 			#{/ifnot}
 			#{else}
 			<h2>List of Jobs</h2>
-			<table>
+			<table class="zebra-striped">
 				<thead>
 					<tr>
 						<th>Category</th>
 						<th>Title</th>
-						<th>Qualification</th>
-						<th>Experiences</th>
-						<th>Posted By</th>
 						<th>Posted Date</th>
 						<th>Expiry Date</th>
+						<th>Posted By</th>
 						<th>Controls</th>
 					</tr>
 				</thead>
@@ -29,13 +27,15 @@
 				<tbody>
 					<tr>
 						<td>${job?.category}</td>
-						<td>${job?.title}</td>
-						<td>${job?.qualification}</td>
-						<td>${job?.experience}</td>
-						<td>${job?.employee}</td>
-						<td>${job?.postedDate}</td>
-						<td>${job?.expiryDate}</td>
-						<td>Update||#{a @removeJob(job.id)}Remove#{/a}</td>
+						<td>${job?.title}</td>		
+						<td>${job?.postedDate.format('dd MMM yyyy')}</td>
+						<td>${job?.expiryDate.format('dd MMM yyyy')}</td>
+						<td>${job?.employee.fullName}</td>
+						<td>
+							#{a @showJob(job.id)}Show#{/a}||
+							#{a @editJob(job.id)}Update#{/a}||
+							#{a @removeJob(job.id)}Remove#{/a}
+						</td>
 					</tr>
 				</tbody>
 				#{/list}

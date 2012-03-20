@@ -8,28 +8,19 @@
 	<div class="row">
 		<div class="span10">
 			<div>
-				<h2>Job Categories</h2>
 				<ul>
 					#{list items:jobCategories, as: 'jobCategory'}
 						<li>
-							#{a @jobShow(jobCategory.id)}${jobCategory.name}#{/a}
+							<h3>#{a @jobShow(jobCategory.id)}${jobCategory.name}#{/a}</h3>
 						</li>
 					#{/list}
 				</ul>
 			</div>
-
 			#{ifnot jobCategories}
-				<p>
-					No Jobs
-				</p>
+				<div>
+					No jobs...
+				</div>
 			#{/ifnot}
-			
 		</div>
 	</div>
 </div>
-#{script src: 'jquery.tablesorter.min.js'/}
-<script>
-	$(function() {
-		$("table#sortTableExample").tablesorter({ sortList: [[1,0]] });
-	});
-</script>
