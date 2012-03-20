@@ -13,7 +13,6 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Name</th>
 				<th>Control</th>
 			</tr>
@@ -21,7 +20,6 @@
 		<tbody>
 		#{list items:departments, as: 'department'}
 			<tr>
-				<td>${department.id}</td>
 				<td>${department.name}</td>
 				<td>
 					#{a @removeDepartment(department.id)}

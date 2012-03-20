@@ -13,7 +13,6 @@
 	<table>
 		<thead>
 			<tr>
-				<th>Id</th>
 				<th>Name</th>
 				<th>Control</th>
 			</tr>
@@ -21,7 +20,6 @@
 		<tbody>
 		#{list items:jobCategories, as: 'category'}
 			<tr>
-				<td>${category.id}</td>
 				<td>${category.name}</td>
 				<td>#{a @removeJobCategory(category.id)}Remove#{/a}</td>
 			</tr>
