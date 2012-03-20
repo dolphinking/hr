@@ -71,6 +71,7 @@ public class Jobs extends Controller {
 		updatablejob.qualification = job.qualification;
 		updatablejob.experience = job.experience;
 		updatablejob.salary = job.salary;
+		updatablejob.benefits = job.benefits;
 		updatablejob.postedDate = job.postedDate;
 		updatablejob.expiryDate = job.expiryDate;
 		updatablejob.employee = job.employee;

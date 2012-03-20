@@ -74,15 +74,54 @@ public class Employees extends Controller {
 		render();
 	}
 	
-	// Profile of the currently logged in user....
-	public static void profile() {
-		checkSession();
-		render();
-	}
-	
 	// Settings of currrently logged in user....
 	public static void settings() {
 		checkSession();
-		render();
+		Employee employee = connected();
+		List<Department> departments = Department.findAll();
+		List<Role> roles = Role.findAll();
+		render(employee, departments, roles);
+	}
+	
+	// Update the change of the logged in user....
+	public static void updateUser(Long id, @Valid Employee employee) {
+		checkSession();
+		Employee updatedEmployee = Employee.findById(id);
+		updatedEmployee.fullName = employee.fullName;
+		updatedEmployee.email = employee.email;
+		updatedEmployee.phone = employee.phone;
+		updatedEmployee.department = employee.department;
+		updatedEmployee.role = employee.role;
+		updatedEmployee.validateAndSave();
+		settings();
+	}
+	
+	// List all the employees
+	public static void listEmployees() {
+		List<Employee> employees = Employee.findAll();
+		render(employees);
+	}
+	
+	// Change the Password View
+	public static void changePassword() {
+		checkSession();
+		Employee employee = connected();
+		render(employee);
+	}
+	
+	// Action for changing actually password
+	public static void alterPassword(String newPassword, String verifyPassword) {
+		checkSession();
+		validation.required(verifyPassword);
+		validation.required(newPassword);
+        validation.equals(verifyPassword, newPassword).message("Your password doesn't match");
+		Employee newEmployee = Employee.findById(connected().id);
+		newEmployee.password = newPassword;
+		
+		if(validation.hasErrors()) {
+			render("@changePassword");
+        }
+		newEmployee.save();
+		changePassword();
 	}
 }

@@ -1,0 +1,44 @@
+#{extends 'main.html' /}
+#{set title:'Settings' /}
+
+<div class="content">
+	<div class="page-header">
+		#{include 'settings_menu.html'/}
+	</div>
+	<div class="row">
+		<div class="span14">
+			#{ifnot employees}
+				<h2>No Employees....</h2>
+			#{/ifnot}
+			#{else}
+			<h2>List of Employees</h2>
+			<table class="zebra-striped">
+				<thead>
+					<tr>
+						<th>FullName</th>
+						<th>Username</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>Department</th>
+						<th>Role</th>
+						<th>Controls</th>
+					</tr>
+				</thead>
+				#{list items:employees, as: 'employee'}
+				<tbody>
+					<tr>
+						<td>${employee?.fullName}</td>
+						<td>${employee?.username}</td>		
+						<td>${employee?.email}</td>
+						<td>${employee?.phone}</td>
+						<td>${employee?.department.name}</td>
+						<td>${employee?.role.name}</td>
+						<td>Show || Update || Remove</td>
+					</tr>
+				</tbody>
+				#{/list}
+			</table>
+			#{/else}
+		</div>
+	</div>
+</div>

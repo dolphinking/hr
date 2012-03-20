@@ -30,7 +30,7 @@
 							<label for="jobCategory">Job Category *</label>
 							#{select 'job.category.id', value:job?.category.id}
 								#{list items:jobCategories, as: 'jobCategory'}
-								#{option jobCategory.id}${jobCategory.name}#{/option}
+									#{option jobCategory.id}${jobCategory.name}#{/option}
 								#{/list}
 							#{/select}
 							<span class="help-inline"></span>

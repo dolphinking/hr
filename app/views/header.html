@@ -10,7 +10,7 @@
 					<li>#{a @Employees.settings()}Settings#{/a}</li>
 				</ul>
 				<p class="pull-right">
-					#{a @Employees.profile()}${session?.userEmployee}#{/a}||
+					#{a @Employees.settings()}${session?.userEmployee}#{/a} ||
 					#{a @Employees.logout()}Sign out#{/a}
 				</p>
 			#{/if}

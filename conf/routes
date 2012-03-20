@@ -11,8 +11,12 @@ GET		/jobDescription/{id}					Application.jobDescription
 GET		/employees/employee_login				Employees.login
 GET		/employees/employee_home				Employees.index
 GET		/employees/cv_pool						Employees.cvPool
-GET		/employees/employee_profile				Employees.profile
+GET		/employees/list_employees				Employees.listEmployees
 GET		/employees/employee_settings			Employees.settings
+GET		/employees/change_password				Employees.changePassword
+PUT		/employees/update_password				Employees.alterPassword
+PUT		/employees/update_employee/{id}			Employees.updateUser
+
 
 # Applicant Page
 GET		/applicants/applicant_signup			Applicants.signup
@@ -27,7 +31,6 @@ GET		/jobs/edit_job/{id}						Jobs.editJob
 PUT		/jobs/update_job/{id}					Jobs.updateJob
 POST	/jobs/save_job							Jobs.postNewJob
 DELETE	/jobs/delete_job						Jobs.removeJob
-
 
 # JobCategory Page
 GET		/employees/job_categories				JobCategories.index

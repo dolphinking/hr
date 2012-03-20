@@ -7,7 +7,72 @@
 	</div>
 	<div class="row">
 		<div class="span10">
-			<h2>Some Contents about settings....</h2>
+			#{form @updateUser(employee?.id), class: 'form-stacked'}
+			<fieldset>
+				<legend>Profile Employee</legend>
+				<span class="help-inline">
+					<font color="red">
+						#{if flash.error}
+							${error ?: flash.error}
+						#{/if}
+					</font>
+				</span>
+				#{field 'employee.fullName'}
+				<div class="clearfix">
+					<div class="input">
+						<label for="fullName">Full Name *</label>
+						<input type="text" name="${field.name}" value="${employee?.fullName}" />
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				#{/field}
+				#{field 'employee.email'}
+				<div class="clearfix">
+					<div class="input">
+						<label for="email">Email *</label>
+						<input type="text" name="${field.name}" value="${employee?.email}" />
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				#{/field}
+				#{field 'employee.phone'}
+				<div class="clearfix">
+					<div class="input">
+						<label for="phone">Phone *</label>
+						<input type="text" name="${field.name}" value="${employee?.phone}" />
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				#{/field}
+				#{field 'employee.department.id'}
+				<div class="clearfix">
+					<div class="input">
+						<label for="department">Department *</label>
+						#{select 'employee.department.id', value:employee?.department.id}
+							#{list items:departments, as: 'department'}
+								#{option department.id}${department.name}#{/option}
+							#{/list}
+						#{/select}
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				#{/field}
+				#{field 'employee.role.id'}
+				<div class="clearfix">
+					<div class="input">
+						<label for="role">Role *</label>
+						#{select 'employee.role.id', value:employee?.role.id}
+							#{list items:roles, as: 'role'}
+								#{option role.id}${role.name}#{/option}
+							#{/list}
+						#{/select}
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				#{/field}
+				<button type="submit" class="btn primary">Update Profile</button>
+			</fieldset>
+			#{/form}
 		</div>
 	</div>
 </div>
