@@ -23,7 +23,8 @@ POST	/applicants/applicant_save				Applicants.save
 GET		/jobs/post_job							Jobs.postJob
 GET		/jobs/new_job							Jobs.newJob
 GET		/jobs/show_job/{id}						Jobs.showJob
-GET		/jobs/editJob/{id}						Jobs.editJob
+GET		/jobs/edit_job/{id}						Jobs.editJob
+PUT		/jobs/update_job/{id}					Jobs.updateJob
 POST	/jobs/save_job							Jobs.postNewJob
 DELETE	/jobs/delete_job						Jobs.removeJob
 
