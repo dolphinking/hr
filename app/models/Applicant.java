@@ -70,16 +70,4 @@ public class Applicant extends Model {
 		this.address = address;
 		this.jobs = new TreeSet<Job>();
 	}
-	
-	public Applicant jobItWith(String title) {
-        jobs.add(Job.findOrCreateByTitle(title));
-        return this;
-    }
-    
-    public static List<Applicant> findJobbedWith(String title) {
-        return Applicant.find(
-            "select distinct a from Applicant a join a.jobs as j where j.title = ?",
-            title
-        ).fetch();
-    }
 }
