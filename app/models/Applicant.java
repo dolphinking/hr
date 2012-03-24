@@ -25,6 +25,7 @@ public class Applicant extends Model {
 	public String password;
 	
 	@Required
+	@Column(unique=true)
 	public String email;
 	
 	@Required
@@ -40,8 +41,8 @@ public class Applicant extends Model {
 	public Double yearsOfExperience;
 	
 	@Required
+	@MaxSize(10000)
 	@Lob
-	@MaxSize(5000)
 	public String address;
 	
 	@Required
@@ -50,13 +51,12 @@ public class Applicant extends Model {
 	@Required
 	public Blob coverLetter;
 	
-	@ManyToOne
-	@Required
-	public Job job;
+	@ManyToMany(cascade=CascadeType.ALL)
+    public Set<Job> jobs;
 	
 	public Applicant(String firstName, String middleName, String lastName, String username,
 	String password, String email, String phone, String qualification, String expertise,
-	Double yearsOfExperience, String address, Job job) {
+	Double yearsOfExperience, String address) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -68,6 +68,18 @@ public class Applicant extends Model {
 		this.expertise = expertise;
 		this.yearsOfExperience = yearsOfExperience;
 		this.address = address;
-		this.job = job;
+		this.jobs = new TreeSet<Job>();
 	}
+	
+	public Applicant jobItWith(String title) {
+        jobs.add(Job.findOrCreateByTitle(title));
+        return this;
+    }
+    
+    public static List<Applicant> findJobbedWith(String title) {
+        return Applicant.find(
+            "select distinct a from Applicant a join a.jobs as j where j.title = ?",
+            title
+        ).fetch();
+    }
 }

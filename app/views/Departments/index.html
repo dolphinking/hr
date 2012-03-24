@@ -20,9 +20,9 @@
 		<tbody>
 		#{list items:departments, as: 'department'}
 			<tr>
-				<td>${department.name}</td>
+				<td>${department?.name}</td>
 				<td>
-					#{a @removeDepartment(department.id)}
+					#{a @removeDepartment(department?.id)}
 						Remove
 					#{/a}
 				</td>

@@ -50,7 +50,7 @@
 						<label for="department">Department *</label>
 						#{select 'employee.department.id', value:employee?.department.id}
 							#{list items:departments, as: 'department'}
-								#{option department.id}${department.name}#{/option}
+								#{option department?.id}${department?.name}#{/option}
 							#{/list}
 						#{/select}
 						<span class="help-inline"></span>
@@ -63,7 +63,7 @@
 						<label for="role">Role *</label>
 						#{select 'employee.role.id', value:employee?.role.id}
 							#{list items:roles, as: 'role'}
-								#{option role.id}${role.name}#{/option}
+								#{option role?.id}${role?.name}#{/option}
 							#{/list}
 						#{/select}
 						<span class="help-inline"></span>

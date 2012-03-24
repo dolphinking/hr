@@ -20,8 +20,8 @@
 		<tbody>
 		#{list items:jobCategories, as: 'category'}
 			<tr>
-				<td>${category.name}</td>
-				<td>#{a @removeJobCategory(category.id)}Remove#{/a}</td>
+				<td>${category?.name}</td>
+				<td>#{a @removeJobCategory(category?.id)}Remove#{/a}</td>
 			</tr>
 		#{/list}
 	</table>

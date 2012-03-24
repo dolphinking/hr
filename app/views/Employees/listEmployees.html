@@ -7,15 +7,15 @@
 	</div>
 	<div class="row">
 		<div class="span14">
-			#{ifnot employees}
-				<h2>No Employees....</h2>
-			#{/ifnot}
-			#{else}
 			<p>
 				#{a @newEmployee()}
 					<button type="button" class="btn">Add Employee</button>
 				#{/a}
 			</p>
+			#{ifnot employees}
+				<h2>No Employees....</h2>
+			#{/ifnot}
+			#{else}
 			<table class="zebra-striped">
 				<thead>
 					<tr>
