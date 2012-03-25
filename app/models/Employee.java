@@ -14,21 +14,14 @@ public class Employee extends Model {
 	public String fullName;
 	
 	@Required
-    @MaxSize(15)
-    @MinSize(4)
-    @Match(value="^\\w*$", message="Not a valid username")
-	@Column(unique=true)
-	public String username;
+	@Email
+	public String email;
 	
 	@Required
     @MaxSize(15)
     @MinSize(5)
 	public String password;
-	
-	@Required
-	@Column(unique=true)
-	public String email;
-	
+		
 	@Required
 	public String phone;
 	
@@ -40,10 +33,9 @@ public class Employee extends Model {
 	@Required
 	public Role role;
 	
-	public Employee(String fullName, String username, String password, 
-	String email, String phone, Department department, Role role) {
+	public Employee(String fullName, String password, String email, 
+	String phone, Department department, Role role) {
 		this.fullName = fullName;
-		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.phone = phone;
@@ -52,6 +44,6 @@ public class Employee extends Model {
 	}
 	
 	public String toString() {
-		return username;
+		return email;
 	}
 }

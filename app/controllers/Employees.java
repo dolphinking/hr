@@ -22,9 +22,9 @@ public class Employees extends Controller {
         if(renderArgs.get("userEmployee") != null) {
             return renderArgs.get("userEmployee", Employee.class);
         }
-        String username = session.get("userEmployee");
-        if(username != null) {
-            return Employee.find("byUsername", username).first();
+        String email = session.get("userEmployee");
+        if(email != null) {
+            return Employee.find("byEmail", email).first();
         } 
         return null;
     }
@@ -50,15 +50,15 @@ public class Employees extends Controller {
 	
 	// @username is the username variable to capture the value of username
 	// @password is the password variable to capture the value of password
-	public static void checkEmployee(String username, String password) {
-		Employee employee = Employee.find("byUsernameAndPassword", username, password).first();
+	public static void checkEmployee(String email, String password) {
+		Employee employee = Employee.find("byEmailAndPassword", email, password).first();
 		if(employee != null) {
-			session.put("userEmployee", employee.username);
+			session.put("userEmployee", employee);
             // flash.success("Welcome, " + employee.fullName);
-            index();         
+            index();
         }
         // if the username or password is invalid....
-        flash.put("username", username);
+        flash.put("email", email);
         flash.error("Invalid username or password...");
 		login();
 	}
@@ -89,7 +89,6 @@ public class Employees extends Controller {
 		checkSession();
 		Employee updatedEmployee = Employee.findById(id);
 		updatedEmployee.fullName = employee.fullName;
-		updatedEmployee.email = employee.email;
 		updatedEmployee.phone = employee.phone;
 		updatedEmployee.department = employee.department;
 		updatedEmployee.role = employee.role;
@@ -117,9 +116,8 @@ public class Employees extends Controller {
 		checkSession();
 		// Lots of other validations are need here
 		validation.required(employee.fullName);
-		validation.required(employee.username);
-		validation.required(employee.password);
 		validation.required(employee.email);
+		validation.required(employee.password);
 		validation.required(employee.phone);
 		validation.required(employee.department);
 		validation.required(employee.role);
@@ -170,7 +168,7 @@ public class Employees extends Controller {
 		if(validation.hasErrors()) {
 			flash.error("Somethings is wrong...while adding new employee");
 			editEmployee(updatedEmployee.id);
-        } else {
+		} else {
 			updatedEmployee.validateAndSave();
 			listEmployees();
 		}
@@ -184,18 +182,36 @@ public class Employees extends Controller {
 	}
 	
 	// Action for changing actually password
-	public static void alterPassword(String newPassword, String verifyPassword) {
+	public static void alterPassword(String oldPassword, String newPassword, String verifyPassword) {
 		checkSession();
+		validation.required(oldPassword);
 		validation.required(verifyPassword);
 		validation.required(newPassword);
-        validation.equals(verifyPassword, newPassword).message("Your password doesn't match");
-		Employee newEmployee = Employee.findById(connected().id);
-		newEmployee.password = newPassword;
+
+		Employee employee = Employee.findById(connected().id);
 		
-		if(validation.hasErrors()) {
-			render("@changePassword");
-        }
-		newEmployee.save();
+		if(!validation.hasErrors()) {
+			if(checkOldPassword(employee, oldPassword)) {
+				if(newPassword.equals(verifyPassword)) {
+					employee.password = newPassword;
+					employee.save();
+					changePassword();
+				} else {
+					flash.error("Error: your new password and verify password didn't match.");
+				}
+			} else {
+				flash.error("Error: Your old password you have entered is wrong.");		
+			}
+		} else {
+			flash.error("Error: Please fill all the fields.");
+		}
 		changePassword();
+	}
+	
+	private static boolean checkOldPassword(Employee employee, String oldPassword) {
+		if (employee.password.equals(oldPassword)) 
+			return true; 
+		else 
+			return false;
 	}
 }

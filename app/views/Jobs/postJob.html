@@ -32,9 +32,9 @@
 						<td>${job?.expiryDate.format('dd MMM yyyy')}</td>
 						<td>${job?.employee.fullName}</td>
 						<td>
-							#{a @showJob(job.id)}Show#{/a}||
-							#{a @editJob(job.id)}Update#{/a}||
-							#{a @removeJob(job.id)}Remove#{/a}
+							#{a @showJob(job?.id)}Show#{/a}||
+							#{a @editJob(job?.id)}Update#{/a}||
+							#{a @removeJob(job?.id)}Remove#{/a}
 						</td>
 					</tr>
 				</tbody>

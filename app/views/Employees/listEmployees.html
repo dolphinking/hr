@@ -20,7 +20,6 @@
 				<thead>
 					<tr>
 						<th>FullName</th>
-						<th>Username</th>
 						<th>Email</th>
 						<th>Phone</th>
 						<th>Department</th>
@@ -31,8 +30,7 @@
 				#{list items:employees, as: 'employee'}
 				<tbody>
 					<tr>
-						<td>${employee?.fullName}</td>
-						<td>${employee?.username}</td>		
+						<td>${employee?.fullName}</td>	
 						<td>${employee?.email}</td>
 						<td>${employee?.phone}</td>
 						<td>${employee?.department.name}</td>

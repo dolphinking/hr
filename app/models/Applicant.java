@@ -19,15 +19,11 @@ public class Applicant extends Model {
 	
 	@Required
 	@Column(unique=true)
-	public String username;
+	public String email;
 	
 	@Required
 	public String password;
-	
-	@Required
-	@Column(unique=true)
-	public String email;
-	
+		
 	@Required
 	public String phone;
 	
@@ -38,7 +34,7 @@ public class Applicant extends Model {
 	public String expertise;
 	
 	@Required
-	public Double yearsOfExperience;
+	public String yearsOfExperience;
 	
 	@Required
 	@MaxSize(10000)
@@ -54,13 +50,12 @@ public class Applicant extends Model {
 	@ManyToMany(cascade=CascadeType.ALL)
     public Set<Job> jobs;
 	
-	public Applicant(String firstName, String middleName, String lastName, String username,
-	String password, String email, String phone, String qualification, String expertise,
-	Double yearsOfExperience, String address) {
+	public Applicant(String firstName, String middleName, String lastName, String password, 
+	String email, String phone, String qualification, String expertise,
+	String yearsOfExperience, String address) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
-		this.username = username;
 		this.password = password;
 		this.email = email;
 		this.phone = phone;
