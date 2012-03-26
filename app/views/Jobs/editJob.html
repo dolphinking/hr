@@ -49,7 +49,7 @@
 					#{field 'job.description'}
 					<div class="clearfix">
 						<div class="input">
-							<label for="description">Description</label>
+							<label for="description">Description *</label>
 							<textarea class="xxlarge" id="textarea2" name="${field.name}" rows="3">${job?.description}</textarea>
 							<span class="help-inline"></span>
 						</div>
@@ -140,7 +140,9 @@
 
 <script type="text/javascript" src="http://js.nicedit.com/nicEdit-latest.js"></script> <script type="text/javascript">
 //<![CDATA[
-	bkLib.onDomLoaded(function() { nicEditors.allTextAreas() });
+	bkLib.onDomLoaded(function() { 
+		new nicEditor({buttonList : ['fontSize','fontFormat','bold','italic','underline','left','center','right','justify','ol','ul','indent','outdent','forecolor','html']}).panelInstance('textarea2');
+	 });
 //]]>
 </script>
 
