@@ -1,0 +1,26 @@
+# Test data
+
+Department(IT):
+    name:           Information Technology
+    
+Department(HR):
+    name:           Human Resources
+    
+Role(admin):
+    name:           Admin
+    
+Employee(suraj):
+    fullName:       Suraj Tamang
+    email:          surajyonzon@gmail.com
+    password:       surajyonzon
+    phone:          5530096
+    department:     IT
+    role:           admin
+    
+Employee(mahesh):
+    fullName:       Mahesh Jadhav
+    email:          smartcell24@gmail.com
+    password:       smartcell24
+    phone:          561133021
+    department:     HR
+    role:           admin

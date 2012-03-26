@@ -7,6 +7,13 @@
 	</div>
 	<div class="row">
 		<div class="span14">
+			<span class="help-inline">
+				<font color="red">
+					#{if flash.error}
+						${error ?: flash.error}
+					#{/if}
+				</font>
+			</span>
 			#{ifnot jobs}
 				<h2>No Jobs....</h2>
 			#{/ifnot}

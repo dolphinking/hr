@@ -25,7 +25,12 @@ public class Jobs extends Controller {
 	public static void newJob() {
 		List<JobCategory> jobCategories = JobCategory.findAll();
 		Employee employee = Employees.connected();
-		render(jobCategories, employee);
+		if(jobCategories.size() != 0) {
+			render(jobCategories, employee);
+		} else {
+			flash.error("Please add some job categories before posting new jobs...");
+			postJob();
+		}
 	}
 	
 	public static void postNewJob(@Valid Job job) {

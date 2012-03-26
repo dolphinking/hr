@@ -30,7 +30,7 @@
 							<label for="jobCategory">Job Category *</label>
 							#{select 'job.category.id'}
 								#{list items:jobCategories, as: 'jobCategory'}
-								#{option jobCategory.id}${jobCategory.name}#{/option}
+								#{option jobCategory?.id}${jobCategory?.name}#{/option}
 								#{/list}
 							#{/select}
 							<span class="help-inline"></span>
@@ -120,7 +120,7 @@
 					</div>
 					#{/field}
 					#{field 'job.employee.id'}
-					<input type="hidden" name="${field.name}" value="${employee.id}">
+					<input type="hidden" name="${field.name}" value="${employee?.id}">
 					#{/field}
 					<button type="submit" class="btn primary">Post New Job</button>
 				</fieldset>
