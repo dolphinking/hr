@@ -20,13 +20,10 @@ public class Job extends Model {
 	@Required
     public String gender;
 	
-	@Required
 	public String qualification;
 	
-	@Required
 	public String experience;
 	
-	@Required
 	public String salary;
 	
 	public String benefits;

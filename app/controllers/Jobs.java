@@ -33,15 +33,13 @@ public class Jobs extends Controller {
 		}
 	}
 	
+	// Post new jobs after filling up form...
 	public static void postNewJob(@Valid Job job) {
 		// Lots of other validations are need here
 		validation.required(job.category);
 		validation.required(job.title);
 		validation.required(job.description);
 		validation.required(job.gender);
-		validation.required(job.qualification);
-		validation.required(job.experience);
-		validation.required(job.salary);
 		validation.required(job.postedDate);
 		validation.required(job.expiryDate);
 		validation.required(job.employee);

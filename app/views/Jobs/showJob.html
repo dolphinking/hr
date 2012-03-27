@@ -26,17 +26,23 @@
 		</div>
 		<div class="span4">
 			<h4>Other Details</h4>
-			<h5>Qualification:</h5>
-			${job?.qualification}
-			<h5>Experience:</h5>
-			${job?.experience}
+			#{if job?.qualification}
+				<h5>Qualification:</h5>
+				${job?.qualification}
+			#{/if}
+			#{if job?.experience}
+				<h5>Experience:</h5>
+				${job?.experience}
+			#{/if}
 			<h5>Gender:</h5>
 			${job?.gender}
-			<h5>Salary Package:</h5> 
-			${job?.salary} AED
+			#{if job?.salary}
+				<h5>Salary Package:</h5> 
+				${job?.salary} AED
+			#{/if}
 			#{if job?.benefits}
-			<h5>Other Benefits:</h5>
-			${job?.benefits}
+				<h5>Other Benefits:</h5>
+				${job?.benefits}
 			#{/if}
 			<h5>Posted Date:</h5>
 			${job?.postedDate.format('dd MMMM yyyy')}
