@@ -91,6 +91,22 @@
 							<span class="help-inline"></span>
 						</div>
 					</div>
+					#{field 'code'}
+			        <div class="clearfix">
+						<div class="input">
+							<label for="code">Please type the code below: </label>
+							<img src="@{Applicants.captcha(randomID)}" />
+						</div>
+					</div>
+					<div class="clearfix">
+						<div class="input">
+							<label> </label>
+							<input type="text" name="code" id="code" size="18" value="" />
+							<span class="error">${field.error}</span>
+							<input type="hidden" name="randomID" value="${randomID}" />
+						</div>
+					</div>
+			    	#{/field}
 					<button type="submit" class="btn primary">Sign Up</button>
 				</fieldset>
 			#{/form}

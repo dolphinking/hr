@@ -27,6 +27,7 @@ DELETE	/employees/delete_employee/{id}			Employees.removeEmployee
 GET		/applicants/applicant_signup			Applicants.signup
 GET		/applicants/applicant_login				Applicants.login
 POST	/applicants/applicant_save				Applicants.save
+GET     /captcha                                Applicants.captcha
 
 # Job Page
 GET		/jobs/post_job							Jobs.postJob
