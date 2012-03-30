@@ -1,10 +1,10 @@
 package models;
 
+import java.util.*;
+import javax.persistence.*;
+
 import play.db.jpa.*;
 import play.data.validation.*;
-
-import javax.persistence.*;
-import java.util.*;
 
 @Entity
 public class Job extends Model {
@@ -58,5 +58,10 @@ public class Job extends Model {
 		this.expiryDate = expiryDate;
 		this.category = category;
 		this.employee = employee;
+	}
+	
+	public static List<Job> getListOfJobsAccordingToCategory(Long id) {
+		List<Job> jobs = Job.find("Select count(j) from Job j, JobCategory jc where j.category=jc.id and j.category.id=?",id).fetch();
+		return jobs;
 	}
 }

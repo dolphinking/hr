@@ -11,12 +11,12 @@
 				<ul>
 					#{list items:jobCategories, as: 'jobCategory'}
 						<li>
-							<h3>
+							<h4>
 								#{a @jobShow(jobCategory?.id)}
-									${jobCategory?.name}
+									${jobCategory?.name}(#{list items:models.Job.getListOfJobsAccordingToCategory(jobCategory?.id), as: 'c'}${c}#{/list})
 								#{/a}
-							</h3>
-						</li>
+							</h4>
+						</li>						
 					#{/list}
 				</ul>
 			</div>

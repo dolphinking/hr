@@ -10,7 +10,7 @@ import models.*;
 public class Application extends Controller {
 
 	public static void index() {
-		List<JobCategory> jobCategories = JobCategory.findAll();
+		List<JobCategory> jobCategories = JobCategory.findAll(); 
 		render(jobCategories);
 	}
 
