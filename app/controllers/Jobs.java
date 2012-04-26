@@ -11,9 +11,9 @@ import models.*;
 public class Jobs extends Controller {
 	
 	@Before
-    static void checkEmployee() {
+	static void checkEmployee() {
 		Employees.checkSession();
-    }
+	}
 	
 	// List of jobs will be listed here....
 	public static void postJob() {

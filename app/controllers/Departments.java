@@ -11,9 +11,9 @@ import models.*;
 public class Departments extends Controller {
 	
 	@Before
-    static void checkEmployee() {
-       Employees.checkSession();
-    }
+	static void checkEmployee() {
+		Employees.checkSession();
+	}
 	
 	public static void index() {
 		List<Department> departments = Department.findAll();
@@ -23,8 +23,8 @@ public class Departments extends Controller {
 	public static void addDepartment(@Valid Department department) {
 		validation.required(department.name);
 		if(validation.hasErrors()) {
-	        flash.error("Please enter the valid department...");
-        } else {
+			flash.error("Please enter the valid department...");
+		} else {
 			department.create();
 		}
 		index();
@@ -35,6 +35,5 @@ public class Departments extends Controller {
 		department.delete();
 		index();
 	}
-    
+   
 }
-

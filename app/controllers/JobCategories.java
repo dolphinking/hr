@@ -11,9 +11,9 @@ import models.*;
 public class JobCategories extends Controller {
 	
 	@Before
-    static void checkEmployee() {
+	static void checkEmployee() {
 		Employees.checkSession();
-    }
+	}
 	
 	public static void index() {
 		List<JobCategory> jobCategories = JobCategory.findAll();
@@ -23,8 +23,8 @@ public class JobCategories extends Controller {
 	public static void addJobCategory(@Valid JobCategory category) {
 		validation.required(category.name);
 		if(validation.hasErrors()) {
-	        flash.error("Please enter the valid job category...");
-        } else {
+			flash.error("Please enter the valid job category...");
+		} else {
 			category.create();
 		}
 		index();

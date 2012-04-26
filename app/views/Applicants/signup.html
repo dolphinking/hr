@@ -4,53 +4,65 @@
 <div class="content">
 	<div class="row">
 		<div class="span10">
-			#{form @login(), class: 'form-stacked', enctype: 'multipart/form-data', id: 'signup-form'}
+			#{form @save(), class: 'form-stacked', id: 'signup-form'}
 				<fieldset>
 					<legend>New Applicant</legend>
+					#{field 'applicant.firstName'}
 					<div class="clearfix">
 						<div class="input">
-							<label for="firstname">First Name *</label>
-							<input class="span5" id="firstName" type="text" name="firstName"/>
-							<span class="help-inline"></span>
+							<label for="fullname">First Name *</label>
+							<input class="span5" type="text" id="firstName" name="${field.name}" value="${applicant?.firstName}">
+							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
+					#{/field}
+					#{field 'applicant.middleName'}
 					<div class="clearfix">
 						<div class="input">
 							<label for="middleName">Middle Name</label>
-							<input class="span5" id="middleName" type="text" name="middleName"/>
-							<span class="help-inline"></span>
+							<input class="span5" id="middleName" type="text" name="${field.name}" value="${applicant?.middleName}"/>
+							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
+					#{/field}
+					#{field 'applicant.lastName'}
 					<div class="clearfix">
 						<div class="input">
 							<label for="lastName">Last Name *</label>
-							<input class="span5" id="lastName" type="text" name="lastName"/>
-							<span class="help-inline"></span>
+							<input class="span5" id="lastName" type="text" name="${field.name}" value="${applicant?.lastName}"/>
+							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
-					</div>	
+					</div>
+					#{/field}
+					#{field 'applicant.email'}
 					<div class="clearfix">
 						<div class="input">
 							<label for="email">Email *</label>
-							<input class="span5" id="email" type="text" name="email"/>
-							<span class="help-inline"></span>
+							<input class="span5" id="email" type="text" name="${field.name}" value="${applicant?.email}"/>
+							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
+					#{/field}
+					#{field 'applicant.password'}
 					<div class="clearfix">
 						<div class="input">
 							<label for="password">Password *</label>
-							<input class="span5" id="password" type="password" name="password"/>
-							<span class="help-inline"></span>
+							<input class="span5" id="password" type="password" name="${field.name}" value="${applicant?.password}"/>
+							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
+					#{/field}
+					#{field 'verifyPassword'}
 					<div class="clearfix">
 						<div class="input">
 							<label for="verifyPassword">Re-type Password *</label>
-							<input class="span5" id="verifyPassword" type="password" name="verifyPassword"/>
-							<span class="help-inline"></span>
+							<input class="span5" id="verifyPassword" type="password" name="${field.name}" value="${verifyPassword}" />
+							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
+					#{/field}
 					#{field 'code'}
-			        <div class="clearfix">
+					<div class="clearfix">
 						<div class="input">
 							<label for="code">Please type the code below: </label>
 							<img src="@{Applicants.captcha(randomID)}" />
@@ -60,12 +72,12 @@
 						<div class="input">
 							<label> </label>
 							<input type="text" name="code" id="code" size="18" value="" />
-							<span class="error">${field.error}</span>
-							<input type="hidden" name="randomID" value="${randomID}" />
+							<input type="hidden" name="randomID" value="${randomID}" /><br/>
+							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
-			    	#{/field}
-					<button type="submit" class="btn primary">Sign Up</button>
+			    #{/field}
+					<input type="submit" class="btn primary" value="Sign Up"/>
 				</fieldset>
 			#{/form}
 		</div>

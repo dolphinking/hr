@@ -11,31 +11,31 @@ import models.*;
 public class Employees extends Controller {
 	
 	@Before
-    static void addEmployee() {
-        Employee employee = connected();
-        if(employee != null) {
-            renderArgs.put("userEmployee", employee);
-        }
-    }
+	static void addEmployee() {
+		Employee employee = connected();
+		if(employee != null) {
+			renderArgs.put("userEmployee", employee);
+		}
+	}
     
-    static Employee connected() {
-        if(renderArgs.get("userEmployee") != null) {
-            return renderArgs.get("userEmployee", Employee.class);
-        }
-        String email = session.get("userEmployee");
-        if(email != null) {
-            return Employee.find("byEmail", email).first();
-        } 
-        return null;
-    }
+	static Employee connected() {
+		if(renderArgs.get("userEmployee") != null) {
+			return renderArgs.get("userEmployee", Employee.class);
+		}
+		String email = session.get("userEmployee");
+		if(email != null) {
+			return Employee.find("byEmail", email).first();
+		} 
+		return null;
+	}
 	
 	// Checks Session...
-    static void checkSession() {
-        if(connected() == null) {
-            flash.error("Please log in first");
-            login();
-        }
-    }
+	static void checkSession() {
+		if(connected() == null) {
+			flash.error("Please log in first");
+			login();
+		}
+	}
 
 	// Index Action Page...
 	public static void index() {
@@ -45,7 +45,7 @@ public class Employees extends Controller {
 	
 	// Login Action Page...
 	public static void login() {
-        render();
+		render();
 	}
 	
 	// @username is the username variable to capture the value of username
@@ -54,12 +54,12 @@ public class Employees extends Controller {
 		Employee employee = Employee.find("byEmailAndPassword", email, password).first();
 		if(employee != null) {
 			session.put("userEmployee", employee);
-            // flash.success("Welcome, " + employee.fullName);
-            index();
-        }
-        // if the username or password is invalid....
-        flash.put("email", email);
-        flash.error("Invalid username or password...");
+			// flash.success("Welcome, " + employee.fullName);
+			index();
+		}
+		// if the username or password is invalid....
+		flash.put("email", email);
+		flash.error("Invalid username or password...");
 		login();
 	}
 	

@@ -24,35 +24,26 @@ public class Applicant extends Model {
 	@Required
 	public String password;
 		
-	@Required
 	public String phone;
 	
-	@Required
 	public String qualification;
 	
-	@Required
 	public String expertise;
 	
-	@Required
 	public String yearsOfExperience;
 	
-	@Required
 	@MaxSize(10000)
 	@Lob
 	public String address;
 	
-	@Required
 	public Blob cv;
 	
-	@Required
-	public Blob coverLetter;
-	
 	@ManyToMany(cascade=CascadeType.ALL)
-    public Set<Job> jobs;
+	public Set<Job> jobs;
 	
 	public Applicant(String firstName, String middleName, String lastName, String password, 
 	String email, String phone, String qualification, String expertise,
-	String yearsOfExperience, String address) {
+	String yearsOfExperience, String address, Blob cv) {
 		this.firstName = firstName;
 		this.middleName = middleName;
 		this.lastName = lastName;
@@ -63,6 +54,7 @@ public class Applicant extends Model {
 		this.expertise = expertise;
 		this.yearsOfExperience = yearsOfExperience;
 		this.address = address;
+		this.cv = cv;
 		this.jobs = new TreeSet<Job>();
 	}
 }

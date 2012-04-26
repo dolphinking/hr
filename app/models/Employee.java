@@ -18,8 +18,8 @@ public class Employee extends Model {
 	public String email;
 	
 	@Required
-    @MaxSize(15)
-    @MinSize(5)
+	@MaxSize(15)
+	@MinSize(5)
 	public String password;
 		
 	@Required
