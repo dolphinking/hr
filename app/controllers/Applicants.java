@@ -46,7 +46,7 @@ public class Applicants extends Controller {
 		}
 		applicant.create();
 		Cache.delete(randomID);
-		// Mails.welcome(applicant);
+		Mails.welcome(applicant);
 		login();
 	}
 	
