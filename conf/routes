@@ -3,56 +3,57 @@
 # ~~~~
 
 # Home page
-GET		/										Application.index
-GET		/jobShow/{id}							Application.jobShow
-GET		/jobDescription/{id}					Application.jobDescription
+GET			/																						Application.index
+GET			/jobShow/{id}																Application.jobShow
+GET			/jobDescription/{id}												Application.jobDescription
 
 # Employeee Page
-GET		/employees/employee_login				Employees.login
-GET		/employees/employee_home				Employees.index
-GET		/employees/cv_pool						Employees.cvPool
-GET		/employees/list_employees				Employees.listEmployees
-GET		/employees/add_employee					Employees.newEmployee
-GET		/employees/employee_settings			Employees.settings
-GET		/employees/change_password				Employees.changePassword
-GET		/employees/edit_employee/{id}			Employees.editEmployee
-POST	/employees/save_employee				Employees.saveEmployee
-PUT		/employees/update_password				Employees.alterPassword
-PUT		/employees/update_current_user/{id}		Employees.updateUser
-PUT		/employees/update_employee/{id}			Employees.updateEmployee
-DELETE	/employees/delete_employee/{id}			Employees.removeEmployee
+GET			/employees/employee_login										Employees.login
+GET			/employees/employee_home										Employees.index
+GET			/employees/cv_pool													Employees.cvPool
+GET			/employees/list_employees										Employees.listEmployees
+GET			/employees/add_employee											Employees.newEmployee
+GET			/employees/employee_settings								Employees.settings
+GET			/employees/change_password									Employees.changePassword
+GET			/employees/edit_employee/{id}								Employees.editEmployee
+POST		/employees/save_employee										Employees.saveEmployee
+PUT			/employees/update_password									Employees.alterPassword
+PUT			/employees/update_current_user/{id}					Employees.updateUser
+PUT			/employees/update_employee/{id}							Employees.updateEmployee
+DELETE	/employees/delete_employee/{id}							Employees.removeEmployee
 
 
 # Applicant Page
-GET		/applicants/applicant_signup			Applicants.signup
-GET		/applicants/applicant_login				Applicants.login
-POST	/applicants/applicant_save				Applicants.save
-GET     /captcha                                Applicants.captcha
+GET			/applicants/home														Applicants.index
+GET			/applicants/applicant_login									Applicants.login
+GET			/applicants/applicant_signup								Applicants.signup
+GET     /applicants/captcha                      		Applicants.captcha
+POST		/applicants/applicant_save									Applicants.save
 
 # Job Page
-GET		/jobs/post_job							Jobs.postJob
-GET		/jobs/new_job							Jobs.newJob
-GET		/jobs/show_job/{id}						Jobs.showJob
-GET		/jobs/edit_job/{id}						Jobs.editJob
-PUT		/jobs/update_job/{id}					Jobs.updateJob
-POST	/jobs/save_job							Jobs.postNewJob
-DELETE	/jobs/delete_job						Jobs.removeJob
+GET			/jobs/post_job															Jobs.postJob
+GET			/jobs/new_job																Jobs.newJob
+GET			/jobs/show_job/{id}													Jobs.showJob
+GET			/jobs/edit_job/{id}													Jobs.editJob
+PUT			/jobs/update_job/{id}												Jobs.updateJob
+POST		/jobs/save_job															Jobs.postNewJob
+DELETE	/jobs/delete_job														Jobs.removeJob
 
 # JobCategory Page
-GET		/employees/job_categories				JobCategories.index
-POST	/employees/add_job_category				JobCategories.addJobCategory
-DELETE	/employees/delete_job_category			JobCategories.removeJobCategory
+GET			/employees/job_categories										JobCategories.index
+POST		/employees/add_job_category									JobCategories.addJobCategory
+DELETE	/employees/delete_job_category							JobCategories.removeJobCategory
 
 # Department Page
-GET		/employees/departments					Departments.index
-POST	/employees/add_department				Departments.addDepartment
-DELETE	/employees/delete_department			Departments.removeDepartment						
+GET			/employees/departments											Departments.index
+POST		/employees/add_department										Departments.addDepartment
+DELETE	/employees/delete_department								Departments.removeDepartment						
 	
 # Ignore favicon requests
-GET     /favicon.ico                            404
+GET     /favicon.ico                            		404
 
 # Map static resources from the /app/public folder to the /public path
-GET     /public/                                staticDir:public
+GET     /public/                                		staticDir:public
 
 # Catch all
-*       /{controller}/{action}                  {controller}.{action}
+*       /{controller}/{action}                  		{controller}.{action}

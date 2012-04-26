@@ -1,16 +1,20 @@
 #{extends 'main.html' /}
-#{set title:'New Applicant SignUp' /}
+#{set title:'Welcome ' + applicant?.firstName /}
 
 <div class="content">
+	<div class="page-header">
+		<h1>Home <small>Start your day with new smile...</small></h1>
+	</div>
 	<div class="row">
 		<div class="span10">
-			#{form @save(), class: 'form-stacked', id: 'signup-form'}
+			<h2>Welcome ${applicant?.firstName}</h2>
+			#{form @update(), class: 'form-stacked', id: 'signup-form'}
 				<fieldset>
 					<legend>New Applicant</legend>
 					#{field 'applicant.firstName'}
 					<div class="clearfix">
 						<div class="input">
-							<label for="firstName">First Name *</label>
+							<label for="fullname">First Name *</label>
 							<input class="span5" type="text" id="firstName" name="${field.name}" value="${applicant?.firstName}">
 							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>

@@ -4,7 +4,7 @@
 <div class="content">
 	<div class="row">
 		<div class="span10">
-			#{form @checkUser(), class: 'form-stacked', id: 'login-form'}
+			#{form @checkApplicant(), class: 'form-stacked', id: 'login-form'}
 				<fieldset>
 					<legend>Job Seeker Login</legend>
 					<div class="clearfix">
@@ -21,15 +21,22 @@
 							<span class="help-inline"></span>
 						</div>
 					</div>
-					<button type="submit" class="btn primary">Sign in</button>
+					<input type="submit" class="btn primary" value="Sign in"/>
 					<a href="#forgetpassword" class="link">lost password?</a>
-					<p><br/>
-						#{a @signup()}
-							<button type="button" class="btn">SignUp</button>
-						#{/a}
-					</p>
 				</fieldset>
+				<span>
+					<font color="red">
+						#{if flash.error}
+							${error ?: flash.error}
+						#{/if}
+					</font>
+				</span>
 			#{/form}
+			<p><br/>
+				#{a @signup()}
+					<input type="button" class="btn" value="SignUp"/>
+				#{/a}
+			</p>
 		</div>
 	</div>
 </div>

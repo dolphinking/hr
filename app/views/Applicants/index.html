@@ -1,0 +1,55 @@
+#{extends 'main.html' /}
+#{set title:'Welcome ' + applicant?.firstName /}
+
+<div class="content">
+	<div class="page-header">
+		<h1>Profile <small>Start your day with new smile...</small></h1>
+	</div>
+	<div class="row">
+		<div class="span10">
+				<table>
+					<tr>
+						<th>First Name</th>
+						<td>${applicant?.firstName}</td>
+					</tr>
+					<tr>
+						<th>Middle Name</th>
+						<td>${applicant?.middleName}</td>
+					</tr>
+					<tr>
+						<th>Last Name</th>
+						<td>${applicant?.lastName}</td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td>${applicant?.email}</td>
+					</tr>
+					<tr>
+						<th>Phone</th>
+						<td>${applicant?.phone}</td>
+					</tr>
+					<tr>
+						<th>Qualification</th>
+						<td>${applicant?.qualification}</td>
+					</tr>
+					<tr>
+						<th>Expertise</th>
+						<td>${applicant?.expertise}</td>
+					</tr>
+					<tr>
+						<th>Years of Experience</th>
+						<td>${applicant?.qualification}</td>
+					</tr>
+					<tr>
+						<th>Address</th>
+						<td>${applicant?.address}</td>
+					</tr>
+					<tr>
+						<th>CV</th>
+						<td>${applicant?.cv}</td>
+					</tr>
+				</table>
+				<input type="button" value="Edit" class="btn primary"/>
+		</div>
+	</div>
+</div>
