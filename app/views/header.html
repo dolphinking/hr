@@ -17,8 +17,8 @@
 			#{elseif session?.userApplicant}
 				#{a @Applicants.index(), class: 'brand'}Human Equation UAE#{/a}
 				<ul class="nav">
-					<li><a href="#">Profile</a></li>			
-					<li><a href="#">Change Password</a></li>
+					<li>#{a @Applicants.index()}Profile#{/a}</li>			
+					<li>#{a @Applicants.changePassword()}Change Password#{/a}</a></li>
 				</ul>
 				<p class="pull-right">
 					#{a @Applicants.index()}${session?.userApplicant}#{/a} ||

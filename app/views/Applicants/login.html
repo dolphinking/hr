@@ -21,22 +21,21 @@
 							<span class="help-inline"></span>
 						</div>
 					</div>
+					#{if flash.error}
+					<div class="alert-message error" data-alert="alert">
+						<a class="close" href="#">×</a>
+						<p>
+							<strong>${error ?: flash.error}</strong>
+						</p>
+					</div>
+					#{/if}
 					<input type="submit" class="btn primary" value="Sign in"/>
 					<a href="#forgetpassword" class="link">lost password?</a>
 				</fieldset>
-				<span>
-					<font color="red">
-						#{if flash.error}
-							${error ?: flash.error}
-						#{/if}
-					</font>
-				</span>
+				<p class="link">
+					Not Register? #{a @signup()}SignUp#{/a}
+				</p>
 			#{/form}
-			<p><br/>
-				#{a @signup()}
-					<input type="button" class="btn" value="SignUp"/>
-				#{/a}
-			</p>
 		</div>
 	</div>
 </div>

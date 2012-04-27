@@ -27,7 +27,11 @@ DELETE	/employees/delete_employee/{id}							Employees.removeEmployee
 GET			/applicants/home														Applicants.index
 GET			/applicants/applicant_login									Applicants.login
 GET			/applicants/applicant_signup								Applicants.signup
+GET			/applicants/applicant_edit/{id}							Applicants.edit
+GET			/applicants/change_password									Applicants.changePassword
 GET     /applicants/captcha                      		Applicants.captcha
+PUT			/applicants/applicant_update								Applicants.update
+PUT			/applicants/update_password									Applicants.updatePassword
 POST		/applicants/applicant_save									Applicants.save
 
 # Job Page

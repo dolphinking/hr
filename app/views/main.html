@@ -16,13 +16,16 @@
 		
 		#{stylesheet src: "bootstrap.min.css" /}
 		#{stylesheet src: "main.css" /}
-        #{get 'moreStyles' /}
+    #{get 'moreStyles' /}
 
 		<!-- Placed at the end of the document so the pages load faster -->
 		#{script src: "jquery-1.7.1.min.js" /}
 		#{script src: "bootstrap-alerts.js" /}
-        #{get 'moreScripts' /}
+    #{get 'moreScripts' /}
     </head>
+		<script>
+			$(".alert-message").alert('close')
+		</script>
     <body>
 		#{include 'header.html'/}
 		<div class="container">

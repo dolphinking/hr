@@ -46,6 +46,7 @@ public class Applicants extends Controller {
 		Applicant applicant = Applicant.find("byEmailAndPassword", email, password).first();
 		if(applicant != null) {
 			session.put("userApplicant", applicant.email);
+			flash.success("Successfully Logged in...");
 			index();
 		}
 		// if the username or password is invalid....
@@ -62,6 +63,70 @@ public class Applicants extends Controller {
 		checkApplicantSession();
 		Applicant applicant = connectApplicant();
 		render(applicant);
+	}
+	
+	public static void edit(Long id) {
+		checkApplicantSession();
+		Applicant applicant = connectApplicant();
+		render(applicant);
+	}
+	
+	public static void update(Long id, @Valid Applicant applicant) {
+		checkApplicantSession();
+		Applicant newApplicant = Applicant.findById(id);
+		newApplicant.firstName = applicant.firstName;
+		newApplicant.middleName = applicant.middleName;
+		newApplicant.lastName = applicant.lastName;
+		newApplicant.phone = applicant.phone;
+		newApplicant.qualification = applicant.qualification;
+		newApplicant.expertise = applicant.expertise;
+		newApplicant.yearsOfExperience = applicant.yearsOfExperience;
+		newApplicant.address = applicant.address;
+		newApplicant.validateAndSave();
+		flash.success("Profile updated...");
+		index();
+	}
+	
+	// Change the Password View...
+	public static void changePassword() {
+		checkApplicantSession();
+		Applicant applicant = connectApplicant();
+		render(applicant);
+	}
+	
+	public static void updatePassword(String oldPassword, 
+		String newPassword, String verifyPassword) {
+		checkApplicantSession();
+		validation.required(oldPassword);
+		validation.required(verifyPassword);
+		validation.required(newPassword);
+
+		Applicant applicant = Applicant.findById(connectApplicant().id);
+		
+		if(!validation.hasErrors()) {
+			if(checkOldPassword(applicant, oldPassword)) {
+				if(newPassword.equals(verifyPassword)) {
+					applicant.password = newPassword;
+					applicant.save();
+					flash.success("Password updated...");
+					changePassword();
+				} else {
+					flash.error("Error: your new password and verify password didn't match.");
+				}
+			} else {
+				flash.error("Error: Your old password you have entered is wrong.");		
+			}
+		} else {
+			flash.error("Error: Please fill all the fields.");
+		}
+		changePassword();
+	}
+	
+	private static boolean checkOldPassword(Applicant applicant, String oldPassword) {
+		if (applicant.password.equals(oldPassword)) 
+			return true; 
+		else 
+			return false;
 	}
 	
 	public static void logout() {

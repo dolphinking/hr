@@ -3,14 +3,13 @@
 
 <div class="content">
 	<div class="page-header">
-		<h1>Home <small>Start your day with new smile...</small></h1>
+		<h1>Edit <small>Start your day with new smile...</small></h1>
 	</div>
 	<div class="row">
 		<div class="span10">
-			<h2>Welcome ${applicant?.firstName}</h2>
-			#{form @update(), class: 'form-stacked', id: 'signup-form'}
+			#{form @update(applicant?.id), class: 'form-stacked', id: 'signup-form'}
 				<fieldset>
-					<legend>New Applicant</legend>
+					<legend>Edit Profile</legend>
 					#{field 'applicant.firstName'}
 					<div class="clearfix">
 						<div class="input">
@@ -38,50 +37,54 @@
 						</div>
 					</div>
 					#{/field}
-					#{field 'applicant.email'}
+					#{field 'applicant.phone'}
 					<div class="clearfix">
 						<div class="input">
-							<label for="email">Email *</label>
-							<input class="span5" id="email" type="text" name="${field.name}" value="${applicant?.email}"/>
+							<label for="phone">Phone *</label>
+							<input class="span5" id="phone" type="text" name="${field.name}" value="${applicant?.phone}"/>
 							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
 					#{/field}
-					#{field 'applicant.password'}
+					#{field 'applicant.qualification'}
 					<div class="clearfix">
 						<div class="input">
-							<label for="password">Password *</label>
-							<input class="span5" id="password" type="password" name="${field.name}" value="${applicant?.password}"/>
+							<label for="qualification">Qualification *</label>
+							<input class="span5" id="qualification" type="text" name="${field.name}" value="${applicant?.qualification}"/>
 							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
 					#{/field}
-					#{field 'verifyPassword'}
+					#{field 'applicant.expertise'}
 					<div class="clearfix">
 						<div class="input">
-							<label for="verifyPassword">Re-type Password *</label>
-							<input class="span5" id="verifyPassword" type="password" name="${field.name}" value="${verifyPassword}" />
+							<label for="expertise">Expertise *</label>
+							<input class="span5" id="expertise" type="text" name="${field.name}" value="${applicant?.expertise}"/>
 							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
 					#{/field}
-					#{field 'code'}
+					#{field 'applicant.yearsOfExperience'}
 					<div class="clearfix">
 						<div class="input">
-							<label for="code">Please type the code below: </label>
-							<img src="@{Applicants.captcha(randomID)}" />
-						</div>
-					</div>
-					<div class="clearfix">
-						<div class="input">
-							<label> </label>
-							<input type="text" name="code" id="code" size="18" value="" />
-							<input type="hidden" name="randomID" value="${randomID}" /><br/>
+							<label for="yearsOfExperience">Years of Experience *</label>
+							<input class="span5" id="yearsOfExperience" type="text" name="${field.name}" value="${applicant?.yearsOfExperience}"/>
 							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
-			    #{/field}
-					<input type="submit" class="btn primary" value="Sign Up"/>
+					#{/field}
+					#{field 'applicant.address'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="address">Address *</label>
+							<textarea class="span5" id="address" name="${field.name}"> 		 
+								${applicant?.address}
+							</textarea>
+							<span class="help-inline"><font color="#f00">${field.error}</font></span>
+						</div>
+					</div>
+					#{/field}
+					<input type="submit" class="btn primary" value="Update Profile"/>
 				</fieldset>
 			#{/form}
 		</div>

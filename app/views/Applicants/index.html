@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Welcome ' + applicant?.firstName /}
+#{set title:'Welcome ' + applicant?.firstName + ' ' + applicant?.lastName /}
 
 <div class="content">
 	<div class="page-header">
@@ -7,6 +7,22 @@
 	</div>
 	<div class="row">
 		<div class="span10">
+			#{if flash.success}
+			<div class="alert-message success" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p>
+					<strong>${flash.success}</strong>
+				</p>
+			</div>
+	    #{/if}	
+			#{if flash.error}
+			<div class="alert-message error" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p>
+					<strong>${error ?: flash.error}</strong>
+				</p>
+			</div>
+			#{/if}
 				<table>
 					<tr>
 						<th>First Name</th>
@@ -38,7 +54,7 @@
 					</tr>
 					<tr>
 						<th>Years of Experience</th>
-						<td>${applicant?.qualification}</td>
+						<td>${applicant?.yearsOfExperience}</td>
 					</tr>
 					<tr>
 						<th>Address</th>
@@ -49,7 +65,9 @@
 						<td>${applicant?.cv}</td>
 					</tr>
 				</table>
-				<input type="button" value="Edit" class="btn primary"/>
+				#{a @Applicants.edit(applicant?.id)}
+					<input type="button" value="Edit" class="btn primary"/>
+				#{/a}
 		</div>
 	</div>
 </div>
