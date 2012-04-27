@@ -65,6 +65,23 @@ public class Applicants extends Controller {
 		render(applicant);
 	}
 	
+	public static void forgotPassword() {
+		render();
+	}
+	
+	public static void sendPassword(String email) {
+		validation.required(email);
+		Applicant applicant = Applicant.find("byEmail",email).first();
+		if(applicant != null) {
+			Mails.lostPassword(applicant);
+			flash.success("Check your email to get the password...");
+			login();
+		} else {
+			flash.error("Applicant invalid...");
+			forgotPassword();
+		}
+	}
+	
 	public static void edit(Long id) {
 		checkApplicantSession();
 		Applicant applicant = connectApplicant();

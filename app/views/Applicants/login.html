@@ -30,7 +30,7 @@
 					</div>
 					#{/if}
 					<input type="submit" class="btn primary" value="Sign in"/>
-					<a href="#forgetpassword" class="link">lost password?</a>
+					#{a @forgotPassword(), class: 'link'}forgot password?#{/a}
 				</fieldset>
 				<p class="link">
 					Not Register? #{a @signup()}SignUp#{/a}
