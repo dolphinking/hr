@@ -40,7 +40,8 @@ public class Employees extends Controller {
 	// Index Action Page...
 	public static void index() {
 		checkSession();
-		render();
+		List<Applicant> applicants = Applicant.findAll();
+		render(applicants);
 	}
 	
 	// Login Action Page...
