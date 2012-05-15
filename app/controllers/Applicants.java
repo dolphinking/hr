@@ -91,9 +91,7 @@ public class Applicants extends Controller {
 	public static void update(Long id, @Valid Applicant applicant) {
 		checkApplicantSession();
 		Applicant newApplicant = Applicant.findById(id);
-		newApplicant.firstName = applicant.firstName;
-		newApplicant.middleName = applicant.middleName;
-		newApplicant.lastName = applicant.lastName;
+		newApplicant.fullName = applicant.fullName;
 		newApplicant.phone = applicant.phone;
 		newApplicant.qualification = applicant.qualification;
 		newApplicant.expertise = applicant.expertise;
@@ -159,11 +157,11 @@ public class Applicants extends Controller {
 	public static void save(@Valid Applicant applicant, 
 		String verifyPassword, String code, String randomID) {
 		
-		validation.required(applicant.firstName);
-		validation.required(applicant.lastName);
+		validation.required(applicant.fullName);
 		validation.required(applicant.email);
 		validation.required(applicant.password);
 		validation.required(verifyPassword);
+		validation.required(applicant.expertise);
 	  validation.equals(verifyPassword, applicant.password).message("Your password doesn't match");
 		validation.required(code).message("Please type the code");
 	

@@ -18,7 +18,7 @@ public class Job extends Model {
 	public String description;
 	
 	@Required
-    public String gender;
+  public String gender;
 	
 	public String qualification;
 	

@@ -7,29 +7,11 @@
 			#{form @save(), class: 'form-stacked', id: 'signup-form'}
 				<fieldset>
 					<legend>New Applicant</legend>
-					#{field 'applicant.firstName'}
+					#{field 'applicant.fullName'}
 					<div class="clearfix">
 						<div class="input">
-							<label for="firstName">First Name *</label>
-							<input class="span5" type="text" id="firstName" name="${field.name}" value="${applicant?.firstName}">
-							<span class="help-inline"><font color="#f00">${field.error}</font></span>
-						</div>
-					</div>
-					#{/field}
-					#{field 'applicant.middleName'}
-					<div class="clearfix">
-						<div class="input">
-							<label for="middleName">Middle Name</label>
-							<input class="span5" id="middleName" type="text" name="${field.name}" value="${applicant?.middleName}"/>
-							<span class="help-inline"><font color="#f00">${field.error}</font></span>
-						</div>
-					</div>
-					#{/field}
-					#{field 'applicant.lastName'}
-					<div class="clearfix">
-						<div class="input">
-							<label for="lastName">Last Name *</label>
-							<input class="span5" id="lastName" type="text" name="${field.name}" value="${applicant?.lastName}"/>
+							<label for="fullName">Full Name *</label>
+							<input class="span5" type="text" id="fullName" name="${field.name}" value="${applicant?.fullName}">
 							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>
@@ -57,6 +39,15 @@
 						<div class="input">
 							<label for="verifyPassword">Re-type Password *</label>
 							<input class="span5" id="verifyPassword" type="password" name="${field.name}" value="${verifyPassword}" />
+							<span class="help-inline"><font color="#f00">${field.error}</font></span>
+						</div>
+					</div>
+					#{/field}
+					#{field 'applicant.expertise'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="expertise">Expertise *</label>
+							<input class="span5" type="text" id="expertise" name="${field.name}" value="${applicant?.expertise}">
 							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>

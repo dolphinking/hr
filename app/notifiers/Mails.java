@@ -8,7 +8,7 @@ import java.util.*;
 public class Mails extends Mailer {
 
 	public static void welcome(Applicant applicant) {
-		setSubject("Welcome %s", applicant.firstName);
+		setSubject("Welcome %s", applicant.fullName);
 		addRecipient(applicant.email);
 		setFrom("HumanEquationUAE <humanequationtest@gmail.com>");
 		send(applicant);

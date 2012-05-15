@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Welcome ' + applicant?.firstName + ' ' + applicant?.lastName /}
+#{set title:'Welcome ' + applicant?.fullName /}
 
 <div class="content">
 	<div class="page-header">
@@ -25,16 +25,8 @@
 			#{/if}
 				<table>
 					<tr>
-						<th>First Name</th>
-						<td>${applicant?.firstName}</td>
-					</tr>
-					<tr>
-						<th>Middle Name</th>
-						<td>${applicant?.middleName}</td>
-					</tr>
-					<tr>
-						<th>Last Name</th>
-						<td>${applicant?.lastName}</td>
+						<th>Full Name</th>
+						<td>${applicant?.fullName}</td>
 					</tr>
 					<tr>
 						<th>Email</th>

@@ -1,5 +1,5 @@
 #{extends 'main.html' /}
-#{set title:'Welcome ' + applicant?.firstName /}
+#{set title:'Welcome ' + applicant?.fullName /}
 
 <div class="content">
 	<div class="page-header">
@@ -10,29 +10,11 @@
 			#{form @update(applicant?.id), class: 'form-stacked', id: 'signup-form'}
 				<fieldset>
 					<legend>Edit Profile</legend>
-					#{field 'applicant.firstName'}
+					#{field 'applicant.fullName'}
 					<div class="clearfix">
 						<div class="input">
-							<label for="fullname">First Name *</label>
-							<input class="span5" type="text" id="firstName" name="${field.name}" value="${applicant?.firstName}">
-							<span class="help-inline"><font color="#f00">${field.error}</font></span>
-						</div>
-					</div>
-					#{/field}
-					#{field 'applicant.middleName'}
-					<div class="clearfix">
-						<div class="input">
-							<label for="middleName">Middle Name</label>
-							<input class="span5" id="middleName" type="text" name="${field.name}" value="${applicant?.middleName}"/>
-							<span class="help-inline"><font color="#f00">${field.error}</font></span>
-						</div>
-					</div>
-					#{/field}
-					#{field 'applicant.lastName'}
-					<div class="clearfix">
-						<div class="input">
-							<label for="lastName">Last Name *</label>
-							<input class="span5" id="lastName" type="text" name="${field.name}" value="${applicant?.lastName}"/>
+							<label for="fullname">Full Name *</label>
+							<input class="span5" type="text" id="firstName" name="${field.name}" value="${applicant?.fullName}">
 							<span class="help-inline"><font color="#f00">${field.error}</font></span>
 						</div>
 					</div>

@@ -10,13 +10,8 @@ import play.data.validation.*;
 public class Applicant extends Model {
 	
 	@Required
-	public String firstName;
-	
-	public String middleName;
-	
-	@Required
-	public String lastName;
-	
+	public String fullName;
+		
 	@Required
 	@Column(unique=true)
 	public String email;
@@ -28,6 +23,7 @@ public class Applicant extends Model {
 	
 	public String qualification;
 	
+	@Required
 	public String expertise;
 	
 	public String yearsOfExperience;
@@ -41,14 +37,12 @@ public class Applicant extends Model {
 	@ManyToMany(cascade=CascadeType.ALL)
 	public Set<Job> jobs;
 	
-	public Applicant(String firstName, String middleName, String lastName, String password, 
-	String email, String phone, String qualification, String expertise,
-	String yearsOfExperience, String address, Blob cv) {
-		this.firstName = firstName;
-		this.middleName = middleName;
-		this.lastName = lastName;
-		this.password = password;
+	public Applicant(String fullName, String password, String email, 
+	String phone, String qualification, String expertise, String yearsOfExperience, 
+	String address, Blob cv) {
+		this.fullName = fullName;
 		this.email = email;
+		this.password = password;
 		this.phone = phone;
 		this.qualification = qualification;
 		this.expertise = expertise;
