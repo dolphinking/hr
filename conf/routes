@@ -9,7 +9,6 @@ GET			/jobDescription/{id}												Application.jobDescription
 
 # Employeee Page
 GET			/employees/employee_login										Employees.login
-GET			/employees/employee_home										Employees.index
 GET			/employees/cv_pool													Employees.cvPool
 GET			/employees/list_employees										Employees.listEmployees
 GET			/employees/add_employee											Employees.newEmployee

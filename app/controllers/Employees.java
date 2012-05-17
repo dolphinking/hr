@@ -36,13 +36,6 @@ public class Employees extends Controller {
 			login();
 		}
 	}
-
-	// Index Action Page...
-	public static void index() {
-		checkSession();
-		List<Applicant> applicants = Applicant.findAll();
-		render(applicants);
-	}
 	
 	// Login Action Page...
 	public static void login() {
@@ -56,7 +49,7 @@ public class Employees extends Controller {
 		if(employee != null) {
 			session.put("userEmployee", employee);
 			// flash.success("Welcome, " + employee.fullName);
-			index();
+			cvPool("");
 		}
 		// if the username or password is invalid....
 		flash.put("email", email);
@@ -71,9 +64,13 @@ public class Employees extends Controller {
 	}
 	
 	// List of CV store in this POOL....
-	public static void cvPool() {
+	public static void cvPool(String expertise) {
 		checkSession();
-		render();
+		List<Applicant> applicants = Applicant.findAll();
+		if(expertise != null) {
+			applicants = Applicant.find("byExpertiseIlike", expertise+"%").fetch();
+		}
+		render(applicants);
 	}
 	
 	// Settings of currrently logged in user....

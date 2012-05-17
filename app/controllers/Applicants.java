@@ -184,5 +184,4 @@ public class Applicants extends Controller {
 		Cache.set(id, code, "30mn");
 		renderBinary(captcha);
 	}
-
 }

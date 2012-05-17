@@ -3,11 +3,55 @@
 
 <div class="content">
 	<div class="page-header">
-		<h1>CV Pool <small>Start your day with new smile...</small></h1>
+		<h1>CV Pool <small>Search technology using Lucence...</small></h1>
 	</div>
 	<div class="row">
-		<div class="span10">
-			<h2>Some Contents about CV....</h2>
+		<div class="span14">
+			#{form @cvPool(), class: 'form-stacked'}
+			<fieldset>
+				<legend>Search CV</legend>
+				<div class="clearfix">
+					<div class="input">
+						<label for="expertise">Expertise *</label>
+						<input class="span5" id="expertise" type="text" name="expertise"/>
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<input type="submit" class="btn primary" value="Search"/>
+			</fieldset>
+			<span>
+				<font color="red">
+					#{if flash.error}
+						${error ?: flash.error}
+					#{/if}
+				</font>
+			</span>
+			#{/form}
+			<br/>
+			<table class="zebra-striped">
+				<thead>
+					<tr>
+						<th>Full Name</th>
+						<th>Email</th>
+						<th>Expertise</th>
+						<th>Phone</th>
+						<th>CV</th>
+						<th>Controls</th>
+					</tr>
+				</thead>
+				#{list items:applicants, as: 'applicant'}
+				<tbody>
+					<tr>
+						<td>${applicant?.fullName}</td>	
+						<td>${applicant?.email}</td>
+						<td>${applicant?.expertise}</td>
+						<td>${applicant?.phone}</td>
+						<td>${applicant?.cv}</td>
+						<td>View</td>
+					</tr>
+				</tbody>
+				#{/list}
+			</table>
 		</div>
 	</div>
 </div>
