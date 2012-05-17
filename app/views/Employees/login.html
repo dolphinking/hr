@@ -21,16 +21,25 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
+				#{if flash.success}
+				<div class="alert-message success" data-alert="alert">
+					<a class="close" href="#">×</a>
+					<p>
+						<strong>${flash.success}</strong>
+					</p>
+				</div>
+		    #{/if}
+				#{if flash.error}
+				<div class="alert-message error" data-alert="alert">
+					<a class="close" href="#">×</a>
+					<p>
+						<strong>${error ?: flash.error}</strong>
+					</p>
+				</div>
+				#{/if}
 				<input type="submit" class="btn primary" value="Sign in"/>
-				<a href="#forgetpassword" class="link">lost password?</a>
+				#{a @forgotPassword(), class: 'link'}forgot password?#{/a}
 			</fieldset>
-			<span>
-				<font color="red">
-					#{if flash.error}
-						${error ?: flash.error}
-					#{/if}
-				</font>
-			</span>
 			#{/form}
 		</div>
 	</div>

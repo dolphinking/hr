@@ -22,4 +22,11 @@ public class Mails extends Mailer {
 		send(applicant, newpassword);
 	}
 
+	public static void lostEmployeePassword(Employee employee) {
+		String newpassword = employee.password;
+		setFrom("HumanEquationUAE <humanequationtest@gmail.com>");
+		setSubject("Your password has been reset");
+		addRecipient(employee.email);
+		send(employee, newpassword);
+	}
 }

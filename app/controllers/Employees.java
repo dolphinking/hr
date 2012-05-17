@@ -1,12 +1,13 @@
 package controllers;
 
+import java.util.*;
+
 import play.*;
 import play.mvc.*;
 import play.data.validation.*;
 
-import java.util.*;
-
 import models.*;
+import notifiers.*;
 
 public class Employees extends Controller {
 	
@@ -49,7 +50,7 @@ public class Employees extends Controller {
 		if(employee != null) {
 			session.put("userEmployee", employee);
 			// flash.success("Welcome, " + employee.fullName);
-			cvPool("");
+			cvPool(null);
 		}
 		// if the username or password is invalid....
 		flash.put("email", email);
@@ -67,6 +68,7 @@ public class Employees extends Controller {
 	public static void cvPool(String expertise) {
 		checkSession();
 		List<Applicant> applicants = Applicant.findAll();
+
 		if(expertise != null) {
 			applicants = Applicant.find("byExpertiseIlike", expertise+"%").fetch();
 		}
@@ -90,7 +92,12 @@ public class Employees extends Controller {
 		updatedEmployee.phone = employee.phone;
 		updatedEmployee.department = employee.department;
 		updatedEmployee.role = employee.role;
-		updatedEmployee.validateAndSave();
+		if(updatedEmployee != null) {
+			updatedEmployee.validateAndSave();
+			flash.success("Your profile is successfully updated.");
+		} else {
+			flash.error("Couldn't update your profile.");
+		}
 		settings();
 	}
 	
@@ -193,6 +200,7 @@ public class Employees extends Controller {
 				if(newPassword.equals(verifyPassword)) {
 					employee.password = newPassword;
 					employee.save();
+					flash.success("Your new password is successfully changed.");
 					changePassword();
 				} else {
 					flash.error("Error: your new password and verify password didn't match.");
@@ -211,5 +219,22 @@ public class Employees extends Controller {
 			return true; 
 		else 
 			return false;
+	}
+	
+	public static void forgotPassword() {
+		render();
+	}
+	
+	public static void sendPassword(String email) {
+		validation.required(email);
+		Employee employee = Employee.find("byEmail",email).first();
+		if(employee != null) {
+			Mails.lostEmployeePassword(employee);
+			flash.success("Check your email to get your password.");
+			login();
+		} else {
+			flash.error("Invalid Employee.");
+			forgotPassword();
+		}
 	}
 }

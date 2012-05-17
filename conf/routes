@@ -14,6 +14,7 @@ GET			/employees/list_employees										Employees.listEmployees
 GET			/employees/add_employee											Employees.newEmployee
 GET			/employees/employee_settings								Employees.settings
 GET			/employees/change_password									Employees.changePassword
+GET			/employees/forgot_password									Employees.forgotPassword
 GET			/employees/edit_employee/{id}								Employees.editEmployee
 POST		/employees/save_employee										Employees.saveEmployee
 PUT			/employees/update_password									Employees.alterPassword

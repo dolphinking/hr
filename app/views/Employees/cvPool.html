@@ -32,9 +32,8 @@
 				<thead>
 					<tr>
 						<th>Full Name</th>
-						<th>Email</th>
 						<th>Expertise</th>
-						<th>Phone</th>
+						<th>Email</th>
 						<th>CV</th>
 						<th>Controls</th>
 					</tr>
@@ -42,10 +41,9 @@
 				#{list items:applicants, as: 'applicant'}
 				<tbody>
 					<tr>
-						<td>${applicant?.fullName}</td>	
-						<td>${applicant?.email}</td>
+						<td>${applicant?.fullName}</td>
 						<td>${applicant?.expertise}</td>
-						<td>${applicant?.phone}</td>
+						<td>${applicant?.email}</td>
 						<td>${applicant?.cv}</td>
 						<td>View</td>
 					</tr>
