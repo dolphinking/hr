@@ -45,10 +45,11 @@ public class Jobs extends Controller {
 		validation.required(job.employee);
 		
 		if(validation.hasErrors()) {
-			flash.error("Somethings is wrong...while submitting jobs");
+			flash.error("Something is wrong...while posting new Job");
 			newJob();
 		} else {
 			job.create();
+			flash.success("New Job added successfully.");
 			postJob();
 		}
 	}
@@ -78,13 +79,19 @@ public class Jobs extends Controller {
 		updatablejob.postedDate = job.postedDate;
 		updatablejob.expiryDate = job.expiryDate;
 		updatablejob.employee = job.employee;
-		updatablejob.validateAndSave();
+		if(updatablejob != null) {
+			updatablejob.validateAndSave();
+			flash.success("Successfully updated.");
+		}
 		postJob();
 	}	
 	
 	public static void removeJob(Long id) {
 		Job job = Job.findById(id);
-		job.delete();
+		if(job != null) {
+			job.delete();
+			flash.success("Successfully deleted.");
+		}
 		postJob();
 	}   
 }

@@ -7,13 +7,22 @@
 	</div>
 	<div class="row">
 		<div class="span14">
-			<span class="help-inline">
-				<font color="red">
-					#{if flash.error}
-						${error ?: flash.error}
-					#{/if}
-				</font>
-			</span>
+			#{if flash.success}
+			<div class="alert-message success" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p>
+					<strong>${flash.success}</strong>
+				</p>
+			</div>
+	    #{/if}
+			#{if flash.error}
+			<div class="alert-message error" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p>
+					<strong>${error ?: flash.error}</strong>
+				</p>
+			</div>
+			#{/if}
 			#{ifnot jobs}
 				<h2>No Jobs....</h2>
 			#{/ifnot}

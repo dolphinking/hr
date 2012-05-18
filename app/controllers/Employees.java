@@ -171,7 +171,7 @@ public class Employees extends Controller {
 		updatedEmployee.role = employee.role;
 		
 		if(validation.hasErrors()) {
-			flash.error("Somethings is wrong...while adding new employee");
+			flash.error("Somethings is wrong...while editing old employee");
 			editEmployee(updatedEmployee.id);
 		} else {
 			updatedEmployee.validateAndSave();

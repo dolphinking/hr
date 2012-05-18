@@ -6,6 +6,22 @@
 		#{include 'settings_menu.html'/}
 	</div>
 	<h2>Department</h2>
+	#{if flash.success}
+	<div class="alert-message success" data-alert="alert">
+		<a class="close" href="#">×</a>
+		<p>
+			<strong>${flash.success}</strong>
+		</p>
+	</div>
+  #{/if}
+	#{if flash.error}
+	<div class="alert-message error" data-alert="alert">
+		<a class="close" href="#">×</a>
+		<p>
+			<strong>${error ?: flash.error}</strong>
+		</p>
+	</div>
+	#{/if}
 	#{ifnot departments}
 		No Departments Found...
 	#{/ifnot}
@@ -22,9 +38,8 @@
 			<tr>
 				<td>${department?.name}</td>
 				<td>
-					#{a @removeDepartment(department?.id)}
-						Remove
-					#{/a}
+					#{a @removeDepartment(department?.id)}Remove#{/a} || 
+					#{a @editDepartment(department?.id)}Edit#{/a}
 				</td>
 			</tr>
 		#{/list}
@@ -39,17 +54,11 @@
 					<div class="input">
 						<label for="department">Department *</label>
 						<input class="span5" id="department" type="text" name="${field.name}"/>
-						<span class="help-inline">
-							<font color="red">
-								#{if flash.error}
-									${error ?: flash.error}
-								#{/if}
-							</font>
-						</span>
+						<span class="help-inline"></span>
 					</div>
 				</div>
 				#{/field}
-				<button type="submit" class="btn primary">Add Department</button>
+				<input type="submit" class="btn primary" value="Add Department" />
 			</fieldset>
 			#{/form}
 		</div>

@@ -23,7 +23,7 @@ public class Departments extends Controller {
 	public static void addDepartment(@Valid Department department) {
 		validation.required(department.name);
 		if(validation.hasErrors()) {
-			flash.error("Please enter the valid department...");
+			flash.error("Please enter the valid department.");
 		} else {
 			department.create();
 		}
@@ -32,8 +32,33 @@ public class Departments extends Controller {
 	
 	public static void removeDepartment(Long id) {
 		Department department = Department.findById(id);
-		department.delete();
+		if(department != null) {
+			department.delete();
+			flash.success("Successfully deleted.");
+		}
 		index();
 	}
-   
+	
+	// Edit Department with one param
+	// @param id -> Long Datatype 
+	public static void editDepartment(Long id) {
+		Department department = Department.findById(id);
+		render(department);
+	}
+	
+	public static void updateDepartment(Long id, @Valid Department department) {
+		validation.required(department.name);
+		
+		Department updateableDepartment = Department.findById(id);
+		updateableDepartment.name = department.name;
+		
+		if(validation.hasErrors()) {
+			flash.error("Please enter the valid department.");
+			editDepartment(updateableDepartment.id);
+		} else {
+			updateableDepartment.validateAndSave();
+			flash.success("Successfully updated.");
+			index();
+		}
+	}
 }

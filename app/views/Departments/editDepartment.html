@@ -1,0 +1,46 @@
+#{extends 'main.html' /}
+#{set title:'Edit Department - ' + department?.name /}
+
+<div class="content">
+	<div class="page-header">
+		#{include 'settings_menu.html'/}
+	</div>
+	<div class="row">
+		<div class="span14">
+			#{form @updateDepartment(department?.id), class: 'form-stacked'}
+				<fieldset>
+					<legend>Edit Department</legend>
+					#{if flash.success}
+					<div class="alert-message success" data-alert="alert">
+						<a class="close" href="#">×</a>
+						<p>
+							<strong>${flash.success}</strong>
+						</p>
+					</div>
+			    #{/if}
+					#{if flash.error}
+					<div class="alert-message error" data-alert="alert">
+						<a class="close" href="#">×</a>
+						<p>
+							<strong>${error ?: flash.error}</strong>
+						</p>
+					</div>
+					#{/if}
+					#{field 'department.name'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="name">Name *</label>
+							<input class="span5" id="name" type="text" name="${field.name}" value="${department?.name}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					<input type="submit" class="btn primary" value="Update" />
+					#{a @index()}
+						<input type="button" class="btn" value="Cancel" />
+					#{/a}
+				</fieldset>
+			#{/form}
+		</div>
+	</div>
+</div>

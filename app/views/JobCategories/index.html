@@ -6,6 +6,22 @@
 		#{include 'jobs_menu.html'/}
     </div>
 	<h2>Job Category</h2>
+	#{if flash.success}
+	<div class="alert-message success" data-alert="alert">
+		<a class="close" href="#">×</a>
+		<p>
+			<strong>${flash.success}</strong>
+		</p>
+	</div>
+  #{/if}
+	#{if flash.error}
+	<div class="alert-message error" data-alert="alert">
+		<a class="close" href="#">×</a>
+		<p>
+			<strong>${error ?: flash.error}</strong>
+		</p>
+	</div>
+	#{/if}
 	#{ifnot jobCategories}
 		No Job Categories Found...
 	#{/ifnot}
@@ -21,7 +37,10 @@
 		#{list items:jobCategories, as: 'category'}
 			<tr>
 				<td>${category?.name}</td>
-				<td>#{a @removeJobCategory(category?.id)}Remove#{/a}</td>
+				<td>
+						#{a @removeJobCategory(category?.id)}Remove#{/a} || 
+						#{a @editJobCategory(category?.id)}Edit#{/a}
+				</td>
 			</tr>
 		#{/list}
 	</table>
@@ -35,13 +54,7 @@
 				<div class="input">
 					<label for="jobCategory">Job Category *</label>
 					<input class="span5" id="jobCategory" type="text" name="${field.name}"/>
-					<span class="help-inline">
-						<font color="red">
-							#{if flash.error}
-								${error ?: flash.error}
-							#{/if}
-						</font>
-					</span>
+					<span class="help-inline"></span>
 				</div>
 			</div>
 			#{/field}

@@ -47,11 +47,15 @@ DELETE	/jobs/delete_job														Jobs.removeJob
 
 # JobCategory Page
 GET			/employees/job_categories										JobCategories.index
+GET			/employees/edit_job_category/{id}						JobCategories.editJobCategory
+PUT			/employees/update_job_category/{id}					JobCategories.updateJobCategory
 POST		/employees/add_job_category									JobCategories.addJobCategory
 DELETE	/employees/delete_job_category							JobCategories.removeJobCategory
 
 # Department Page
 GET			/employees/departments											Departments.index
+GET			/employees/edit_department/{id}							Departments.editDepartment
+PUT			/employees/update_department/{id}						Departments.updateDepartment
 POST		/employees/add_department										Departments.addDepartment
 DELETE	/employees/delete_department								Departments.removeDepartment						
 	

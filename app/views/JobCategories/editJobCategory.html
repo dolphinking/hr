@@ -1,0 +1,46 @@
+#{extends 'main.html' /}
+#{set title:'Edit Job Category - ' + jobCategory?.name /}
+
+<div class="content">
+	<div class="page-header">
+		#{include 'jobs_menu.html'/}
+	</div>
+	<div class="row">
+		<div class="span14">
+			#{form @updateJobCategory(jobCategory?.id), class: 'form-stacked'}
+				<fieldset>
+					<legend>Edit Job Category</legend>
+					#{if flash.success}
+					<div class="alert-message success" data-alert="alert">
+						<a class="close" href="#">×</a>
+						<p>
+							<strong>${flash.success}</strong>
+						</p>
+					</div>
+			    #{/if}
+					#{if flash.error}
+					<div class="alert-message error" data-alert="alert">
+						<a class="close" href="#">×</a>
+						<p>
+							<strong>${error ?: flash.error}</strong>
+						</p>
+					</div>
+					#{/if}
+					#{field 'jobCategory.name'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="name">Name *</label>
+							<input class="span5" id="name" type="text" name="${field.name}" value="${jobCategory?.name}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					<input type="submit" class="btn primary" value="Update" />
+					#{a @index()}
+						<input type="button" class="btn" value="Cancel" />
+					#{/a}
+				</fieldset>
+			#{/form}
+		</div>
+	</div>
+</div>
