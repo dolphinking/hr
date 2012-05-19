@@ -45,7 +45,7 @@
 						<td>${applicant?.expertise}</td>
 						<td>${applicant?.email}</td>
 						<td>${applicant?.cv}</td>
-						<td>View</td>
+						<td>#{a @Employees.showApplicant(applicant?.id)}View#{/a}</td>
 					</tr>
 				</tbody>
 				#{/list}

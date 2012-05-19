@@ -1,0 +1,49 @@
+#{extends 'main.html' /}
+#{set title:'Profile of ' + applicant?.fullName /}
+
+<div class="content">
+	<div class="page-header">
+		<h1>Applicant Profile <small>Seems you got the right candidate for job...</small></h1>
+	</div>
+	<div class="row">
+		<div class="span10">
+				<table>
+					<tr>
+						<th>Full Name</th>
+						<td>${applicant?.fullName}</td>
+					</tr>
+					<tr>
+						<th>Email</th>
+						<td>${applicant?.email}</td>
+					</tr>
+					<tr>
+						<th>Phone</th>
+						<td>${applicant?.phone}</td>
+					</tr>
+					<tr>
+						<th>Qualification</th>
+						<td>${applicant?.qualification}</td>
+					</tr>
+					<tr>
+						<th>Expertise</th>
+						<td>${applicant?.expertise}</td>
+					</tr>
+					<tr>
+						<th>Years of Experience</th>
+						<td>${applicant?.yearsOfExperience}</td>
+					</tr>
+					<tr>
+						<th>Address</th>
+						<td>${applicant?.address}</td>
+					</tr>
+					<tr>
+						<th>CV</th>
+						<td>${applicant?.cv}</td>
+					</tr>
+				</table>
+				#{a @Employees.cvPool(null)}
+					<input type="button" value="Back" class="btn primary"/>
+				#{/a}
+		</div>
+	</div>
+</div>

@@ -237,4 +237,14 @@ public class Employees extends Controller {
 			forgotPassword();
 		}
 	}
+	
+	// Show Individual Applicant
+	public static void showApplicant(Long id) {
+		Applicant applicant = Applicant.findById(id);
+		render(applicant);
+	}
+	
+	
+	
+	
 }
