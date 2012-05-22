@@ -28,6 +28,8 @@ public class Job extends Model {
 	
 	public String benefits;
 	
+	public Boolean status;
+	
 	@Required
 	@Temporal(TemporalType.DATE)
 	public Date postedDate;
@@ -45,8 +47,8 @@ public class Job extends Model {
 	public Employee employee;
 	
 	public Job(String title, String description, String gender, String qualification, 
-	String experience, String salary, String benefits, Date postedDate, Date expiryDate,
-	JobCategory category, Employee employee) {
+	String experience, String salary, String benefits, Boolean status, Date postedDate, 
+	Date expiryDate, JobCategory category, Employee employee) {
 		this.title = title;
 		this.description = description;
 		this.gender = gender;
@@ -54,6 +56,7 @@ public class Job extends Model {
 		this.experience = experience;
 		this.salary = salary;
 		this.benefits = benefits;
+		this.status = status;
 		this.postedDate = postedDate;
 		this.expiryDate = expiryDate;
 		this.category = category;
@@ -61,7 +64,7 @@ public class Job extends Model {
 	}
 	
 	public static List<Job> getListOfJobsAccordingToCategory(Long id) {
-		List<Job> jobs = Job.find("Select count(j) from Job j, JobCategory jc where j.category=jc.id and j.category.id=?",id).fetch();
+		List<Job> jobs = Job.find("Select count(j) from Job j, JobCategory jc where j.category=jc.id and j.status='TRUE' and j.category.id=?",id).fetch();
 		return jobs;
 	}
 }

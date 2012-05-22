@@ -90,6 +90,7 @@ public class Applicants extends Controller {
 	
 	public static void update(Long id, @Valid Applicant applicant) {
 		checkApplicantSession();
+		
 		Applicant newApplicant = Applicant.findById(id);
 		newApplicant.fullName = applicant.fullName;
 		newApplicant.phone = applicant.phone;
@@ -97,8 +98,14 @@ public class Applicants extends Controller {
 		newApplicant.expertise = applicant.expertise;
 		newApplicant.yearsOfExperience = applicant.yearsOfExperience;
 		newApplicant.address = applicant.address;
-		newApplicant.validateAndSave();
-		flash.success("Profile updated...");
+				
+		if(newApplicant != null) {
+			newApplicant.validateAndSave();
+			flash.success("Profile updated...");
+		} else {
+			flash.error("Please check all the values...");
+		}
+		
 		index();
 	}
 	

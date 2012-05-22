@@ -28,8 +28,6 @@ public class Applicant extends Model {
 	
 	public String yearsOfExperience;
 	
-	@MaxSize(10000)
-	@Lob
 	public String address;
 	
 	public Blob cv;

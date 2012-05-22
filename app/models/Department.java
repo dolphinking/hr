@@ -9,7 +9,7 @@ import play.data.validation.*;
 public class Department extends Model {
 
 	@Required
-	// @Column(unique=true)
+	@Column(unique=true)
 	public String name;
 	
 	public Department(String name) {

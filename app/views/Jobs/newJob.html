@@ -150,8 +150,19 @@
 </script>
 
 <script type="text/javascript" charset="${_response_encoding}">
-    $(function() {
-		$("#postedDate").datepicker({dateFormat: 'yy-mm-dd'});
-		$("#expiryDate").datepicker({dateFormat: 'yy-mm-dd'});
+$(function() {
+		var dates = $("#postedDate, #expiryDate").datepicker({
+			dateFormat: 'yy-mm-dd',
+			numberOfMonths: 2,
+			onSelect: function(selectedDate) {
+				var option = this.id == "postedDate" ? "minDate" : "maxDate",
+					instance = $(this).data("datepicker"),
+					date = $.datepicker.parseDate(
+						instance.settings.dateFormat ||
+						$.datepicker._defaults.dateFormat,
+						selectedDate, instance.settings);
+				dates.not(this).datepicker("option", option, date);
+			}
+		});
 	});
 </script>
