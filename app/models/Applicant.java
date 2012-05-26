@@ -5,8 +5,10 @@ import javax.persistence.*;
 
 import play.db.jpa.*;
 import play.data.validation.*;
+import play.modules.search.*;
 
 @Entity
+@Indexed
 public class Applicant extends Model {
 	
 	@Required
@@ -24,6 +26,7 @@ public class Applicant extends Model {
 	public String qualification;
 	
 	@Required
+	@Field
 	public String expertise;
 	
 	public String yearsOfExperience;

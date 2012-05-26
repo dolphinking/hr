@@ -5,6 +5,7 @@ import java.util.*;
 import play.*;
 import play.mvc.*;
 import play.data.validation.*;
+import play.modules.search.*;
 
 import models.*;
 import notifiers.*;
@@ -65,14 +66,22 @@ public class Employees extends Controller {
 	}
 	
 	// List of CV store in this POOL....
+	// Lucence Search Implementation....
 	public static void cvPool(String expertise) {
 		checkSession();
-		List<Applicant> applicants = Applicant.findAll();
-
-		if(expertise != null) {
-			applicants = Applicant.find("byExpertiseIlike", expertise+"%").fetch();
+		List<Applicant> applicants;
+		if(expertise != null && !expertise.equals("")) {
+			applicants = new ArrayList<Applicant>();
+			Query query = Search.search("expertise:"+expertise, Applicant.class);
+			List<Applicant> keywords = query.fetch();
+			for(int i=0; i<keywords.size(); i++) {
+				applicants.add(keywords.get(i));
+			}
+			render(keywords, expertise, applicants);
+		} else {
+			applicants = Applicant.findAll();
+			render(applicants);
 		}
-		render(applicants);
 	}
 	
 	// Settings of currrently logged in user....
@@ -243,8 +252,4 @@ public class Employees extends Controller {
 		Applicant applicant = Applicant.findById(id);
 		render(applicant);
 	}
-	
-	
-	
-	
 }

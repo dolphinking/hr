@@ -14,7 +14,7 @@
 					<div class="input">
 						<label for="expertise">Expertise *</label>
 						<input class="span5" id="expertise" type="text" name="expertise"/>
-						<span class="help-inline"></span>
+						<span class="help-inline">Eg: Java, MS-WORD, Communication, Report Writing</span>
 					</div>
 				</div>
 				<input type="submit" class="btn primary" value="Search"/>
@@ -28,28 +28,25 @@
 			</span>
 			#{/form}
 			<br/>
+			#{ifnot applicants}
+				No Applicants Found with <strong>${expertise}</strong> keyword
+			#{/ifnot}
+			#{else}
 			<table class="zebra-striped">
-				<thead>
-					<tr>
-						<th>Full Name</th>
-						<th>Expertise</th>
-						<th>Email</th>
-						<th>CV</th>
-						<th>Controls</th>
-					</tr>
-				</thead>
-				#{list items:applicants, as: 'applicant'}
-				<tbody>
-					<tr>
-						<td>${applicant?.fullName}</td>
-						<td>${applicant?.expertise}</td>
-						<td>${applicant?.email}</td>
-						<td>${applicant?.cv}</td>
-						<td>#{a @Employees.showApplicant(applicant?.id)}View#{/a}</td>
-					</tr>
-				</tbody>
+				<tr>
+					<th>Full Name</th>
+					<th>Expertise</th>
+					<th>Email</th>
+				</tr>
+				#{list items:applicants, as:'applicant'}
+				<tr>
+					<td>${applicant?.fullName}</td>
+					<td>${applicant?.expertise}</td>
+					<td>${applicant?.email}</td>
+				</tr>
 				#{/list}
 			</table>
+			#{/else}
 		</div>
 	</div>
 </div>
