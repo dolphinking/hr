@@ -33,14 +33,11 @@ public class Applicant extends Model {
 	
 	public String address;
 	
-	public Blob cv;
-	
 	@ManyToMany(cascade=CascadeType.ALL)
 	public Set<Job> jobs;
 	
-	public Applicant(String fullName, String password, String email, 
-	String phone, String qualification, String expertise, String yearsOfExperience, 
-	String address, Blob cv) {
+	public Applicant(String fullName, String password, String email, String phone, 
+	String qualification, String expertise, String yearsOfExperience, String address) {
 		this.fullName = fullName;
 		this.email = email;
 		this.password = password;
@@ -49,7 +46,6 @@ public class Applicant extends Model {
 		this.expertise = expertise;
 		this.yearsOfExperience = yearsOfExperience;
 		this.address = address;
-		this.cv = cv;
 		this.jobs = new TreeSet<Job>();
 	}
 }

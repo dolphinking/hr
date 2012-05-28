@@ -1,11 +1,13 @@
 package controllers;
 
+import java.io.*;
 import java.util.*;
 
 import play.*;
 import play.mvc.*;
 import play.libs.*;
 import play.cache.*;
+import play.db.jpa.*;
 import play.data.validation.*;
 
 import models.*;
@@ -191,4 +193,22 @@ public class Applicants extends Controller {
 		Cache.set(id, code, "30mn");
 		renderBinary(captcha);
 	}
+	
+	public static void uploadCV() {
+		checkApplicantSession();
+		render();
+	}
+	
+	public static void saveCV(File file) throws FileNotFoundException {
+		checkApplicantSession();
+    final CV doc = new CV();
+    doc.fileName = file.getName();
+    doc.applicant = connectApplicant();
+		doc.file = new Blob();
+    doc.file.set(new FileInputStream(file), MimeTypes.getContentType(file.getName()));
+		if(doc != null) {
+			doc.save();
+		}
+    index();
+  }
 }

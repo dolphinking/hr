@@ -32,10 +32,12 @@ GET			/applicants/applicant_edit/{id}							Applicants.edit
 GET			/applicants/change_password									Applicants.changePassword
 GET			/applicants/forgot_password									Applicants.forgotPassword
 GET     /applicants/captcha                      		Applicants.captcha
+GET			/applicants/upload_cv												Applicants.uploadCV
 PUT			/applicants/applicant_update								Applicants.update
 PUT			/applicants/update_password									Applicants.updatePassword
 POST		/applicants/send_password										Applicants.sendPassword
 POST		/applicants/applicant_save									Applicants.save
+POST		/applicants/save_cv													Applicants.saveCV
 
 # Job Page
 GET			/jobs/post_job															Jobs.postJob

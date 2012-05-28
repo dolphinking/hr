@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+#{set title:'Upload CV' /}
+
+<div class="content">
+	<div class="page-header">
+		<h1>CV Upload <small>Upload your awesome CV!</small></h1>
+	</div>
+	<div class="row">
+		<div class="span10">
+			#{if flash.success}
+			<div class="alert-message success" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p>
+					<strong>${flash.success}</strong>
+				</p>
+			</div>
+	    #{/if}	
+			#{if flash.error}
+			<div class="alert-message error" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p>
+					<strong>${error ?: flash.error}</strong>
+				</p>
+			</div>
+			#{/if}
+			#{form @saveCV(), class: 'form-stacked', enctype:'multipart/form-data'}
+				<fieldset>
+					<legend>Upload CV</legend>
+					<div class="clearfix">
+						<div class="input">
+							<input type="file" name="file"><br/>
+							<span class="help-inline">Upload your CV in pdf or doc format...</span>
+						</div>
+					</div>
+					<input type="submit" class="btn primary" value="Upload CV"/>
+				</fieldset>
+			#{/form}
+		</div>
+	</div>
+</div>
