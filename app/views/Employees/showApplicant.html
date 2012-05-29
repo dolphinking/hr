@@ -38,7 +38,7 @@
 					</tr>
 					<tr>
 						<th>CV</th>
-						<td>${applicant?.cv}</td>
+						<td>#{a @Applicants.downloadFile(applicant?.id)}${applicant?.fileName}#{/a}</td>
 					</tr>
 				</table>
 				#{a @Employees.cvPool(null)}

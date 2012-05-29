@@ -7,7 +7,7 @@
 	</div>
 	<div class="row">
 		<div class="span10">
-			#{form @update(applicant?.id), class: 'form-stacked', id: 'signup-form'}
+			#{form @update(applicant?.id), class: 'form-stacked', enctype:'multipart/form-data'}
 				<fieldset>
 					<legend>Edit Profile</legend>
 					#{field 'applicant.fullName'}
@@ -64,6 +64,12 @@
 						</div>
 					</div>
 					#{/field}
+					<div class="clearfix">
+						<div class="input">
+							<input type="file" name="file"><br/>
+							<span class="help-inline">Upload your CV in pdf or doc format...</span>
+						</div>
+					</div>
 					<input type="submit" class="btn primary" value="Update Profile"/>
 				</fieldset>
 			#{/form}

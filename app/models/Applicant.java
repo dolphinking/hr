@@ -33,6 +33,10 @@ public class Applicant extends Model {
 	
 	public String address;
 	
+	public String fileName;
+	
+	public Blob file;
+	
 	@ManyToMany(cascade=CascadeType.ALL)
 	public Set<Job> jobs;
 	
@@ -47,5 +51,11 @@ public class Applicant extends Model {
 		this.yearsOfExperience = yearsOfExperience;
 		this.address = address;
 		this.jobs = new TreeSet<Job>();
+	}
+	
+	@Override
+	public void _delete() {
+	   super._delete();
+	   file.getFile().delete();
 	}
 }

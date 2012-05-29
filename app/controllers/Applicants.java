@@ -90,7 +90,9 @@ public class Applicants extends Controller {
 		render(applicant);
 	}
 	
-	public static void update(Long id, @Valid Applicant applicant) {
+	// Some changes should be there for file upload...
+	public static void update(Long id, @Valid Applicant applicant, File file)
+		throws FileNotFoundException {
 		checkApplicantSession();
 		
 		Applicant newApplicant = Applicant.findById(id);
@@ -100,6 +102,9 @@ public class Applicants extends Controller {
 		newApplicant.expertise = applicant.expertise;
 		newApplicant.yearsOfExperience = applicant.yearsOfExperience;
 		newApplicant.address = applicant.address;
+		newApplicant.fileName = file.getName();
+		newApplicant.file = new Blob();
+		newApplicant.file.set(new FileInputStream(file), MimeTypes.getContentType(file.getName()));
 				
 		if(newApplicant != null) {
 			newApplicant.validateAndSave();
@@ -110,6 +115,15 @@ public class Applicants extends Controller {
 		
 		index();
 	}
+	
+	
+	// Download the specific CV of connected Applicant...
+	public static void downloadFile(Long id) {
+    final Applicant doc = Applicant.findById(id);
+    notFoundIfNull(doc);
+    response.setContentTypeIfNotSet(doc.file.type());
+    renderBinary(doc.file.get(), doc.fileName);
+  }
 	
 	// Change the Password View...
 	public static void changePassword() {
@@ -193,22 +207,4 @@ public class Applicants extends Controller {
 		Cache.set(id, code, "30mn");
 		renderBinary(captcha);
 	}
-	
-	public static void uploadCV() {
-		checkApplicantSession();
-		render();
-	}
-	
-	public static void saveCV(File file) throws FileNotFoundException {
-		checkApplicantSession();
-    final CV doc = new CV();
-    doc.fileName = file.getName();
-    doc.applicant = connectApplicant();
-		doc.file = new Blob();
-    doc.file.set(new FileInputStream(file), MimeTypes.getContentType(file.getName()));
-		if(doc != null) {
-			doc.save();
-		}
-    index();
-  }
 }
