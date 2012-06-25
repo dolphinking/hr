@@ -46,6 +46,9 @@ public class Job extends Model {
 	@ManyToOne
 	public Employee employee;
 	
+	@ManyToMany(mappedBy="jobs")
+	public List<Applicant> applicant;
+	
 	public Job(String title, String description, String gender, String qualification, 
 	String experience, String salary, String benefits, Boolean status, Date postedDate, 
 	Date expiryDate, JobCategory category, Employee employee) {
@@ -61,10 +64,19 @@ public class Job extends Model {
 		this.expiryDate = expiryDate;
 		this.category = category;
 		this.employee = employee;
+		this.applicant = new ArrayList<Applicant>();
 	}
 	
 	public static List<Job> getListOfJobsAccordingToCategory(Long id) {
 		List<Job> jobs = Job.find("Select count(j) from Job j, JobCategory jc where j.category=jc.id and j.status='TRUE' and j.category.id=?",id).fetch();
 		return jobs;
+	}
+	
+	public static Job findJobById(Long id) {
+		Job job = Job.findById(id);
+		if(job != null)
+			return job;
+		else
+			return null;
 	}
 }

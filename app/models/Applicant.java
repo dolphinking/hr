@@ -37,8 +37,8 @@ public class Applicant extends Model {
 	
 	public Blob file;
 	
-	@ManyToMany(cascade=CascadeType.ALL)
-	public Set<Job> jobs;
+	@ManyToMany
+	public List<Job> jobs;
 	
 	public Applicant(String fullName, String password, String email, String phone, 
 	String qualification, String expertise, String yearsOfExperience, String address) {
@@ -50,12 +50,25 @@ public class Applicant extends Model {
 		this.expertise = expertise;
 		this.yearsOfExperience = yearsOfExperience;
 		this.address = address;
-		this.jobs = new TreeSet<Job>();
+		this.jobs = new ArrayList<Job>();
 	}
 	
 	@Override
 	public void _delete() {
 	   super._delete();
 	   file.getFile().delete();
+	}
+	
+	public Applicant jobItWith(Long id) {
+		jobs.add(Job.findJobById(id));
+		return this;
+	}
+	
+	public static List<Applicant> findJobbedWith(String title) {
+		return Applicant.find("select distinct a from Applicant a join a.jobs as j where j.title = ?",title).fetch();
+	}
+	
+	public static List<Applicant> findAllJobByApplicant(Applicant applicant) {
+		return Applicant.find("select j from Job j join j.applicant as a where a.id = ?",applicant.id).fetch();
 	}
 }

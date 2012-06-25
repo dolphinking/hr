@@ -44,16 +44,15 @@ public class Jobs extends Controller {
 		validation.required(job.expiryDate);
 		validation.required(job.employee);
 		
-		if(job.expiryDate.before(job.postedDate) || job.expiryDate.before(new Date())) {
-			flash.error("Invalid Expiry Date.");
-			newJob();
-		}
-		
 		if(validation.hasErrors()) {
 			flash.error("Something is wrong...while posting new Job");
 			newJob();
 		} else {
 			if(job != null) {
+				if(job.expiryDate.before(job.postedDate) || job.expiryDate.before(new Date())) {
+					flash.error("Invalid Expiry Date.");
+					newJob();
+				}
 				job.status = true;
 				job.create();
 				flash.success("New Job added successfully.");

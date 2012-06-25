@@ -33,6 +33,9 @@ GET			/cv_download/{id}														Applicants.downloadFile
 GET			/applicants/change_password									Applicants.changePassword
 GET			/applicants/forgot_password									Applicants.forgotPassword
 GET     /applicants/captcha                      		Applicants.captcha
+GET			/applicants/jobs														Applicants.listOfJobs
+GET			/applicants/jobShow/{id}										Applicants.jobShow
+GET			/applicants/jobDescription/{id}							Applicants.jobDescription
 PUT			/applicants/applicant_update								Applicants.update
 PUT			/applicants/update_password									Applicants.updatePassword
 POST		/applicants/send_password										Applicants.sendPassword

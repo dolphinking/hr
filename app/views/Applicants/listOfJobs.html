@@ -1,0 +1,30 @@
+#{extends 'main.html' /}
+#{set title: 'Human Equation UAE'/}
+
+<div class="content">
+	<div class="page-header">
+		<h2>Latest Job Openings</h2>
+	</div>
+	<div class="row">
+		<div class="span10">
+			<div>
+				<ul>
+					#{list items:jobCategories, as: 'jobCategory'}
+						<li>
+							<h4>
+								#{a @jobShow(jobCategory?.id)}
+									${jobCategory?.name}(#{list items:models.Job.getListOfJobsAccordingToCategory(jobCategory?.id), as: 'c'}${c}#{/list})
+								#{/a}
+							</h4>
+						</li>						
+					#{/list}
+				</ul>
+			</div>
+			#{ifnot jobCategories}
+				<div>
+					No jobs...
+				</div>
+			#{/ifnot}
+		</div>
+	</div>
+</div>

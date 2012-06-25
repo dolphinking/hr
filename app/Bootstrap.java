@@ -13,5 +13,4 @@ public class Bootstrap extends play.jobs.Job {
             Fixtures.load("data.yml");
         }
     }
- 
 }

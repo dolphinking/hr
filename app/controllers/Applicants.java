@@ -95,24 +95,28 @@ public class Applicants extends Controller {
 		throws FileNotFoundException {
 		checkApplicantSession();
 		
-		Applicant newApplicant = Applicant.findById(id);
-		newApplicant.fullName = applicant.fullName;
-		newApplicant.phone = applicant.phone;
-		newApplicant.qualification = applicant.qualification;
-		newApplicant.expertise = applicant.expertise;
-		newApplicant.yearsOfExperience = applicant.yearsOfExperience;
-		newApplicant.address = applicant.address;
-		newApplicant.fileName = file.getName();
-		newApplicant.file = new Blob();
-		newApplicant.file.set(new FileInputStream(file), MimeTypes.getContentType(file.getName()));
-				
-		if(newApplicant != null) {
-			newApplicant.validateAndSave();
-			flash.success("Profile updated...");
+		if(file != null) {
+			Applicant newApplicant = Applicant.findById(id);
+			newApplicant.fullName = applicant.fullName;
+			newApplicant.phone = applicant.phone;
+			newApplicant.qualification = applicant.qualification;
+			newApplicant.expertise = applicant.expertise;
+			newApplicant.yearsOfExperience = applicant.yearsOfExperience;
+			newApplicant.address = applicant.address;
+			newApplicant.fileName = file.getName();
+			newApplicant.file = new Blob();
+			newApplicant.file.set(new FileInputStream(file), MimeTypes.getContentType(file.getName()));
+			
+			if(newApplicant != null) {
+				newApplicant.validateAndSave();
+				flash.success("Profile updated...");
+			} else {
+				flash.error("Please check all the values...");
+			}
 		} else {
-			flash.error("Please check all the values...");
+			flash.error("Please include your CV to proceed further...");
+			index();
 		}
-		
 		index();
 	}
 	
@@ -206,5 +210,45 @@ public class Applicants extends Controller {
 		String code = captcha.getText("#EEE");
 		Cache.set(id, code, "30mn");
 		renderBinary(captcha);
+	}
+	
+	public static void listOfJobs() {
+		checkApplicantSession();
+		List<JobCategory> jobCategories = JobCategory.findAll(); 
+		render(jobCategories);
+	}
+	
+	public static void jobShow(Long id) {
+		checkApplicantSession();
+		List<Job> jobs = Job.find("select j from Job j join j.category as c where j.status='TRUE' and c.id = ?", id).fetch();
+		JobCategory jobCategory = JobCategory.findById(id);
+		render(jobs, jobCategory);
+	}
+	
+	public static void jobDescription(Long id) {
+		checkApplicantSession();
+		Job job = Job.findById(id);
+		render(job);
+	}
+	
+	// The method should insert the data into Applicant_Job Table
+	// @params jobId and current session applicant's id should be inserted.
+	// This data should be shown in the index page of Applicant
+	public static void applyJob(Long jobId) {
+		checkApplicantSession();
+		Job job = Job.findById(jobId);
+		if(job != null) {
+			connectApplicant().jobItWith(job.id).save();
+			flash.success("You have successfully applied for " + job.title);
+			index();
+		} else {
+			flash.error("Some problem while applying this job");
+			index();
+		}
+	}
+	
+	public static void jobApplied() {
+		List<Applicant> listOfJobs = connectApplicant().findAllJobByApplicant(connectApplicant());
+		render(listOfJobs);
 	}
 }

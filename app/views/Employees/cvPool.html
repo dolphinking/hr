@@ -28,9 +28,14 @@
 			</span>
 			#{/form}
 			<br/>
+			<p>
 			#{ifnot applicants}
-				No Applicants Found with <strong>${expertise}</strong> keyword
+				 No Applicants
+				#{if expertise}
+					Found with <strong>${expertise}</strong> keyword
+				#{/if}
 			#{/ifnot}
+			</p>
 			#{else}
 			<table class="zebra-striped">
 				<tr>
