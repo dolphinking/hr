@@ -57,20 +57,24 @@ public class Applicants extends Controller {
 		login();
 	}
 	
+	// Applicant Login Form
 	public static void login() {
 		render();
 	}
 	
+	// Applicant Home Page
 	public static void index() {
 		checkApplicantSession();
 		Applicant applicant = connectApplicant();
 		render(applicant);
 	}
 	
+	// Forgot Password Page
 	public static void forgotPassword() {
 		render();
 	}
 	
+	// @param email for sending the password if the applicant is registered.
 	public static void sendPassword(String email) {
 		validation.required(email);
 		Applicant applicant = Applicant.find("byEmail",email).first();
@@ -84,6 +88,8 @@ public class Applicants extends Controller {
 		}
 	}
 	
+	// Editing Page for logged in Applicant
+	// @params id is the applicant id.
 	public static void edit(Long id) {
 		checkApplicantSession();
 		Applicant applicant = connectApplicant();
@@ -91,6 +97,9 @@ public class Applicants extends Controller {
 	}
 	
 	// Some changes should be there for file upload...
+	// @param id is the applicant id for update.
+	// @param applicant is the applicant for update.
+	// @param file is the cv file to upload.
 	public static void update(Long id, @Valid Applicant applicant, File file)
 		throws FileNotFoundException {
 		checkApplicantSession();
@@ -122,6 +131,7 @@ public class Applicants extends Controller {
 	
 	
 	// Download the specific CV of connected Applicant...
+	// @param id is the applicant id. 
 	public static void downloadFile(Long id) {
     final Applicant doc = Applicant.findById(id);
     notFoundIfNull(doc);
@@ -136,6 +146,10 @@ public class Applicants extends Controller {
 		render(applicant);
 	}
 	
+	// Update the password
+	// @param oldPassword is old password
+	// @param newPassword is new password
+	// @param verifyPassword is to verify password
 	public static void updatePassword(String oldPassword, 
 		String newPassword, String verifyPassword) {
 		checkApplicantSession();
@@ -164,6 +178,9 @@ public class Applicants extends Controller {
 		changePassword();
 	}
 	
+	// This checks the old password whether the password is correct or not.
+	// @params applicant is the given applicant object.
+	// @params oldPassword is the old password of given applicant object.
 	private static boolean checkOldPassword(Applicant applicant, String oldPassword) {
 		if (applicant.password.equals(oldPassword)) 
 			return true; 
@@ -171,16 +188,22 @@ public class Applicants extends Controller {
 			return false;
 	}
 	
+	// This destory the current session and goes to the login form.
 	public static void logout() {
 		session.clear();
 		login();
 	}
 	
+	// This is the signup form for the new applicant.
 	public static void signup() {
 		String randomID = Codec.UUID();
 		render(randomID);
 	}
-    
+  
+	// This actually saves the new Applicant in database.
+	// @param applicant is the new applicant object.
+	// @param verifyPassword is to verify two password.
+	// @params code and randomID is the code for captcha.
 	public static void save(@Valid Applicant applicant, 
 		String verifyPassword, String code, String randomID) {
 		
@@ -205,6 +228,8 @@ public class Applicants extends Controller {
 		login();
 	}
 	
+	// This is the captcha page.
+	// @param id is the id of the captcha id.
 	public static void captcha(String id) {
 		Images.Captcha captcha = Images.captcha();
 		String code = captcha.getText("#EEE");
@@ -212,12 +237,15 @@ public class Applicants extends Controller {
 		renderBinary(captcha);
 	}
 	
+	// Shows the list of currently available jobs
 	public static void listOfJobs() {
 		checkApplicantSession();
 		List<JobCategory> jobCategories = JobCategory.findAll(); 
 		render(jobCategories);
 	}
 	
+	// Shows the list of jobs according to job category.
+	// @param id is the jobcategory id.
 	public static void jobShow(Long id) {
 		checkApplicantSession();
 		List<Job> jobs = Job.find("select j from Job j join j.category as c where j.status='TRUE' and c.id = ?", id).fetch();
@@ -225,6 +253,8 @@ public class Applicants extends Controller {
 		render(jobs, jobCategory);
 	}
 	
+	// This show the description of the current job.
+	// @param id is the job id.
 	public static void jobDescription(Long id) {
 		checkApplicantSession();
 		Job job = Job.findById(id);
@@ -247,6 +277,7 @@ public class Applicants extends Controller {
 		}
 	}
 	
+	// Shows the list of Jobs applied by current or logged in applicant
 	public static void jobApplied() {
 		List<Applicant> listOfJobs = connectApplicant().findAllJobByApplicant(connectApplicant());
 		render(listOfJobs);
