@@ -23,7 +23,6 @@ PUT			/employees/update_current_user/{id}					Employees.updateUser
 PUT			/employees/update_employee/{id}							Employees.updateEmployee
 DELETE	/employees/delete_employee/{id}							Employees.removeEmployee
 
-
 # Applicant Page
 GET			/applicants/home														Applicants.index
 GET			/applicants/applicant_login									Applicants.login
@@ -43,12 +42,12 @@ PUT			/applicants/update_password									Applicants.updatePassword
 POST		/applicants/send_password										Applicants.sendPassword
 POST		/applicants/applicant_save									Applicants.save
 
-
 # Job Page
 GET			/jobs/post_job															Jobs.postJob
 GET			/jobs/new_job																Jobs.newJob
 GET			/jobs/show_job/{id}													Jobs.showJob
 GET			/jobs/edit_job/{id}													Jobs.editJob
+GET			/jobs/list_of_applicants/{id}								Jobs.listOfApplicants
 PUT			/jobs/update_job/{id}												Jobs.updateJob
 POST		/jobs/save_job															Jobs.postNewJob
 DELETE	/jobs/delete_job														Jobs.removeJob

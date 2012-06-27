@@ -1,0 +1,54 @@
+#{extends 'main.html' /}
+#{set title:'List of Applicants' /}
+
+<div class="content">
+	<div class="page-header">		
+		#{include 'jobs_menu.html'/}
+	</div>
+	<div class="row">
+		<div class="span14">
+			#{if flash.success}
+			<div class="alert-message success" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p><strong>${flash.success}</strong></p>
+			</div>
+	    #{/if}
+			#{if flash.error}
+			<div class="alert-message error" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p><strong>${error ?: flash.error}</strong></p>
+			</div>
+			#{/if}
+			#{ifnot applicants}
+				<h2>No Applicants....</h2>
+			#{/ifnot}
+			#{else}
+			<h3>
+				List of Applicants who Applied to #{a @Jobs.showJob(job?.id)}${job?.title}#{/a}
+			</h3>
+			<table class="zebra-striped">
+				<thead>
+					<tr>
+						<th>Full Name</th>
+						<th>Email</th>
+						<th>Expertise</th>
+						<th>Experience</th>
+						<th>Qualification</th>
+					</tr>
+				</thead>
+				#{list items:applicants, as: 'applicant'}
+				<tbody>
+					<tr>
+						<td>${applicant?.fullName}</td>
+						<td>${applicant?.email}</td>		
+						<td>${applicant?.expertise}</td>
+						<td>${applicant?.yearsOfExperience}</td>
+						<td>${applicant?.qualification}</td>
+					</tr>
+				</tbody>
+				#{/list}
+			</table>
+			#{/else}
+		</div>
+	</div>
+</div>

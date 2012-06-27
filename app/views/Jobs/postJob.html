@@ -44,7 +44,7 @@
 				<tbody>
 					<tr>
 						<td>${job?.category}</td>
-						<td>${job?.title}</td>		
+						<td>#{a @Jobs.listOfApplicants(job?.id)}${job?.title}#{/a}</td>		
 						<td>${job?.postedDate.format('dd MMM yyyy')}</td>
 						<td><font color="red">${job?.expiryDate.format('dd MMM yyyy')}</font></td>
 						<td>

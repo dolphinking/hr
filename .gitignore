@@ -10,4 +10,7 @@ test-result/
 # Can ignore the dependencies modules directories.
 modules/
 
+# Can ignore the data directory created by lucene.
+data/ 
+
 

@@ -102,6 +102,8 @@ public class Jobs extends Controller {
 		postJob();
 	}	
 	
+	// Removes the job object.
+	// @param id is the job id.
 	public static void removeJob(Long id) {
 		Job job = Job.findById(id);
 		if(job != null) {
@@ -109,5 +111,16 @@ public class Jobs extends Controller {
 			flash.success("Successfully deleted.");
 		}
 		postJob();
-	}   
+	}
+	
+	// Shows the list of applicants if they have applied for specific jobs
+	// @param id is the Job id to catch the applicant.
+	public static void listOfApplicants(Long id) {
+		Job job = Job.findById(id);
+		List<Applicant> applicants = Applicant.find("select a from Applicant a join a.jobs as j where j.id=?", id).fetch();
+		if(job != null && applicants.size() > 0)
+			render(job, applicants);
+		else
+			postJob();
+	}
 }
