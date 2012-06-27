@@ -69,6 +69,10 @@ public class Applicant extends Model {
 	}
 	
 	public static List<Applicant> findAllJobByApplicant(Applicant applicant) {
-		return Applicant.find("select j from Job j join j.applicant as a where a.id = ?",applicant.id).fetch();
+		return Applicant.find("select j from Job j join j.applicant as a where a.id = ?", applicant.id).fetch();
+	}
+	
+	public static List<Applicant> findJobWithApplicant(Long jobId, Long appId) {
+		return Applicant.find("select a from Applicant a join a.jobs as j where j.id=? and a.id=?", jobId, appId).fetch();
 	}
 }

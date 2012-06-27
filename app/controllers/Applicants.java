@@ -262,23 +262,50 @@ public class Applicants extends Controller {
 	}
 	
 	// The method should insert the data into Applicant_Job Table
-	// @params jobId and current session applicant's id should be inserted.
+	// @params id is job id of current session applicant's id should be inserted.
 	// This data should be shown in the index page of Applicant
-	public static void applyJob(Long jobId) {
+	public static void applyJob(Long id) {
 		checkApplicantSession();
-		Job job = Job.findById(jobId);
+		Job job = Job.findById(id);
+		Applicant applicant = connectApplicant();
 		if(job != null) {
-			connectApplicant().jobItWith(job.id).save();
-			flash.success("You have successfully applied for " + job.title);
-			index();
+			if(checkApplicantAndJob(job, applicant)) {
+				applicant.jobItWith(job.id).save();
+				flash.success("You have successfully applied for " + job.title);
+			} else {
+				flash.error("You have already applied for this job");
+			}
 		} else {
-			flash.error("Some problem while applying this job");
-			index();
+			flash.error("You are applying for null job.");
 		}
+		index();
+	}
+	
+	// This method checks whether the applicant is applying for same job again and again.
+	// @param job is the Job Object
+	// @param applicant is the Applicant Object.
+	private static boolean checkApplicantAndJob(Job job, Applicant applicant) {
+		if(job != null && applicant != null) {
+			List<Applicant> applicants = applicant.findJobWithApplicant(job.id, applicant.id);
+			if(applicants.size() > 0) {
+				for(int i=0; i<applicants.size(); i++) {
+					System.out.println(applicants.get(i).email);
+					if(applicants.get(i).email.equals(connectApplicant().email)) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			} else {
+				return true;
+			}
+		}
+		return false;	
 	}
 	
 	// Shows the list of Jobs applied by current or logged in applicant
 	public static void jobApplied() {
+		checkApplicantSession();
 		List<Applicant> listOfJobs = connectApplicant().findAllJobByApplicant(connectApplicant());
 		render(listOfJobs);
 	}

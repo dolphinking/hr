@@ -36,10 +36,13 @@ GET     /applicants/captcha                      		Applicants.captcha
 GET			/applicants/jobs														Applicants.listOfJobs
 GET			/applicants/jobShow/{id}										Applicants.jobShow
 GET			/applicants/jobDescription/{id}							Applicants.jobDescription
+GET			/applicants/jobApplied											Applicants.jobApplied
+PUT			/applicants/applyJob/{id}										Applicants.applyJob
 PUT			/applicants/applicant_update								Applicants.update
 PUT			/applicants/update_password									Applicants.updatePassword
 POST		/applicants/send_password										Applicants.sendPassword
 POST		/applicants/applicant_save									Applicants.save
+
 
 # Job Page
 GET			/jobs/post_job															Jobs.postJob
