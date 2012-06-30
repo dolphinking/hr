@@ -89,8 +89,7 @@ public class Employees extends Controller {
 		checkSession();
 		Employee employee = connected();
 		List<Department> departments = Department.findAll();
-		List<Role> roles = Role.findAll();
-		render(employee, departments, roles);
+		render(employee, departments);
 	}
 	
 	// Update the change of the logged in user....
@@ -100,7 +99,6 @@ public class Employees extends Controller {
 		updatedEmployee.fullName = employee.fullName;
 		updatedEmployee.phone = employee.phone;
 		updatedEmployee.department = employee.department;
-		updatedEmployee.role = employee.role;
 		if(updatedEmployee != null) {
 			updatedEmployee.validateAndSave();
 			flash.success("Your profile is successfully updated.");
@@ -121,8 +119,7 @@ public class Employees extends Controller {
 	public static void newEmployee() {
 		checkSession();
 		List<Department> departments = Department.findAll();
-		List<Role> roles = Role.findAll();
-		render(departments, roles);
+		render(departments);
 	}
 	
 	// Save the new Employee...
@@ -134,7 +131,6 @@ public class Employees extends Controller {
 		validation.required(employee.password);
 		validation.required(employee.phone);
 		validation.required(employee.department);
-		validation.required(employee.role);
 		validation.equals(verifyPassword, employee.password).message("Your password doesn't match");
 		
 		if(validation.hasErrors()) {
@@ -159,8 +155,7 @@ public class Employees extends Controller {
 		checkSession();
 		Employee employee = Employee.findById(id);
 		List<Department> departments = Department.findAll();
-		List<Role> roles = Role.findAll();
-		render(employee, departments, roles);
+		render(employee, departments);
 	}
 	
 	// Update the contents of other employees
@@ -170,14 +165,12 @@ public class Employees extends Controller {
 		validation.required(employee.phone);
 		validation.required(employee.email);
 		validation.required(employee.department);
-		validation.required(employee.role);
 		
 		Employee updatedEmployee = Employee.findById(id);
 		updatedEmployee.fullName = employee.fullName;
 		updatedEmployee.email = employee.email;
 		updatedEmployee.phone = employee.phone;
 		updatedEmployee.department = employee.department;
-		updatedEmployee.role = employee.role;
 		
 		if(validation.hasErrors()) {
 			flash.error("Somethings is wrong...while editing old employee");
