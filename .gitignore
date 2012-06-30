@@ -11,6 +11,6 @@ test-result/
 modules/
 
 # Can ignore the data directory created by lucene.
-data/ 
+data/**/* 
 
 

@@ -10,6 +10,7 @@ import models.*;
 
 public class Jobs extends Controller {
 	
+	// Before filter checkEmployee, checks the currently logged in employee's sessions
 	@Before
 	static void checkEmployee() {
 		Employees.checkSession();
@@ -34,6 +35,7 @@ public class Jobs extends Controller {
 	}
 	
 	// Post new jobs after filling up form...
+	// @param job is the job object...
 	public static void postNewJob(@Valid Job job) {
 		// Lots of other validations are need here
 		validation.required(job.category);
@@ -61,11 +63,15 @@ public class Jobs extends Controller {
 		}
 	}
 	
+	// Shows the individual job...
+	// @param id is the job id with long data type...
 	public static void showJob(Long id) {
 		Job job = Job.findById(id);
 		render(job);
 	}
 	
+	// Edit page for the Job...
+	// @param id is the job id with long data type...
 	public static void editJob(Long id) {
 		List<JobCategory> jobCategories = JobCategory.findAll();
 		Employee employee = Employees.connected();
@@ -73,6 +79,8 @@ public class Jobs extends Controller {
 		render(jobCategories, employee, job);
 	}
 	
+	// Update the particular job...
+	// @param id and job are the job id and job object...
 	public static void updateJob(Long id, @Valid Job job) {
 		Job updatablejob = Job.findById(id);
 		updatablejob.category = job.category;
@@ -102,8 +110,8 @@ public class Jobs extends Controller {
 		postJob();
 	}	
 	
-	// Removes the job object.
-	// @param id is the job id.
+	// Removes the job object...
+	// @param id is the job id...
 	public static void removeJob(Long id) {
 		Job job = Job.findById(id);
 		if(job != null) {
@@ -113,8 +121,8 @@ public class Jobs extends Controller {
 		postJob();
 	}
 	
-	// Shows the list of applicants if they have applied for specific jobs
-	// @param id is the Job id to catch the applicant.
+	// Shows the list of applicants if they have applied for specific jobs...
+	// @param id is the Job id to catch the applicant...
 	public static void listOfApplicants(Long id) {
 		Job job = Job.findById(id);
 		List<Applicant> applicants = Applicant.find("select a from Applicant a join a.jobs as j where j.id=?", id).fetch();

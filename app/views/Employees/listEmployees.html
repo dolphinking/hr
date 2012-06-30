@@ -23,7 +23,6 @@
 						<th>Email</th>
 						<th>Phone</th>
 						<th>Department</th>
-						<th>Role</th>
 						<th>Controls</th>
 					</tr>
 				</thead>
@@ -34,7 +33,6 @@
 						<td>${employee?.email}</td>
 						<td>${employee?.phone}</td>
 						<td>${employee?.department.name}</td>
-						<td>${employee?.role.name}</td>
 						<td>
 							#{a @editEmployee(employee?.id)}Edit#{/a} ||
 							#{a @removeEmployee(employee?.id)}Remove#{/a}

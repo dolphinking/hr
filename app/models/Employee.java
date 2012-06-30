@@ -29,18 +29,13 @@ public class Employee extends Model {
 	@Required
 	public Department department;
 	
-	@ManyToOne
-	@Required
-	public Role role;
-	
 	public Employee(String fullName, String password, String email, 
-	String phone, Department department, Role role) {
+	String phone, Department department) {
 		this.fullName = fullName;
 		this.password = password;
 		this.email = email;
 		this.phone = phone;
 		this.department = department;
-		this.role = role;
 	}
 	
 	public String toString() {

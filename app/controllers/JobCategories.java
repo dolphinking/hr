@@ -10,32 +10,27 @@ import models.*;
 
 public class JobCategories extends Controller {
 	
+	
+	// Before Filter checkEmployee, checks the employee session...
 	@Before
 	static void checkEmployee() {
 		Employees.checkSession();
 	}
 	
+	// Home page for job categories...
 	public static void index() {
 		List<JobCategory> jobCategories = JobCategory.findAll();
 		render(jobCategories);
 	}
 	
+	// Saves the new Job category...
+	// @params category is JobCategory object...
 	public static void addJobCategory(@Valid JobCategory category) {
 		validation.required(category.name);
 		if(validation.hasErrors()) {
 			flash.error("Please enter the valid job category...");
 		} else {
 			category.create();
-		}
-		index();
-	}
-	
-	// TODO -> Need to add some validation in
-	public static void removeJobCategory(Long id) {
-		JobCategory jobCategory = JobCategory.findById(id);
-		if(jobCategory != null) {
-			jobCategory.delete();
-			flash.success("Successfully deleted.");
 		}
 		index();
 	}

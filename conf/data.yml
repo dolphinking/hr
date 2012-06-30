@@ -6,9 +6,6 @@ Department(IT):
 Department(HR):
     name:           Human Resources
     
-Role(admin):
-    name:           Admin
-    
 Employee(suraj):
     fullName:       Suraj Tamang
     email:          surajyonzon@gmail.com

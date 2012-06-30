@@ -15,11 +15,8 @@ public class BasicTest extends UnitTest {
 		// Create the department table at first.
 		Department department = new Department("Accounts").save();
 		
-		// Create the role table at first.
-		Role role = new Role("Admin").save();
-		
 		// Created new instance of employee to save the sample data.
-		Employee employee = new Employee("Suraj Tamang", "suraj123", "surajyonzon@gmail.com", "9849038521", department, role).save();
+		Employee employee = new Employee("Suraj Tamang", "suraj123", "surajyonzon@gmail.com", "9849038521", department).save();
 
 		// Created the instance of Employee and searched for first data.
 		Employee emp = Employee.find("byEmail", "surajyonzon@gmail.com").first();

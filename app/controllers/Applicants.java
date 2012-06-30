@@ -15,6 +15,8 @@ import notifiers.*;
 
 public class Applicants extends Controller {
 	
+	
+	// Before filter addApplicant, which checks the user sessions...
 	@Before
   static void addApplicant() {
 		Applicant applicant = connectApplicant();
@@ -23,6 +25,7 @@ public class Applicants extends Controller {
 		}
   }
   
+	// connectApplicant is the Current Applicant logged in...
   static Applicant connectApplicant() {
     if(renderArgs.get("userApplicant") != null) {
 			return renderArgs.get("userApplicant", Applicant.class);
@@ -42,8 +45,8 @@ public class Applicants extends Controller {
 		}
   }
 	
-	// @username is the username variable to capture the value of username
-	// @password is the password variable to capture the value of password
+	// Checks the correct Applicant for login...
+	// @params username and password is the username and password for applicant...
 	public static void checkApplicant(String email, String password) {
 		Applicant applicant = Applicant.find("byEmailAndPassword", email, password).first();
 		if(applicant != null) {
@@ -57,24 +60,25 @@ public class Applicants extends Controller {
 		login();
 	}
 	
-	// Applicant Login Form
+	// Applicant Login Form...
 	public static void login() {
 		render();
 	}
 	
-	// Applicant Home Page
+	// Applicant Home Page...
 	public static void index() {
 		checkApplicantSession();
 		Applicant applicant = connectApplicant();
 		render(applicant);
 	}
 	
-	// Forgot Password Page
+	// Forgot Password Page...
 	public static void forgotPassword() {
 		render();
 	}
 	
-	// @param email for sending the password if the applicant is registered.
+	// sendPassword is the action for sending the old password...
+	// @param email for sending the password if the applicant is registered...
 	public static void sendPassword(String email) {
 		validation.required(email);
 		Applicant applicant = Applicant.find("byEmail",email).first();
@@ -89,7 +93,7 @@ public class Applicants extends Controller {
 	}
 	
 	// Editing Page for logged in Applicant
-	// @params id is the applicant id.
+	// @param id is the applicant id.
 	public static void edit(Long id) {
 		checkApplicantSession();
 		Applicant applicant = connectApplicant();
