@@ -9,6 +9,7 @@ import play.libs.*;
 import play.cache.*;
 import play.db.jpa.*;
 import play.data.validation.*;
+import play.modules.paginate.ValuePaginator;
 
 import models.*;
 import notifiers.*;
@@ -311,6 +312,8 @@ public class Applicants extends Controller {
 	public static void jobApplied() {
 		checkApplicantSession();
 		List<Applicant> listOfJobs = connectApplicant().findAllJobByApplicant(connectApplicant());
-		render(listOfJobs);
+		ValuePaginator paginator = new ValuePaginator(listOfJobs);
+		paginator.setPageSize(5);
+		render(paginator);
 	}
 }

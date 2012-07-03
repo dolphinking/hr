@@ -5,6 +5,7 @@ import java.util.*;
 import play.*;
 import play.mvc.*;
 import play.data.validation.*;
+import play.modules.paginate.ValuePaginator;
 
 import models.*;
 
@@ -19,7 +20,9 @@ public class Jobs extends Controller {
 	// List of jobs will be listed here....
 	public static void postJob() {
 		List<Job> jobs = Job.find("order by postedDate desc").fetch();
-		render(jobs);
+		ValuePaginator paginator = new ValuePaginator(jobs);
+		paginator.setPageSize(4);
+		render(paginator);
 	}
 	
 	// New Job Action Page....
@@ -126,8 +129,10 @@ public class Jobs extends Controller {
 	public static void listOfApplicants(Long id) {
 		Job job = Job.findById(id);
 		List<Applicant> applicants = Applicant.find("select a from Applicant a join a.jobs as j where j.id=?", id).fetch();
+		ValuePaginator paginator = new ValuePaginator(applicants);
+		paginator.setPageSize(4);
 		if(job != null && applicants.size() > 0)
-			render(job, applicants);
+			render(job, paginator);
 		else
 			postJob();
 	}

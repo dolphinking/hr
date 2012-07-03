@@ -5,6 +5,7 @@ import java.util.*;
 import play.*;
 import play.mvc.*;
 import play.data.validation.*;
+import play.modules.paginate.ValuePaginator;
 
 import models.*;
 
@@ -19,7 +20,9 @@ public class Departments extends Controller {
 	// Home page for department model...
 	public static void index() {
 		List<Department> departments = Department.findAll();
-		render(departments);
+		ValuePaginator paginator = new ValuePaginator(departments);
+		paginator.setPageSize(4);
+		render(paginator);
 	}
 	
 	// Saves the new department...

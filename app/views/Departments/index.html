@@ -22,28 +22,6 @@
 		</p>
 	</div>
 	#{/if}
-	#{ifnot departments}
-		No Departments Found...
-	#{/ifnot}
-	#{else}
-	<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Control</th>
-			</tr>
-		</thead>
-		<tbody>
-		#{list items:departments, as: 'department'}
-			<tr>
-				<td>${department?.name}</td>
-				<td>
-					#{a @editDepartment(department?.id)}Edit#{/a}
-				</td>
-			</tr>
-		#{/list}
-	</table>
-	#{/else}
 	<div class="row">
 		<div class="span14">
 			#{form @addDepartment(), class: 'form-stacked'}
@@ -62,4 +40,26 @@
 			#{/form}
 		</div>
 	</div>
+	#{ifnot paginator}
+		No Departments Found...
+	#{/ifnot}
+	#{else}
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Control</th>
+			</tr>
+		</thead>
+		<tbody>
+		#{paginate.list items:paginator, as: 'department'}
+			<tr>
+				<td>${department?.name}</td>
+				<td>#{a @editDepartment(department?.id)}Edit#{/a}</td>
+			</tr>
+		#{/paginate.list}
+	</table>
+	#{paginate.controls items:paginator /}
+	#{paginate.summary items:paginator/}
+	#{/else}
 </div>

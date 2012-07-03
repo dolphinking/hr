@@ -29,7 +29,7 @@
 			#{/form}
 			<br/>
 			<p>
-			#{ifnot applicants}
+			#{ifnot paginator}
 				 No Applicants
 				#{if expertise}
 					Found with <strong>${expertise}</strong> keyword
@@ -45,7 +45,7 @@
 					<th>CV</th>
 					<th>Controls</th>
 				</tr>
-				#{list items:applicants, as:'applicant'}
+				#{paginate.list items:paginator, as:'applicant'}
 				<tr>
 					<td>${applicant?.fullName}</td>
 					<td>${applicant?.email}</td>
@@ -53,8 +53,10 @@
 					<td>#{a @Applicants.downloadFile(applicant?.id)}${applicant?.fileName}#{/a}</td>
 					<td>#{a @Employees.showApplicant(applicant?.id)}View#{/a}
 				</tr>
-				#{/list}
+				#{/paginate.list}
 			</table>
+			#{paginate.controls items:paginator /}
+			#{paginate.summary items:paginator/}
 			#{/else}
 		</div>
 	</div>

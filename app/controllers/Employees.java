@@ -6,6 +6,7 @@ import play.*;
 import play.mvc.*;
 import play.data.validation.*;
 import play.modules.search.*;
+import play.modules.paginate.ValuePaginator;
 
 import models.*;
 import notifiers.*;
@@ -77,10 +78,14 @@ public class Employees extends Controller {
 			for(int i=0; i<keywords.size(); i++) {
 				applicants.add(keywords.get(i));
 			}
-			render(keywords, expertise, applicants);
+			ValuePaginator paginator = new ValuePaginator(applicants);
+			paginator.setPageSize(5);
+			render(keywords, expertise, paginator);
 		} else {
 			applicants = Applicant.findAll();
-			render(applicants);
+			ValuePaginator paginator = new ValuePaginator(applicants);
+			paginator.setPageSize(5);
+			render(paginator);
 		}
 	}
 	
@@ -112,7 +117,9 @@ public class Employees extends Controller {
 	public static void listEmployees() {
 		checkSession();
 		List<Employee> employees = Employee.find("select e from Employee e where e.id!=?", connected().id).fetch();
-		render(employees);
+		ValuePaginator paginator = new ValuePaginator(employees);
+		paginator.setPageSize(4);
+		render(paginator);
 	}
 	
 	// Action View for new Employee...

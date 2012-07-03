@@ -2,7 +2,8 @@
 #{set title:'List of Applicants' /}
 
 <div class="content">
-	<div class="page-header">		
+	<div class="page-header">
+		<h1>Post Jobs <small>Add some chilling jobs...</small></h1>	
 		#{include 'jobs_menu.html'/}
 	</div>
 	<div class="row">
@@ -19,7 +20,7 @@
 				<p><strong>${error ?: flash.error}</strong></p>
 			</div>
 			#{/if}
-			#{ifnot applicants}
+			#{ifnot paginator}
 				<h2>No Applicants....</h2>
 			#{/ifnot}
 			#{else}
@@ -36,7 +37,7 @@
 						<th>Qualification</th>
 					</tr>
 				</thead>
-				#{list items:applicants, as: 'applicant'}
+				#{paginate.list items:paginator, as: 'applicant'}
 				<tbody>
 					<tr>
 						<td>${applicant?.fullName}</td>
@@ -46,8 +47,10 @@
 						<td>${applicant?.qualification}</td>
 					</tr>
 				</tbody>
-				#{/list}
+				#{/paginate.list}
 			</table>
+			#{paginate.controls items:paginator /}
+			#{paginate.summary items:paginator/}
 			#{/else}
 		</div>
 	</div>

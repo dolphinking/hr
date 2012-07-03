@@ -2,7 +2,8 @@
 #{set title:'Jobs' /}
 
 <div class="content">
-	<div class="page-header">		
+	<div class="page-header">
+		<h1>Post Jobs <small>Add some chilling jobs...</small></h1>
 		#{include 'jobs_menu.html'/}
 	</div>
 	<div class="row">
@@ -23,7 +24,7 @@
 				</p>
 			</div>
 			#{/if}
-			#{ifnot jobs}
+			#{ifnot paginator}
 				<h2>No Jobs....</h2>
 			#{/ifnot}
 			#{else}
@@ -40,7 +41,7 @@
 						<th>Controls</th>
 					</tr>
 				</thead>
-				#{list items:jobs, as: 'job'}
+				#{paginate.list items:paginator, as: 'job'}
 				<tbody>
 					<tr>
 						<td>${job?.category}</td>
@@ -61,8 +62,10 @@
 						</td>
 					</tr>
 				</tbody>
-				#{/list}
+				#{/paginate.list}
 			</table>
+			#{paginate.controls items:paginator /}
+			#{paginate.summary items:paginator/}
 			#{/else}
 		</div>
 	</div>

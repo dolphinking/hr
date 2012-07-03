@@ -2,10 +2,10 @@
 #{set title:'Job Category' /}
 
 <div class="content">
-    <div class="page-header">
+	<div class="page-header">
+		<h1>Job Category <small>Add some chilling job categories...</small></h1>
 		#{include 'jobs_menu.html'/}
-    </div>
-	<h2>Job Category</h2>
+	</div>
 	#{if flash.success}
 	<div class="alert-message success" data-alert="alert">
 		<a class="close" href="#">×</a>
@@ -22,45 +22,44 @@
 		</p>
 	</div>
 	#{/if}
-	#{ifnot jobCategories}
-		No Job Categories Found...
-	#{/ifnot}
-	#{else}
-	<table>
-		<thead>
-			<tr>
-				<th>Name</th>
-				<th>Control</th>
-			</tr>
-		</thead>
-		<tbody>
-		#{list items:jobCategories, as: 'category'}
-			<tr>
-				<td>${category?.name}</td>
-				<td>
-						#{a @removeJobCategory(category?.id)}Remove#{/a} || 
-						#{a @editJobCategory(category?.id)}Edit#{/a}
-				</td>
-			</tr>
-		#{/list}
-	</table>
-	#{/else}
-    <div class="row">
-      <div class="span14">
-		#{form @addJobCategory(), class: 'form-stacked'}
-		<fieldset>
-			#{field 'category.name'}
-			<div class="clearfix">
-				<div class="input">
-					<label for="jobCategory">Job Category *</label>
-					<input class="span5" id="jobCategory" type="text" name="${field.name}"/>
-					<span class="help-inline"></span>
-				</div>
-			</div>
-			#{/field}
-			<button type="submit" class="btn primary">Add Job Category</button>
-		</fieldset>
-		#{/form}
-      </div>
+	<div class="row">
+    <div class="span14">
+			#{form @addJobCategory(), class: 'form-stacked'}
+				<fieldset>
+					#{field 'category.name'}
+					<div class="clearfix">
+						<div class="input">
+							<label for="jobCategory">Job Category *</label>
+							<input class="span5" id="jobCategory" type="text" name="${field.name}"/>
+							<span class="help-inline"></span>
+						</div>
+					</div>
+					#{/field}
+					<input type="submit" class="btn primary" value="Add Job Category"/>
+				</fieldset>
+			#{/form}
     </div>
   </div>
+	#{if paginator}
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Control</th>
+				</tr>
+			</thead>
+			<tbody>
+			#{paginate.list items:paginator, as: 'category'}
+				<tr>
+					<td>${category?.name}</td>
+					<td>#{a @editJobCategory(category?.id)}Edit#{/a}</td>
+				</tr>
+			#{/paginate.list}
+		</table>
+		#{paginate.controls items:paginator /}
+		#{paginate.summary items:paginator/}
+	#{/if}
+	#{else}
+		No Job Categories Found...
+	#{/else}
+</div>

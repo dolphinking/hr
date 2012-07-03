@@ -8,7 +8,7 @@
 	<div class="row">
 		<div class="span14">
 			<div>
-				#{ifnot listOfJobs}
+				#{ifnot paginator}
 					<h2>No jobs applied till now....</h2>
 				#{/ifnot}
 				#{else}
@@ -22,7 +22,7 @@
 							<th>Status</th>
 						</tr>
 					</thead>
-					#{list items:listOfJobs, as: 'job'}
+					#{paginate.list items:paginator, as: 'job'}
 					<tbody>
 						<tr>
 							<td>${job?.title}</td>
@@ -37,8 +37,10 @@
 							</td>
 						</tr>
 					</tbody>
-					#{/list}
+					#{/paginate.list}
 				</table>
+				#{paginate.controls items:paginator /}
+				#{paginate.summary items:paginator/}
 				#{/else}
 				</div>
 		</div>

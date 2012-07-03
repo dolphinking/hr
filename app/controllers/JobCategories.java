@@ -5,6 +5,7 @@ import java.util.*;
 import play.*;
 import play.mvc.*;
 import play.data.validation.*;
+import play.modules.paginate.ValuePaginator;
 
 import models.*;
 
@@ -20,7 +21,9 @@ public class JobCategories extends Controller {
 	// Home page for job categories...
 	public static void index() {
 		List<JobCategory> jobCategories = JobCategory.findAll();
-		render(jobCategories);
+		ValuePaginator paginator = new ValuePaginator(jobCategories);
+		paginator.setPageSize(4);
+		render(paginator);
 	}
 	
 	// Saves the new Job category...
