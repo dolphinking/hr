@@ -43,7 +43,7 @@ POST		/applicants/send_password										Applicants.sendPassword
 POST		/applicants/applicant_save									Applicants.save
 
 # Job Page
-GET			/jobs/post_job															Jobs.postJob
+GET			/jobs/job_post															Jobs.postJob
 GET			/jobs/new_job																Jobs.newJob
 GET			/jobs/show_job/{id}													Jobs.showJob
 GET			/jobs/edit_job/{id}													Jobs.editJob

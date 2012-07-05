@@ -4,9 +4,9 @@
 			#{if session?.userEmployee}
 				#{a @Employees.cvPool(), class: 'brand'}Human Equation UAE#{/a}
 				<ul class="nav">
-					<li class="active">#{a @Employees.cvPool()}CV Pool#{/a}</li>
-					<li>#{a @Jobs.postJob()}Post Jobs#{/a}</li>
-					<li>#{a @Employees.settings()}Settings#{/a}</li>
+					<li id="cv_pool">#{a @Employees.cvPool()}CV Pool#{/a}</li>
+					<li id="job_post">#{a @Jobs.postJob()}Post Jobs#{/a}</li>
+					<li id="employee_settings">#{a @Employees.settings()}Settings#{/a}</li>
 				</ul>
 				<p class="pull-right">
 					#{a @Employees.settings()}${session?.userEmployee}#{/a} ||
@@ -16,10 +16,10 @@
 			#{elseif session?.userApplicant}
 				#{a @Applicants.index(), class: 'brand'}Human Equation UAE#{/a}
 				<ul class="nav">
-					<li>#{a @Applicants.index()}Profile#{/a}</li>
-					<li>#{a @Applicants.listOfJobs()}Jobs#{/a}</li>
-					<li>#{a @Applicants.jobApplied()}Jobs You Applied#{/a}</li>
-					<li>#{a @Applicants.changePassword()}Change Password#{/a}</li>
+					<li id="home">#{a @Applicants.index()}Profile#{/a}</li>
+					<li id="jobs">#{a @Applicants.listOfJobs()}Jobs#{/a}</li>
+					<li id="jobApplied">#{a @Applicants.jobApplied()}Jobs You Applied#{/a}</li>
+					<li id="change_password">#{a @Applicants.changePassword()}Change Password#{/a}</li>
 				</ul>
 				<p class="pull-right">
 					#{a @Applicants.index()}${session?.userApplicant}#{/a} ||
@@ -29,8 +29,8 @@
 			#{else}
 			#{a @Application.index(), class: 'brand'}Human Equation UAE#{/a}			
 			<ul class="nav">
-				<li>#{a @Applicants.login()}Job Seeker Login#{/a}</li>			
-				<li>#{a @Employees.login()}Employee Login#{/a}</li>
+				<li id="applicant_login">#{a @Applicants.login()}Job Seeker Login#{/a}</li>			
+				<li id="employee_login">#{a @Employees.login()}Employee Login#{/a}</li>
 				<li><a href="#">Contact Us</a></li>
 			</ul>
 			#{/else}
