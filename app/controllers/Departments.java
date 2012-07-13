@@ -32,7 +32,11 @@ public class Departments extends Controller {
 		if(validation.hasErrors()) {
 			flash.error("Please enter the valid department.");
 		} else {
-			department.create();
+			try {
+				department.create();
+			} catch(Exception e) {
+				flash.error(e.getMessage());
+			}
 		}
 		index();
 	}

@@ -19,13 +19,22 @@
 				</div>
 				<input type="submit" class="btn primary" value="Search"/>
 			</fieldset>
-			<span>
-				<font color="red">
-					#{if flash.error}
-						${error ?: flash.error}
-					#{/if}
-				</font>
-			</span>
+			#{if flash.success}
+			<div class="alert-message success" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p>
+					<strong>${flash.success}</strong>
+				</p>
+			</div>
+	    #{/if}	
+			#{if flash.error}
+			<div class="alert-message error" data-alert="alert">
+				<a class="close" href="#">×</a>
+				<p>
+					<strong>${error ?: flash.error}</strong>
+				</p>
+			</div>
+			#{/if}
 			#{/form}
 			<br/>
 			<p>

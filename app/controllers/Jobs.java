@@ -117,9 +117,13 @@ public class Jobs extends Controller {
 	// @param id is the job id...
 	public static void removeJob(Long id) {
 		Job job = Job.findById(id);
-		if(job != null) {
-			job.delete();
-			flash.success("Successfully deleted.");
+		try {
+			if(job != null) {
+				job._delete();
+				flash.success("Successfully deleted.");
+			}
+		} catch(Exception e) {
+			flash.error(e.getMessage());
 		}
 		postJob();
 	}

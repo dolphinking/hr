@@ -10,13 +10,22 @@
 			#{form @updateEmployee(employee?.id), class: 'form-stacked'}
 				<fieldset>
 					<legend>Edit Employee</legend>
-					<span class="help-inline">
-						<font color="red">
-							#{if flash.error}
-								${error ?: flash.error}
-							#{/if}
-						</font>
-					</span>
+					#{if flash.success}
+					<div class="alert-message success" data-alert="alert">
+						<a class="close" href="#">×</a>
+						<p>
+							<strong>${flash.success}</strong>
+						</p>
+					</div>
+			    #{/if}	
+					#{if flash.error}
+					<div class="alert-message error" data-alert="alert">
+						<a class="close" href="#">×</a>
+						<p>
+							<strong>${error ?: flash.error}</strong>
+						</p>
+					</div>
+					#{/if}
 					#{field 'employee.fullName'}
 					<div class="clearfix">
 						<div class="input">
@@ -57,22 +66,9 @@
 						</div>
 					</div>
 					#{/field}
-					#{field 'employee.role.id'}
-					<div class="clearfix">
-						<div class="input">
-							<label for="role">Role *</label>
-							#{select 'employee.role.id', value:employee?.role.id}
-								#{list items:roles, as: 'role'}
-									#{option role.id}${role.name}#{/option}
-								#{/list}
-							#{/select}
-							<span class="help-inline"></span>
-						</div>
-					</div>
-					#{/field}
-					<button type="submit" class="btn primary">Update</button>
+					<input type="submit" class="btn primary" value="Update"/>
 					#{a @listEmployees()}
-						<button type="button" class="btn">Cancel</button>
+						<input type="button" class="btn" value="Cancel"/>
 					#{/a}
 				</fieldset>
 			#{/form}

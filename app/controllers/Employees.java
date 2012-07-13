@@ -179,12 +179,12 @@ public class Employees extends Controller {
 		updatedEmployee.phone = employee.phone;
 		updatedEmployee.department = employee.department;
 		
-		if(validation.hasErrors()) {
-			flash.error("Somethings is wrong...while editing old employee");
-			editEmployee(updatedEmployee.id);
-		} else {
+		if(updatedEmployee != null) {
 			updatedEmployee.validateAndSave();
 			listEmployees();
+		} else {
+			flash.error("Somethings is wrong...while editing old employee");
+			editEmployee(updatedEmployee.id);
 		}
 	}
 	

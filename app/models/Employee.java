@@ -15,6 +15,7 @@ public class Employee extends Model {
 	
 	@Required
 	@Email
+	@Column(unique=true)
 	public String email;
 	
 	@Required
