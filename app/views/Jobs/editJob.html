@@ -138,9 +138,9 @@
 					#{field 'job.employee.id'}
 					<input type="hidden" name="${field.name}" value="${employee?.id}">
 					#{/field}
-					<button type="submit" class="btn primary">Update Job</button>
+					<input type="submit" class="btn primary" value="Update Job"/>
 					#{a @postJob()}
-						<button type="button" class="btn">Back</button>
+						<input type="button" class="btn" value="Back"/>
 					#{/a}
 				</fieldset>
 			#{/form}
